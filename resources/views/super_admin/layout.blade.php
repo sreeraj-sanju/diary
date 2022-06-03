@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-  <title>My Diary - Personal Budget Calculator </title>
+  <title>My Diary - Personal Budget Calculator @yield('title')</title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="{{asset('css/fonts.css')}}" />
   <!-- Nucleo Icons -->
@@ -33,6 +33,10 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('assets/css/material-dashboard.css?v=3.0.2')}}" rel="stylesheet" />
   <!-- <link id="pagestyle" href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.dataTables.css')}}">
+
+  @livewireStyles
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -41,7 +45,8 @@
   @include('super_admin.navbar')
 
     @yield('content')
-
+   
+   
     @include('super_admin.footer')
   </main>
   <div class="fixed-plugin">
@@ -117,19 +122,31 @@
       </div>
     </div>
   </div>
+  
   <!--   Core JS Files   -->
+  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+  <script src="{{asset('js/jquery.min.js')}}"></script>
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
   <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
+  {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+  <script src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset ('js/jquery.dataTables.min.js')}}"></script>
   
+  @livewireScripts
   @yield('script')
  
   <!-- Github buttons -->
   <script async defer src="{{asset('assets/js/git-buttons.js')}}"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.2')}}"></script>
+  <script>
+    $(document).ready(function () {
+        $('#table1').DataTable();
+    });
+  </script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ExpenseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +20,15 @@ Route::get('/', function () {
 Route::get('/superAdmin', function () {
     return view('super_admin/dashboard');
 });
+
+Route::resources([
+    'stocks' => StockController::class,
+    'ExpenseName' => ExpenseController::class,
+]);
+
+Route::view('boostrap-modal','super_admin/layout');
+
+Route::view('budget','livewire.budget.expense_layout')->name('budget');
 
 Route::middleware([
     'auth:sanctum',
