@@ -35,6 +35,8 @@
   <!-- <link id="pagestyle" href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" /> -->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.dataTables.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-confirm.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert2.min.css')}}">
 
   @livewireStyles
 </head>
@@ -122,13 +124,7 @@
       </div>
     </div>
   </div>
-  @livewireScripts
-<script type="text/javascript">
-  window.livewire.on('userStore', () => {
-    window.location.reload();
-     $('.srmodal').modal('hide');
-  });
-</script>
+
   <!--   Core JS Files   -->
   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
   <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -140,8 +136,35 @@
   {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
   <script type="text/javascript" src="{{asset ('js/jquery.dataTables.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset ('js/jquery-confirm.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset ('js/sweetalert2.min.js')}}"></script>
   
-  
+  @livewireScripts
+  <script type="text/javascript">
+    window.livewire.on('successAction', () => {
+      // window.location.reload();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'The Process Completed Successfully',
+        showConfirmButton: false,
+        timer: 1000
+      }).then(() => {
+        window.location.reload();
+    });
+
+    });
+    window.livewire.on('failedAction', () => {
+      // window.location.reload();
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'cannot Complete The Process',
+        showConfirmButton: false,
+        timer: 1000
+      });
+    });
+  </script>
   
   @yield('script')
  
@@ -151,7 +174,7 @@
   {{-- <script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.2')}}"></script> --}}
   <script>
     $(document).ready(function () {
-        $('#table1').DataTable();
+        $('.data-table').DataTable();
     });
   </script>
 
