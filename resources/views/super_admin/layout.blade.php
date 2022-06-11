@@ -122,7 +122,13 @@
       </div>
     </div>
   </div>
-  
+  @livewireScripts
+<script type="text/javascript">
+  window.livewire.on('userStore', () => {
+    window.location.reload();
+     $('.srmodal').modal('hide');
+  });
+</script>
   <!--   Core JS Files   -->
   {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
   <script src="{{asset('js/jquery.min.js')}}"></script>
@@ -135,18 +141,20 @@
   <script src="{{asset('js/bootstrap.min.js')}}"></script>
   <script type="text/javascript" src="{{asset ('js/jquery.dataTables.min.js')}}"></script>
   
-  @livewireScripts
+  
+  
   @yield('script')
  
   <!-- Github buttons -->
   <script async defer src="{{asset('assets/js/git-buttons.js')}}"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.2')}}"></script>
+  {{-- <script src="{{asset('assets/js/material-dashboard.min.js?v=3.0.2')}}"></script> --}}
   <script>
     $(document).ready(function () {
         $('#table1').DataTable();
     });
   </script>
+
 </body>
 
 </html>

@@ -2,3 +2,4 @@
 @section('content')
 @livewire('budget.bugdet')
 @endsection
+

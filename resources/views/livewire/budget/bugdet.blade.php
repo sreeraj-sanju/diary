@@ -1,6 +1,7 @@
 
 <div>
-    @include('livewire.create')
+    @include('livewire.budget.create')
+    @include('livewire.budget.create_expense')
     @include('livewire.update')
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x

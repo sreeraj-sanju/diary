@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class ExpenseController extends Controller
 {
@@ -16,15 +17,15 @@ class ExpenseController extends Controller
         return view('expenses.list');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function create()
+    // {
+    //     //
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -80,5 +81,15 @@ class ExpenseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function create(FormBuilder $formBuilder)
+    {
+        $form = $formBuilder->create('App\Forms\ExpenseAmount', [
+            'method' => 'POST',
+            'url' => route('budget.store')
+        ]);
+
+        return view('livewire.budget.create_expense', compact('form'));
     }
 }
