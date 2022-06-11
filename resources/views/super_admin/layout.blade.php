@@ -141,6 +141,7 @@
   
   @livewireScripts
   <script type="text/javascript">
+  $('.data-table').DataTable();
     window.livewire.on('successAction', () => {
       // window.location.reload();
       Swal.fire({

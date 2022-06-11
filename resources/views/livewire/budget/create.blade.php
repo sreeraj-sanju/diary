@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#expenseModal">
-	+ New Expense
+	+ New Names
 </button>
 
 <!-- Modal -->
@@ -7,7 +7,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Names For Both Expense & Earnings</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -19,11 +19,15 @@
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Name" wire:model="expense_name">
                         @error('expense_name') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="exampleFormControlInput2">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput2" wire:model="email" placeholder="Enter Email">
-                        @error('email') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div> --}}
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="state" id="inlineRadio1" value="0" wire:model="state" checked >
+                        <label class="form-check-label" for="inlineRadio1">Expense</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="state" wire:model="state" id="inlineRadio2" value="1">
+                        <label class="form-check-label" for="inlineRadio2">Earnings</label>
+                    </div>
+                    @error('state') <span class="text-danger error">{{ $message }}</span>@enderror
                 </form>
             </div>
             <div class="modal-footer">
