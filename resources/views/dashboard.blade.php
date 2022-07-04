@@ -13,3 +13,6 @@
         </div>
     </div>
 </x-app-layout>
+
+<!-- sudo apt-get install -y php8.0-cli php8.0-fpm php8.0-mbstring php8.0-mysql php8.0-curl php8.0-mcrypt php8.0-xml -->
+<!-- sudo mysql -u root -p -->

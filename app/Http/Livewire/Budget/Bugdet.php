@@ -32,10 +32,10 @@ class Bugdet extends Component
     //page for budget
     public function render()
     {
-        $this->expense_names=ExpenseName::where('state', 0)->get();
-        $this->earning_names=ExpenseName::where('state', 1)->get();
-        $this->expense_amounts = expenseAmount::where('state', 0)->get();
-        $this->earning_amounts = expenseAmount::where('state', 1)->get();
+        $this->expense_names=ExpenseName::where('state', 0)->orderBy('id', 'desc')->get();
+        $this->earning_names=ExpenseName::where('state', 1)->orderBy('id', 'desc')->get();
+        $this->expense_amounts = expenseAmount::where('state', 0)->orderBy('id', 'desc')->get();
+        $this->earning_amounts = expenseAmount::where('state', 1)->orderBy('id', 'desc')->get();
         return view('livewire.budget.bugdet', [
             'expense_names' => $this->expense_names, 
             'expense_amounts' => $this->expense_amounts,
