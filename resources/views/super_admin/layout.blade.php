@@ -37,8 +37,15 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.dataTables.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-confirm.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert2.min.css')}}">
-
+  <link rel="stylesheet" type="text/css" href="{{asset('css/selectstyle.css')}}">
+  <link href="{{asset ('css/select2.min.css')}}" rel="stylesheet" />
   @livewireStyles
+  <style>
+    .search{
+      height: 50%;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -138,9 +145,14 @@
   <script type="text/javascript" src="{{asset ('js/jquery.dataTables.min.js')}}"></script>
   <script type="text/javascript" src="{{asset ('js/jquery-confirm.min.js')}}"></script>
   <script type="text/javascript" src="{{asset ('js/sweetalert2.min.js')}}"></script>
-  
+  <script type="text/javascript" src="{{asset ('js/selectstyle.js')}}"></script>
+  <script src="{{asset ('js/select2.min.js')}}"></script>
   @livewireScripts
   <script type="text/javascript">
+  $('.data-table').DataTable();
+  $('.searchable').select2({
+    theme: 'classic',
+  });
     window.livewire.on('successAction', () => {
       // window.location.reload();
       Swal.fire({

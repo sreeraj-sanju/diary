@@ -1,13 +1,13 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#expenseAmountModal">
-	+ New Expense Amount
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#earningsAmountModal">
+	+ New Earnings Amount
 </button>
 
 <!-- Modal -->
-<div wire:ignore.self class="modal fade srmodal" id="expenseAmountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade srmodal" id="earningsAmountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Expense Amount</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add New Earnings Amount</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -24,9 +24,9 @@
                     <div class="form-group row">
                         <label for="expense_name" class="col-md-2 col-form-label">Expense Names</label>
                         <div class="col-md-9">
-                            <select name="expense_name" class="form-control"  id="" wire:model="expense_name">
+                            <select name="expense_name" class="searchable search" id="" wire:model="expense_name">
                                 <option value="">select a name</option>
-                                @foreach ($expense_names as $name)
+                                @foreach ($earning_names as $name)
                                 <option value="{{$name->id}}">{{$name->expense_name}}</option>
                                 @endforeach
                             </select>
@@ -45,7 +45,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="expense_amount_store()" class="btn btn-primary close-modal">Save</button>
+                <button type="button" wire:click.prevent="earnings_amount_store()" class="btn btn-primary close-modal">Save</button>
             </div>
         </div>
     </div>

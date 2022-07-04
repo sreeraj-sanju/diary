@@ -22,7 +22,7 @@
                         <div class="col-md-9">
                             <select name="expense_name" class="form-control"  id="" wire:model="expense_name">
                                 <option value="">select a name</option>
-                                @foreach ($names as $name)
+                                @foreach ($expense_names as $name)
                                 <option value="{{$name->id}}">{{$name->expense_name}}</option>
                                 @endforeach
                             </select>

@@ -29,6 +29,7 @@ Route::resources([
 Route::view('boostrap-modal','super_admin/layout');
 
 Route::view('budget','livewire.budget.expense_layout')->name('budget');
+Route::view('stocks','livewire.stocks.stocks_layout')->name('stocks');
 
 Route::middleware([
     'auth:sanctum',
