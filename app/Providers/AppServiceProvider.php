@@ -27,10 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
         // URL::forceScheme('https');
-=======
 	    Schema::defaultStringLength(191);
-	    
->>>>>>> adb6cd4 (first changes from aws)
     }
 
 }

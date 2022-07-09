@@ -31,9 +31,9 @@
   <!-- Material Icons -->
   <link href="{{asset('assets/css/round-icon.css')}}" rel="stylesheet">
   <!-- CSS Files -->
-  <link id="pagestyle" type="text/css" href="{{asset('assets/css/material-dashboard.css?v=3.0.2')}}" rel="stylesheet" />
+  <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.2" rel="stylesheet" />
   <!-- <link id="pagestyle" href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" /> -->
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css')}}"  integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{{asset('css/jquery.dataTables.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-confirm.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert2.min.css')}}">
