@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-  <title>My Diary - Personal Budget Calculator @yield('title')</title>
+  <title> {{env('APP_ENV')}} My Diary - Personal Budget Calculator @yield('title')</title>
   @if (env('APP_ENV') == 'local')
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/fonts.css')}}" />
@@ -156,21 +156,39 @@
     </div>
   </div>
 
-  <!--   Core JS Files   -->
-  {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-  <script src="{{asset('js/jquery.min.js')}}"></script>
-  <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-  <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
-  <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
-  <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
-  <script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
-  {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
-  <script src="{{asset('js/bootstrap.min.js')}}"></script>
-  <script type="text/javascript" src="{{asset ('js/jquery.dataTables.min.js')}}"></script>
-  <script type="text/javascript" src="{{asset ('js/jquery-confirm.min.js')}}"></script>
-  <script type="text/javascript" src="{{asset ('js/sweetalert2.min.js')}}"></script>
-  <script type="text/javascript" src="{{asset ('js/selectstyle.js')}}"></script>
-  <script src="{{asset ('js/select2.min.js')}}"></script>
+  @if (env('APP_ENV') == 'local')
+    <!--   Core JS Files   -->
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset ('js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset ('js/jquery-confirm.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset ('js/sweetalert2.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset ('js/selectstyle.js')}}"></script>
+    <script src="{{asset ('js/select2.min.js')}}"></script>
+  @else
+    <!--   Core JS Files   -->
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="./js/jquery.min.js"></script>
+    <script src="./assets/js/core/popper.min.js"></script>
+    <script src="./assets/js/core/bootstrap.min.js"></script>
+    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="./assets/js/plugins/chartjs.min.js"></script>
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+    <script src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="./js/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="./js/selectstyle.js"></script>
+    <script src="./js/select2.min.js"></script>
+  @endif
   @livewireScripts
   <script type="text/javascript">
   $('.data-table').DataTable();
