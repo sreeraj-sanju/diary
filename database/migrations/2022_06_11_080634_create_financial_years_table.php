@@ -14,7 +14,7 @@ class CreateFinancialYearsTable extends Migration
     public function up()
     {
         Schema::create('financial_years', function (Blueprint $table) {
-            $table->id('finyear_id');
+            $table->id();
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

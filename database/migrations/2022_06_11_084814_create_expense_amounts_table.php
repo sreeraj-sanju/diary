@@ -16,9 +16,10 @@ class CreateExpenseAmountsTable extends Migration
         Schema::create('expense_amounts', function (Blueprint $table) {
             $table->id();
             $table->date('expense_date')->nullable();
-            $table->foreignId('finyear')->constrained('financial_years')->cascadeOnDelete();
-            $table->foreignId('expense_name')->constrained('expense_names')->cascadeOnDelete();
+            $table->foreignId('fin_id')->constrained('financial_years')->cascadeOnDelete();
+            $table->foreignId('expense_name_id')->constrained('expense_names')->cascadeOnDelete();
             $table->integer('expense_amount')->nullable();
+            $table->tinyInteger('state')->default(0)->nullable();
             $table->timestamps();
         });
     }
