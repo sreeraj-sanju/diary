@@ -18,11 +18,13 @@ class Stocks extends Component
         $buy_amount_single,
         $buy_count,
         $total_buy_amount,
-        $buy_charge
+        $buy_charge,
+        $buy_stocks
     ;
     public function render()
     {
         $this->stock_names = StockNames::orderBy('id', 'desc')->get();
+        $this->buy_stocks = Stock::where('is_active', true)->get();
         return view('livewire.stocks.stocks');
     }
 
@@ -77,5 +79,11 @@ class Stocks extends Component
     //function for reset input fields
     private function resetInputFields(){
         $this->name = '';
+        $this->stock_name = '';
+        $this->buy_date = '';
+        $this->buy_amount_single = '';
+        $this->buy_count = '';
+        $this->total_buy_amount ='';
+        $this->buy_charge = '';
     }
 }
