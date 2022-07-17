@@ -24,7 +24,7 @@
                     <div class="form-group row">
                         <label for="expense_name" class="col-md-2 col-form-label">Expense Names</label>
                         <div class="col-md-9">
-                            <select name="expense_name" class="searchable search" id="" wire:model="expense_name">
+                            <select name="expense_name" class="form-control" id="" wire:model="expense_name">
                                 <option value="">select a name</option>
                                 @foreach ($earning_names as $name)
                                 <option value="{{$name->id}}">{{$name->expense_name}}</option>

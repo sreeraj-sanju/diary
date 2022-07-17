@@ -9,4 +9,10 @@ class expenseAmount extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+
+    public function expenseName()
+    {
+        return $this->belongsTo(ExpenseName::class);
+    }
 }
