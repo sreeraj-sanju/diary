@@ -1,14 +1,15 @@
 <div>
     @include('livewire.stocks.stock_name')
     @include('livewire.stocks.stock_buy')
+    @include('livewire.stocks.stock_sell')
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
           {{ session('message') }}
         </div>
     @endif
     <div class="row">
-        {{-- stock names start --}}
-      <div class="col-lg-7">
+        {{-- stock buy start --}}
+      <div class="col-md-7">
         <table class="table table-bordered mt-5 data-table">
           <thead>
               <tr>
@@ -34,9 +35,9 @@
           </tbody>
         </table>
       </div>
-      {{-- stock names ends --}}
+      {{-- stock buy ends --}}
       {{-- stock names start --}}
-      <div class="col-lg-5">
+      <div class="col-md-5">
         <table class="table table-bordered mt-5 data-table">
           <thead>
               <tr>
@@ -55,5 +56,35 @@
         </table>
       </div>
       {{-- stock names ends --}}
+
+      {{-- stock sell start --}}
+      <div class="col-md-12">
+        <table class="table table-bordered mt-5 data-table">
+          <thead>
+              <tr>
+                <th>No.</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Sell Quantity</th>
+                <th>Sell Amount</th>
+                <th>Total Amount</th>
+              </tr>
+          </thead>
+          <tbody>
+            @foreach($sell_stocks as $stocks)
+            <tr>
+              <td>{{$loop->index + 1}}</td>
+              <td>{{$stocks->sell_date}}</td>
+              <td>{{$stocks->stock_name}}</td>
+              <td>{{$stocks->sell_count}}</td>
+              <td>{{$stocks->sell_amount_single}}</td>
+              <td>{{$stocks->total_sell_amount}}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      {{-- stock sell ends --}}
+
     <div>
 </div>
