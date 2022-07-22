@@ -33,14 +33,38 @@
             <span class="nav-link-text ms-1">Budget</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="./pages/virtual-reality.html">
+        <li class="nav-item" id="accordion" data-toggle="collapse" data-target="#electronics" aria-expanded="true" aria-controls="collapse">
+          <a class="nav-link text-white ">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">view_in_ar</i>
             </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
+            <span class="nav-link-text ms-1">Electronics</span>
           </a>
         </li>
+  
+        <ul>
+          <li id="electronics" class="collapse hide nav-item" aria-labelledby="headingOne" data-parent="#accordion">
+            <div >
+              <a class="nav-link text-white " href="{{route('component')}}">
+                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">weekend</i>
+                </div>
+                <span class="nav-link-text ms-1">Components</span>
+              </a>
+            </div>
+          </li>
+  
+          <li id="electronics" class="collapse hide nav-item" aria-labelledby="headingOne" data-parent="#accordion">
+            <div >
+              <a class="nav-link text-white " href="{{route('bills')}}">
+                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="material-icons opacity-10">receipt_long</i>
+                </div>
+                <span class="nav-link-text ms-1">Billing</span>
+              </a>
+            </div>
+          </li>
+        </ul>
         <li class="nav-item">
           <a class="nav-link text-white " href="./pages/rtl.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">

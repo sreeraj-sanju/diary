@@ -30,6 +30,8 @@ Route::view('boostrap-modal','super_admin/layout');
 
 Route::view('budget','livewire.budget.expense_layout')->name('budget');
 Route::view('stocks','livewire.stocks.stocks_layout')->name('stocks');
+Route::view('components', 'livewire.electronics.components_layout')->name('component');
+Route::view('bills', 'livewire.electronics.bills_layout')->name('bills');
 
 Route::middleware([
     'auth:sanctum',

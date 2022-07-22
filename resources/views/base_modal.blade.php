@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 @yield('modal_header')
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" wire:click.prevent="cancel()" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
             </div>
@@ -12,7 +12,6 @@
                 @yield('modal_body')
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                 @yield('modal_action')
             </div>
         </div>

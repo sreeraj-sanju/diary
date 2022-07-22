@@ -218,6 +218,11 @@
         timer: 1000
       });
     });
+
+    //refresh action
+    window.livewire.on('refresh', () => {
+      window.location.reload();
+    });
   </script>
   
   @yield('script')
