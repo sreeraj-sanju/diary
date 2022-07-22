@@ -73,7 +73,7 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
-  @include('super_admin/sidebar')
+  {{-- @include('super_admin.sidebar') --}}
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
   @include('super_admin.navbar')
 
