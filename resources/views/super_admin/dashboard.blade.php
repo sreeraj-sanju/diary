@@ -483,8 +483,8 @@
 @section('script')
 <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
-    var amount =  {{ Js::from({{$value}}) }};
-    var label =  {{ Js::from({{$label}}) }};
+    var amount =  {{ Js::from($value) }};
+    var label =  {{ Js::from($label) }};
     new Chart(ctx, {
       type: "bar",
       data: {
