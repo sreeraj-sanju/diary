@@ -1,0 +1,22 @@
+
+.sr-header{
+    background-color: rgb(150, 180, 180);
+ 
+}
+
+.sr-title{
+    color: rgb(16, 82, 82);
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sr-modal-dialog{
+   max-width: 50% !important;
+   box-shadow: 7px 7px 5px rgb(85, 87, 87);
+}
+.sr-body{
+    background-color: rgb(223, 229, 229);
+}
+.sr-footer{
+    background-color: rgb(240, 247, 247);
+}

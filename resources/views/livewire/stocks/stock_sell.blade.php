@@ -4,7 +4,7 @@
 
 @extends ('base_modal')
 @section ('modal_header')
-    <h5 class="modal-title" id="exampleModalLabel">Sell A Stock</h5>
+    <h5 class="modal-title sr-title" id="exampleModalLabel">Sell A Stock</h5>
 @endsection
 @section ('modal_body')
 <form>
@@ -65,5 +65,6 @@
 @endsection
 
 @section('modal_action')
+    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
     <button type="button" wire:click.prevent="stock_sell_store()" class="btn btn-primary close-modal">Save</button>
 @endsection
