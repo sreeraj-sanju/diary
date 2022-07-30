@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/superAdmin', function () {
-    return view('super_admin/dashboard');
-});
+Route::get('/superAdmin', [DashboardController::class, 'dashboard'])->name('superAdmin');
 
 Route::resources([
     'stocks' => StockController::class,

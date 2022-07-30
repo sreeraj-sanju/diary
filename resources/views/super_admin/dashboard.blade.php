@@ -72,18 +72,18 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="col-lg-12 col-md-6 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
+                  <canvas id="chart-bars" class="chart-canvas" height="370"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Website Views</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <h6 class="mb-0 ">Monthly Expenses</h6>
+              <p class="text-sm ">Last Month Expense</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -92,7 +92,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="col-lg-6 col-md-6 mt-4 mb-4">
           <div class="card z-index-2  ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
@@ -112,7 +112,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mt-4 mb-3">
+        <div class="col-lg-6 mt-4 mb-3">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
@@ -483,20 +483,21 @@
 @section('script')
 <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
-
+    var amount =  {{ Js::from($value) }};
+    var label =  {{ Js::from($label) }};
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        labels: label,
         datasets: [{
-          label: "Sales",
+          label: "Expense",
           tension: 0.4,
           borderWidth: 0,
-          borderRadius: 4,
+          borderRadius: 2,
           borderSkipped: false,
           backgroundColor: "rgba(255, 255, 255, .8)",
-          data: [50, 20, 10, 22, 50, 10, 40],
-          maxBarThickness: 6
+          data: amount,
+          maxBarThickness: 10
         }, ],
       },
       options: {
