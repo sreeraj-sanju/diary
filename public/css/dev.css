@@ -20,3 +20,15 @@
 .sr-footer{
     background-color: rgb(240, 247, 247);
 }
+.sr-table-div{
+   border: 2px solid rgb(16, 82, 82);
+   border-radius: 5px;
+   padding: 5px;
+   margin-top: 5px;
+}
+.sr-button-div{
+    border: 2px solid rgb(16, 82, 82);
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+ }

@@ -1,10 +1,12 @@
 
-<div>
+<div class="container-fluid py-4 px-4">
+  <div class="sr-button-div">
     @include('livewire.budget.create')
     @include('livewire.budget.create_expense')
     @include('livewire.budget.create_earnings')
     @include('livewire.budget.update_expense')
     @include('livewire.budget.update_earnings')
+  </div>
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
           {{ session('message') }}
@@ -12,8 +14,8 @@
     @endif
     <div class="row">
       {{-- expense names start --}}
-      <div class="col-md-6">
-        <table class="table table-bordered mt-5 data-table">
+      <div class="col-md-6 sr-table-div">
+        <table class="table table-bordered table-hover data-table">
           <thead>
               <tr>
                 <th>No.</th>
@@ -32,8 +34,8 @@
       </div>
       {{-- expense name ends --}}
       {{-- earnings name starts --}}
-      <div class="col-md-6">
-        <table class="table table-bordered mt-5 data-table">
+      <div class="col-md-6 sr-table-div">
+        <table class="table table-bordered table-hover data-table sr-table">
           <thead>
               <tr>
                   <th>No.</th>
@@ -52,8 +54,8 @@
       </div>
       {{-- earnings name ends --}}
       {{-- expense amounts starts--}}
-      <div class="col-md-6">
-        <table class="table table-bordered mt-5 data-table">
+      <div class="col-md-6 sr-table-div">
+        <table class="table table-bordered table-hover data-table ">
           <thead>
               <tr>
                   <th>No.</th>
@@ -80,8 +82,8 @@
       </div>
       {{-- expense amount ends --}}
       {{-- earnings amount start --}}
-      <div class="col-md-6">
-        <table class="table table-bordered mt-5 data-table">
+      <div class="col-md-6 sr-table-div">
+        <table class="table table-bordered table-hover data-table">
           <thead>
               <tr>
                   <th>No.</th>
@@ -108,4 +110,4 @@
       </div>
       {{-- earnings amount ends --}}
     </div>
-</div>
+</>

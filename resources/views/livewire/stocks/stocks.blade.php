@@ -1,7 +1,9 @@
-<div>
+<div class="container-fluid py-4 px-4">
+  <div class="sr-button-div">
     @include('livewire.stocks.stock_name')
     @include('livewire.stocks.stock_buy')
     @include('livewire.stocks.stock_sell')
+  </div>
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
           {{ session('message') }}
@@ -9,7 +11,7 @@
     @endif
     <div class="row">
         {{-- stock buy start --}}
-      <div class="col-md-7">
+      <div class="col-md-7 sr-table-div">
         <table class="table table-bordered mt-5 data-table">
           <thead>
               <tr>
@@ -37,8 +39,8 @@
       </div>
       {{-- stock buy ends --}}
       {{-- stock names start --}}
-      <div class="col-md-5">
-        <table class="table table-bordered mt-5 data-table">
+      <div class="col-md-5 sr-table-div">
+        <table class="table table-bordered data-table">
           <thead>
               <tr>
                 <th>No.</th>
@@ -58,7 +60,7 @@
       {{-- stock names ends --}}
 
       {{-- stock sell start --}}
-      <div class="col-md-12">
+      <div class="col-md-12 sr-table-div">
         <table class="table table-bordered mt-5 data-table">
           <thead>
               <tr>
