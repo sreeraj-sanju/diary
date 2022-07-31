@@ -4,15 +4,15 @@
 
 <!-- Modal -->
 <div wire:ignore.self class="modal fade srmodal" id="expenseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog sr-modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Names For Both Expense & Earnings</h5>
+            <div class="modal-header sr-header">
+                <h5 class="modal-title sr-title" id="exampleModalLabel">Add New Names For Both Expense & Earnings</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
             </div>
-           <div class="modal-body">
+           <div class="modal-body sr-body">
                 <form>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name</label>
@@ -30,7 +30,7 @@
                     @error('state') <span class="text-danger error">{{ $message }}</span>@enderror
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer sr-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                 <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Save</button>
             </div>

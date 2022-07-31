@@ -40,6 +40,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/jquery-confirm.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/sweetalert2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/selectstyle.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/dev.css')}}">
     <link href="{{asset ('/css/select2.min.css')}}" rel="stylesheet" />
   @else
     <!--     Fonts and icons     -->
@@ -60,6 +61,7 @@
     <link rel="stylesheet" type="text/css" href="./css/jquery-confirm.min.css">
     <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="./css/selectstyle.css">
+    <link rel="stylesheet" type="text/css" href="./css/dev.css">
     <link href="./css/select2.min.css" rel="stylesheet" />
   @endif
 

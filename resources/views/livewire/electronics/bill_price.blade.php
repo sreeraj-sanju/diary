@@ -5,7 +5,7 @@
 @extends('base_modal')
 
 @section('modal_header')
-<h5>Electronics Bill</h5>
+<h5 class="modal-title sr-title">Electronics Bill</h5>
 @endsection
 
 @section('modal_body')

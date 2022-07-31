@@ -1,5 +1,7 @@
-<div>
-    @include('livewire.electronics.bill_price')
+<div class="container-fluid py-4 px-4">
+    <div class="sr-button-div">
+      @include('livewire.electronics.bill_price')
+    </div>
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
           {{ session('message') }}
@@ -7,8 +9,8 @@
     @endif
     <div class="row">
         {{-- stock buy start --}}
-      <div class="col-md-11">
-        <table class="table table-bordered mt-5 data-table">
+      <div class="col-md-12 sr-table-div">
+        <table class="table table-bordered data-table">
           <thead>
               <tr>
                 <th>No.</th>

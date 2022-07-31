@@ -125,4 +125,10 @@ class Stocks extends Component
         $this->sell_count = '';
         $this->total_sell_amount = '';
     }
+
+    public function cancel(){
+        $this->updateMode = false;
+        $this->resetInputFields();
+        $this->emit('refresh');
+    }
 }
