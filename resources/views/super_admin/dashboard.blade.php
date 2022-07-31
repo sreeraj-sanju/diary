@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-12 col-md-6 mt-4 mb-4">
+        <div class="col-lg-9 col-md-12 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
@@ -82,8 +82,28 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Monthly Expenses</h6>
-              <p class="text-sm ">Last Month Expense</p>
+              <h6 class="mb-0 ">Total Expenses</h6>
+              <p class="text-sm ">Total Expenses Till Today</p>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-12 mt-4 mb-4">
+          <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-info shadow-primary border-radius-lg py-3 pe-1">
+                <div class="chart">
+                  <canvas id="chart-bars-earning" class="chart-canvas" height="370"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-0 ">Total Earnings</h6>
+              <p class="text-sm ">Total Earnings Till Today</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -95,15 +115,15 @@
         <div class="col-lg-6 col-md-6 mt-4 mb-4">
           <div class="card z-index-2  ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+              <div class="bg-gradient-secondary shadow-info border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+                  <canvas id="chart-line" class="chart-canvas" height="250"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Monthly Report - ( {{$finYear}} )</h6>
+              <p class="text-sm text-bold" @if ($savings > 0) style="color: green" @else style="color: red" @endif >Amount of {{$savings}} as (<span class="font-weight-bolder">{{$savings_perc}}%</span>) this month {{date('M')}}. </p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -117,7 +137,7 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+                  <canvas id="chart-line-tasks" class="chart-canvas" height="250"></canvas>
                 </div>
               </div>
             </div>
@@ -563,30 +583,126 @@
       },
     });
 
+    var ctx4 = document.getElementById("chart-bars-earning").getContext("2d");
+    var amount =  {{ Js::from($valueEar ? $valueEar :'') }};
+    var label =  {{ Js::from($labelEar ? $labelEar:'') }};
+    new Chart(ctx4, {
+      type: "bar",
+      data: {
+        labels: label,
+        datasets: [{
+          label: "Earnings",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 2,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: amount,
+          maxBarThickness: 10
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
-
+    var amount =  {{ Js::from($valueEx ? $valueEx :'') }};
+    var amountEr =  {{ Js::from($valueEr ? $valueEr :'') }};
+    var label =  {{ Js::from($labelEx ? $labelEx:'') }};
     new Chart(ctx2, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: label,
         datasets: [{
-          label: "Mobile apps",
+          label: "Expense",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBackgroundColor: "rgba(255, 100, 100, .8)",
           pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 100, 200, .8)",
+          borderColor: "rgba(255, 180, 200, .8)",
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+          data: amount,
           maxBarThickness: 6
-
+        }, {
+          label: "Earnings",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(50, 255, 100, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(100, 255, 150, .8)",
+          borderColor: "rgba(100, 255, 100, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: amountEr,
+          maxBarThickness: 6
         }],
       },
+      
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -728,6 +844,8 @@
         },
       },
     });
+
+
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
