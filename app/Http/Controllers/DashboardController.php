@@ -39,6 +39,7 @@ class DashboardController extends Controller
             ->groupBy('am.finYear', DB::raw('MONTH(am.expense_date)'))
             ->orderBy(DB::raw('MONTH(am.expense_date)'))
             ->where('am.state', false)
+            ->where('am.finYear', $fin->id)
             ->get();
 
         $monthEr = DB::table('expense_amounts', 'am')->join('financial_years as f', 'f.id', '=', 'am.finyear')
@@ -46,6 +47,7 @@ class DashboardController extends Controller
             ->groupBy('am.finYear', DB::raw('MONTH(am.expense_date)'))
             ->orderBy(DB::raw('MONTH(am.expense_date)'))
             ->where('am.state', true)
+            ->where('am.finYear', $fin->id)
             ->get();
     
         $label =[];
@@ -62,14 +64,18 @@ class DashboardController extends Controller
         $labelEr = [];
         $valueEr = [];
 
+        $total_exp = 0;
+        $total_ear = 0;
         foreach ($expenses as $expense){
             array_push($label, substr($expense->expense_name, 0, 6));
             array_push($value, $expense->total);
+            $total_exp += $expense->total;
         }
 
         foreach ($earnings as $earning){
             array_push($labelEar, substr($earning->expense_name, 0, 6));
             array_push($valueEar, $earning->total);
+            $total_ear += $earning->total;
         }
         
         foreach ($monthEx as $expMonth){
@@ -90,16 +96,20 @@ class DashboardController extends Controller
             ->groupBy('am.finYear', DB::raw('MONTH(am.expense_date)'))
             ->where('am.state', false)
             ->where(DB::raw('MONTH(am.expense_date)'), $t_date)
+            ->where('am.finYear', $fin->id)
             ->get();
+
         $lmEr = DB::table('expense_amounts', 'am')->join('financial_years as f', 'f.id', '=', 'am.finyear')
             ->select(DB::raw("SUM(am.expense_amount) as total"), 'f.description as finYear')
             ->groupBy('am.finYear', DB::raw('MONTH(am.expense_date)'))
             ->where('am.state', true)
             ->where(DB::raw('MONTH(am.expense_date)'), $t_date)
+            ->where('am.finYear', $fin->id)
             ->get();
         
-        $lmExAmount = $lmEx ? $lmEx[0]->total : 0;
-        $lmErAmount = $lmEr ? $lmEr[0]->total : 0;
+        $lmExAmount = $lmEx->isNotEmpty() ? $lmEx[0]->total : 0;
+        $lmErAmount = $lmEr->isNotEmpty() ? $lmEr[0]->total : 0;
+
         $savings = $lmErAmount-$lmExAmount;
         $savings_perc = 0;
         if($lmErAmount >0){
@@ -108,7 +118,7 @@ class DashboardController extends Controller
 
         return view('super_admin/dashboard',compact(
             'value', 'label', 'labelEar', 'valueEar', 'labelEx', 'valueEx', 'finYear', 'labelEr', 'valueEr',
-            'savings', 'savings_perc'
+            'savings', 'savings_perc', 'total_exp', 'total_ear'
         ));
     }
 }

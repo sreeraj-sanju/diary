@@ -83,7 +83,7 @@
             </div>
             <div class="card-body">
               <h6 class="mb-0 ">Total Expenses</h6>
-              <p class="text-sm ">Total Expenses Till Today</p>
+              <p class="text-sm text-bold" style="color: green">Total Expenses Till Today - {{$total_exp}}</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -103,7 +103,7 @@
             </div>
             <div class="card-body">
               <h6 class="mb-0 ">Total Earnings</h6>
-              <p class="text-sm ">Total Earnings Till Today</p>
+              <p class="text-sm text-bold" style="color: green">Total Earnings Till Today - {{$total_ear}}</p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
