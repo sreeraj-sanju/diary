@@ -70,7 +70,7 @@
             <tr>
               <td>{{$loop->index + 1}}</td>
               <td>{{$e_amount->expense_date}}</td>
-              <td>{{$e_amount->expenseName}}</td>
+              <td>{{$e_amount->expense_name}}</td>
               <td>{{$e_amount->expense_amount}}</td>
               <td>
                 <button data-toggle="modal" data-target="#expenseUpdateModal" wire:click="expense_edit({{ $e_amount->id }})" class="btn btn-primary btn-sm">Edit</button>

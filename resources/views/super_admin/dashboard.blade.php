@@ -3,14 +3,14 @@
 <div class="container-fluid py-4">
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
+          <div class="card" style="height: 150px">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                <h4 class="mb-0">$53k</h4>
+                <p class="text-sm mb-0 text-capitalize">Yearly Savings</p>
+                <p class="mb-0 text-bold" @if($total_sav > 0) style="color: green" @else style="color:red" @endif >{{ $total_sav }} ({{ $sav_percent }}%)</p>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -20,14 +20,14 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
+          <div class="card" style="height: 150px">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
-                <h4 class="mb-0">2,300</h4>
+                <p class="text-sm mb-0 text-capitalize">monthly savings</p>
+                <p class="text-sm mb-0 text-bold" @if ($savings > 0) style="color: green" @else style="color: red" @endif >{{$savings}},(<span class="font-weight-bolder">{{$savings_perc}}%</span>),{{date('M')}}</p>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -37,14 +37,16 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
+          <div class="card" style="height: 150px">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">person</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">New Clients</p>
-                <h4 class="mb-0">3,462</h4>
+                <p class="text-sm mb-0 text-capitalize">Stock Profit</p>
+                <p class="text-sm mb-0 text-bold" @if ($profit > 0) style="color: green" @else style="color: red" @endif >
+                  @if ($profit > 0) {{$profit}} <span class="text-bold">({{$profit_perc}}%) </span> @else {{ $profit }} ({{$profit_perc}}%) @endif 
+                </p>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -54,14 +56,14 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6">
-          <div class="card">
+          <div class="card" style="height: 150px">
             <div class="card-header p-3 pt-2">
               <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Sales</p>
-                <h4 class="mb-0">$103,430</h4>
+                <p class="text-sm mb-0 text-capitalize">Electronics</p>
+                <p class="mb-0 text-bold" @if ($amount_got > 0) style="color: green" @else style="color: red" @endif>{{ $amount_got}}</p>
               </div>
             </div>
             <hr class="dark horizontal my-0">
@@ -72,7 +74,7 @@
         </div>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-12 col-md-6 mt-4 mb-4">
+        <div class="col-lg-8 col-md-12 mt-4 mb-4">
           <div class="card z-index-2 ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
@@ -82,8 +84,48 @@
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Monthly Expenses</h6>
-              <p class="text-sm ">Last Month Expense</p>
+              <div class="row">
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Total Expenses</h6>
+                  <p class="text-sm text-bold" style="color: red">Expenses Till Today - {{$total_exp}}</p>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Total Debt Paid</h6>
+                  <p class="text-sm text-bold" style="color: red">Total Debt Paid Till Today - {{$debtPA}}</p>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Total Debt Interest Paid</h6>
+                  <p class="text-sm text-bold" style="color: red">Total Debt Interest Paid - {{$debtIA > 0 ? $debtIA : 0}}</p>
+                </div>
+              </div>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 mt-4 mb-4">
+          <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-info shadow-primary border-radius-lg py-3 pe-1">
+                <div class="chart">
+                  <canvas id="chart-bars-earning" class="chart-canvas" height="350"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6 class="mb-0 ">Total Earnings</h6>
+                  <p class="text-sm text-bold" style="color: green">Total Earnings - {{$total_ear}}</p>
+                </div>
+                <div class="col-md-6">
+                  <h6 class="mb-0 ">Debt Earnings</h6>
+                  <p class="text-sm text-bold" style="color: green">Total Debt Earnings - {{$debtEA}}</p>
+                </div>
+              </div>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -95,15 +137,15 @@
         <div class="col-lg-6 col-md-6 mt-4 mb-4">
           <div class="card z-index-2  ">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
-              <div class="bg-gradient-success shadow-success border-radius-lg py-3 pe-1">
+              <div class="bg-gradient-secondary shadow-info border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-line" class="chart-canvas" height="170"></canvas>
+                  <canvas id="chart-line" class="chart-canvas" height="250"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 "> Daily Sales </h6>
-              <p class="text-sm "> (<span class="font-weight-bolder">+15%</span>) increase in today sales. </p>
+              <h6 class="mb-0 "> Monthly Report - ( {{$finYear}} )</h6>
+              <p class="text-sm text-bold" @if ($savings > 0) style="color: green" @else style="color: red" @endif >Amount of {{$savings}} as (<span class="font-weight-bolder">{{$savings_perc}}%</span>) this month {{date('M')}}. </p>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
@@ -117,17 +159,66 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
               <div class="bg-gradient-dark shadow-dark border-radius-lg py-3 pe-1">
                 <div class="chart">
-                  <canvas id="chart-line-tasks" class="chart-canvas" height="170"></canvas>
+                  <canvas id="chart-line-tasks" class="chart-canvas" height="235"></canvas>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <h6 class="mb-0 ">Completed Tasks</h6>
-              <p class="text-sm ">Last Campaign Performance</p>
+              <div class="row">
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Yearly Expense</h6>
+                  <p class="text-sm text-bold" style="color: red">{{ $total_exp }}</p>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Yearly Earned</h6>
+                  <p class="text-sm text-bold" style="color: green">{{ $total_ear }}</p>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Yearly Savings</h6>
+                  <p class="text-sm text-bold" @if($total_sav > 0) style="color: green" @else style="color:red" @endif >{{ $total_sav }} ({{ $sav_percent }}%)</p>
+                </div>
+              </div>
               <hr class="dark horizontal">
               <div class="d-flex ">
                 <i class="material-icons text-sm my-auto me-1">schedule</i>
                 <p class="mb-0 text-sm">just updated</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 mt-4 mb-4">
+          <div class="card z-index-2 ">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+              <div class="bg-gradient-success shadow-primary border-radius-lg py-3 pe-1">
+                <div class="chart">
+                  <canvas id="chart-bars-stocks" class="chart-canvas" height="370"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Total Invested Amount</h6>
+                  <p class="text-sm text-bold" style="color: red">{{$stockTotal}}</p>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">Total Selled Amount</h6>
+                  <p class="text-sm text-bold" style="color:green">{{$stockSellAmount}}</p>
+                </div>
+                <div class="col-md-4">
+                  <h6 class="mb-0 ">
+                    @if ($profit > 0) <b style="color: green">Profit</b> @else Profit @endif/
+                    @if ($profit < 0) <b style="color: red">Loss</b> @else Loss @endif
+                  </h6>
+                  <p class="text-sm text-bold" @if ($profit > 0) style="color: green" @else style="color: red" @endif >
+                    @if ($profit > 0) {{$profit}} <span class="text-bold">({{$profit_perc}}%) </span> @else {{ $profit }} ({{$profit_perc}}%) @endif 
+                  </p>
+                </div>
+              </div>
+              <hr class="dark horizontal">
+              <div class="d-flex ">
+                <i class="material-icons text-sm my-auto me-1">schedule</i>
+                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
               </div>
             </div>
           </div>
@@ -563,30 +654,217 @@
       },
     });
 
+    var ctx5 = document.getElementById("chart-bars-stocks").getContext("2d");
+    var amount =  {{ Js::from($stockData) }};
+    var sell =  {{ Js::from($stockSell) }};
+    var label =  {{ Js::from($stockLabel) }};
+    new Chart(ctx5, {
+      type: "bar",
+      data: {
+        labels: label,
+        datasets: [{
+          label: "buy",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 2,
+          borderSkipped: true,
+          backgroundColor: "rgba(255, 10, 80, .8)",
+          data: amount,
+          maxBarThickness: 10
+        }, {
+          label: "sell",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 2,
+          borderSkipped: true,
+          backgroundColor: "rgba(10, 255, 100, .8)",
+          data: sell,
+          maxBarThickness: 10
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+    var ctx4 = document.getElementById("chart-bars-earning").getContext("2d");
+    var amount =  {{ Js::from($valueEar ? $valueEar :'') }};
+    var label =  {{ Js::from($labelEar ? $labelEar:'') }};
+    new Chart(ctx4, {
+      type: "bar",
+      data: {
+        labels: label,
+        datasets: [{
+          label: "Earnings",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 2,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: amount,
+          maxBarThickness: 10
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5],
+              color: 'rgba(255, 255, 255, .2)'
+            },
+            ticks: {
+              display: true,
+              color: '#f8f9fa',
+              padding: 10,
+              font: {
+                size: 14,
+                weight: 300,
+                family: "Roboto",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
 
     var ctx2 = document.getElementById("chart-line").getContext("2d");
-
+    var amount =  {{ Js::from($valueEx ? $valueEx :'') }};
+    var amountEr =  {{ Js::from($valueEr ? $valueEr :'') }};
+    var label =  {{ Js::from($labelEx ? $labelEx:'') }};
     new Chart(ctx2, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: label,
         datasets: [{
-          label: "Mobile apps",
+          label: "Expense",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBackgroundColor: "rgba(255, 100, 100, .8)",
           pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
-          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 100, 200, .8)",
+          borderColor: "rgba(255, 180, 200, .8)",
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+          data: amount,
           maxBarThickness: 6
-
+        }, {
+          label: "Earnings",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(50, 255, 100, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(100, 255, 150, .8)",
+          borderColor: "rgba(100, 255, 100, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: amountEr,
+          maxBarThickness: 6
         }],
       },
+      
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -648,23 +926,39 @@
     });
 
     var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
+    var amount =  {{ Js::from($valueYEx ? $valueYEx :'') }};
+    var amountEr =  {{ Js::from($valueYEr ? $valueYEr :'') }};
+    var label =  {{ Js::from($labelYEx ? $labelYEx:'') }};
     new Chart(ctx3, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: label,
         datasets: [{
-          label: "Mobile apps",
+          label: "Earned",
           tension: 0,
           borderWidth: 0,
           pointRadius: 5,
-          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBackgroundColor: "rgba(80, 255, 150, .8)",
           pointBorderColor: "transparent",
-          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(80, 255, 100, .8)",
           borderWidth: 4,
           backgroundColor: "transparent",
           fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          data: amountEr,
+          maxBarThickness: 6
+
+        },{
+          label: "Expense",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 80, 150, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 80, 100, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: amount,
           maxBarThickness: 6
 
         }],
@@ -728,6 +1022,8 @@
         },
       },
     });
+
+
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;

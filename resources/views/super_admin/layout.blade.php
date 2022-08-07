@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('/css/selectstyle.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/dev.css')}}">
     <link href="{{asset ('/css/select2.min.css')}}" rel="stylesheet" />
+    {{-- <link href="{{asset ('/css/fontawesome.min.css')}}" rel="stylesheet" /> --}}
   @else
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
@@ -174,6 +175,7 @@
     <script type="text/javascript" src="{{asset ('js/sweetalert2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset ('js/selectstyle.js')}}"></script>
     <script src="{{asset ('js/select2.min.js')}}"></script>
+    {{-- <script src="{{asset ('js/fontawesome.min.js')}}"></script> --}}
   @else
     <!--   Core JS Files   -->
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
