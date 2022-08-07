@@ -29,8 +29,10 @@ class Stocks extends Component
     public function render()
     {
         $this->stock_names = StockNames::orderBy('id', 'desc')->get();
-        $this->buy_stocks = Stock::where('is_active', true)->orderBy('id', 'DESC')->get();
-        $this->sell_stocks = StockSell::where('is_active', true)->orderBy('id', 'DESC')->get();
+        $this->buy_stocks = DB::table('stocks as s')->join('stock_names as sn', 's.stock_name', '=', 'sn.id')
+            ->where('s.is_active', true)->orderBy('s.id', 'DESC')->get();
+        $this->sell_stocks = DB::table('stock_sells as s')->join('stock_names as sn', 's.stock_name', '=', 'sn.id')
+            ->where('s.is_active', true)->orderBy('s.id', 'DESC')->get();
         return view('livewire.stocks.stocks');
     }
 

@@ -1,0 +1,2 @@
+1. sql import query
+    mysqldump –u username –p db_name > dump_file.sql
