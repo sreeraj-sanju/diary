@@ -62,8 +62,8 @@
                 <i class="material-icons opacity-10">weekend</i>
               </div>
               <div class="text-end pt-1">
-                <p class="text-sm mb-0 text-capitalize">Electronics</p>
-                <p class="mb-0 text-bold" @if ($amount_got > 0) style="color: green" @else style="color: red" @endif>{{ $amount_got}}</p>
+                <p class="text-sm mb-0 text-capitalize">Electronics (To get)</p>
+                <p class="mb-0 text-bold" @if ($amount_got > 0) style="color: green" @else style="color: red" @endif>{{ $amount_got}} ({{ $amount_to_get}})</p>
               </div>
             </div>
             <hr class="dark horizontal my-0">

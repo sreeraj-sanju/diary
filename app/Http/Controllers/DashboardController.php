@@ -210,15 +210,16 @@ class DashboardController extends Controller
 
         //start electronics
         $comp_price = BillAmount::sum('component_price');
-        $total_price = BillAmount::sum('total_price');
+        $total_price = BillAmount::sum('amount_got');
         $amount_got = $total_price - $comp_price; 
+        $amount_to_get = BillAmount::sum('total_price')-$total_price;
         //end electronics
 
         return view('super_admin/dashboard',compact(
             'value', 'label', 'labelEar', 'valueEar', 'labelEx', 'valueEx', 'finYear', 'labelEr', 'valueEr',
             'savings', 'savings_perc', 'total_exp', 'total_ear', 'debtPA', 'debtEA', 'debtIA', 'labelYEx', 
             'valueYEx', 'valueYEr', 'stockLabel', 'stockData', 'stockSell', 'total_sav', 'sav_percent',
-            'stockTotal', 'stockSellAmount', 'profit', 'profit_perc', 'amount_got'
+            'stockTotal', 'stockSellAmount', 'profit', 'profit_perc', 'amount_got', 'amount_to_get'
         ));
     }
 }
