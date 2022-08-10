@@ -14,6 +14,11 @@
 	</head>
 	<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
 	<section class="ftco-section">
+		@if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
@@ -59,9 +64,7 @@
 	</section>
 
 	<script src="{{asset('js/jquery.min.js')}}"></script>
-  <script src="js/popper.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="{{ asset('/assets/js/login.js')}}"></script>
+  	<script src="{{ asset('/assets/js/login.js')}}"></script>
 
 	</body>
 </html>
