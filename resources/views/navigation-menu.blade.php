@@ -170,6 +170,12 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
+                @if(auth()->user()->role == 1)
+                <x-jet-responsive-nav-link href="{{ route('admin_dashboard') }}">
+                    {{ __('Admin Dashboard') }}
+                </x-jet-responsive-nav-link>
+                            @endif 
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
