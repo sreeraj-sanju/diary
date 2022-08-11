@@ -204,7 +204,7 @@ class DashboardController extends Controller
         $stockSellAmount=StockSell::sum('total_sell_amount');
         $charge = Stock::sum('buy_charge') + StockSell::sum('buy_charge');
         $stockTotal = $stockBuyAmount + $charge;
-        $profit = $stockSellAmount - $stockTotal;
+        $profit = StockSell::sum('profit');
         $profit_perc = round(($profit/$stockTotal*100));
         // end stock
 

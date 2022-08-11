@@ -24,7 +24,8 @@ class Stocks extends Component
         $sell_date,
         $sell_amount_single,
         $sell_count,
-        $total_sell_amount
+        $total_sell_amount,
+        $profit
     ;
     public function render()
     {
@@ -99,6 +100,14 @@ class Stocks extends Component
          $fin_id = FinancialYear::max('id');
  
          $validatedName['finyear']=$fin_id;
+         $total_buy_amount = Stock::where('stock_name', $validatedName['stock_name'])
+            ->selectRaw('sum(total_buy_amount) as total')->selectRaw('sum(buy_charge) as charge')
+            ->groupBy('stock_name')->get();
+        
+        foreach($total_buy_amount as $data){
+            $buy_amount = $data->total + $data->charge;
+        }
+        $validatedName['profit'] = $validatedName['total_sell_amount']-$validatedName['buy_charge']-$buy_amount;
          try{
              DB::beginTransaction();
              StockSell::create($validatedName);

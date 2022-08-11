@@ -70,6 +70,7 @@
                 <th>Sell Quantity</th>
                 <th>Sell Amount</th>
                 <th>Total Amount</th>
+                <th>Profit</th>
               </tr>
           </thead>
           <tbody>
@@ -81,6 +82,7 @@
               <td>{{$stocks->sell_count}}</td>
               <td>{{$stocks->sell_amount_single}}</td>
               <td>{{$stocks->total_sell_amount}}</td>
+              <td>{{$stocks->profit}}</td>
             </tr>
             @endforeach
           </tbody>

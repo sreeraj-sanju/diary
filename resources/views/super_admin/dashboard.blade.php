@@ -87,15 +87,15 @@
               <div class="row">
                 <div class="col-md-4">
                   <h6 class="mb-0 ">Total Expenses</h6>
-                  <p class="text-sm text-bold" style="color: red">Expenses Till Today - {{$total_exp}}</p>
+                  <p class="text-sm text-bold" style="color: red">Expenses - {{$total_exp}}</p>
                 </div>
                 <div class="col-md-4">
                   <h6 class="mb-0 ">Total Debt Paid</h6>
-                  <p class="text-sm text-bold" style="color: red">Total Debt Paid Till Today - {{$debtPA}}</p>
+                  <p class="text-sm text-bold" style="color: red">Total Debt Paid - {{$debtPA}}</p>
                 </div>
                 <div class="col-md-4">
                   <h6 class="mb-0 ">Total Debt Interest Paid</h6>
-                  <p class="text-sm text-bold" style="color: red">Total Debt Interest Paid - {{$debtIA > 0 ? $debtIA : 0}}</p>
+                  <p class="text-sm text-bold" style="color: red">Total Debt - {{$debtIA > 0 ? $debtIA : 0}}</p>
                 </div>
               </div>
               <hr class="dark horizontal">
