@@ -32,11 +32,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('profile.show');
+    })->name('dashboard');
+});
 
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['admin:admin'])->group(function(){
+    Route::get('/admin-dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::view('boostrap-modal','super_admin/layout');
 
     Route::view('budget','livewire.budget.expense_layout')->name('budget');

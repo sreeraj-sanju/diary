@@ -95,7 +95,7 @@
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
-
+                            <div class="border-t border-gray-100"></div>
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
@@ -107,6 +107,13 @@
                             @endif
 
                             <div class="border-t border-gray-100"></div>
+
+                            @if(auth()->user()->role == 1)
+                                <x-jet-dropdown-link href="{{ route('admin_dashboard') }}">
+                                    {{ __('Admin Dashboard') }}
+                                </x-jet-dropdown-link>
+                                <div class="border-t border-gray-100"></div>
+                            @endif 
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}" x-data>
