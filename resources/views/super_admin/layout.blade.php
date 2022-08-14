@@ -33,7 +33,7 @@
     <link href="{{asset('/assets/css/round-icon.css')}}" rel="stylesheet">
     <!-- CSS Files -->
     
-    <link id="pagestyle" href="{{asset('/assets/css/material-dashboard.css?v=3.0.2')}}" rel="stylesheet" />
+    <link id="pagestyle" href="{{asset('/assets/css/material-dashboard.min.css')}}" rel="stylesheet" />
     <!-- <link id="pagestyle" href="{{asset('/assets/css/material-dashboard.css')}}" rel="stylesheet" /> -->
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/jquery.dataTables.css')}}">
@@ -175,6 +175,8 @@
     <script type="text/javascript" src="{{asset ('js/jquery-confirm.min.js')}}"></script>
     <script type="text/javascript" src="{{asset ('js/sweetalert2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset ('js/selectstyle.js')}}"></script>
+    <script type="text/javascript" src="{{asset ('assets/js/material-dashboard.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset ('assets/js/kit-awesome.js')}}"></script>
     <script src="{{asset ('js/select2.min.js')}}"></script>
     {{-- <script src="{{asset ('js/fontawesome.min.js')}}"></script> --}}
   @else
