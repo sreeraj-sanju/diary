@@ -1,2 +1,6 @@
 1. sql import query
     mysqldump –u username –p db_name > dump_file.sql
+2. Things to complete
+mobile view
+    1. login page register button
+    2. toggle button for admin page

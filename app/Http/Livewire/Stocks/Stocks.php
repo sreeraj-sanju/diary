@@ -25,7 +25,8 @@ class Stocks extends Component
         $sell_amount_single,
         $sell_count,
         $total_sell_amount,
-        $profit
+        $profit,
+        $name
     ;
     public function render()
     {
