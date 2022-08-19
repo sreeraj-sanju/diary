@@ -14,17 +14,17 @@
 	</head>
 	<body class="img js-fullheight" style="background-image: url(images/bg.jpg);">
 	<section class="ftco-section">
-		@if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
 					<h2 class="heading-section">My Dairy - Find The Hero In You</h2>
 				</div>
 			</div>
+			@if (session('status'))
+				<div class="mb-4 font-medium text-sm text-green-600">
+					{{ session('status') }}
+				</div>
+        	@endif
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
