@@ -33,7 +33,7 @@ read msg
 echo "${green}Committed successfully and start to push...${reset}"
 echo "${reset1}"
 
-git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git sreeraj_nic
+git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git sreeraj_nic
 
 echo "${green}pushed successfully${reset}"
 echo "${green}branch checked to main and start to push${reset}"
@@ -42,7 +42,7 @@ git checkout main
 git pull origin main
 git pull origin sreeraj_nic
 echo "${reset1}"
-git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git main
+git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git main
 echo "${green}Pushed to main branch and checked into sreeraj_nic${reset}"
 git checkout sreeraj_nic
 git stash pop
