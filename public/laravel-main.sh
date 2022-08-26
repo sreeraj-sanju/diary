@@ -1,9 +1,10 @@
-#!/bin/bash
+q#!/bin/bash
 
-cyan= `tput setaf 6`
-green= `tput setaf 2`
-yellow= `tput setaf 3`
-reset= `tput setaf 5`
+cyan=`tput setaf 6`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+reset=`tput setaf 5`
+reset1=`tput sgr0`
 
 cd ~/Desktop/sreeraj/diary/
  echo "${green}Entered in to the laravel project folder${reset}" 
@@ -30,6 +31,7 @@ echo "${cyan}Enter the commit message${reset}"
 read msg
  git commit -m "${msg##*  }"
 echo "${green}Committed successfully and start to push...${reset}"
+echo "${reset1}"
 
 git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git sreeraj_nic
 
@@ -39,6 +41,7 @@ git stash
 git checkout main
 git pull origin main
 git pull origin sreeraj_nic
+echo "${reset1}"
 git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git main
 echo "${green}Pushed to main branch and checked into sreeraj_nic${reset}"
 git checkout sreeraj_nic
