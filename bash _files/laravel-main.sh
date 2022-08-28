@@ -16,3 +16,5 @@ echo "${reset1}"
 git push origin main
 
 echo "${green}Pushed to main branch${reset}"
+
+# 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
