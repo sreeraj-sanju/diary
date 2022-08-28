@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.29, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Linux (x86_64)
 --
 -- Host: localhost    Database: diary
 -- ------------------------------------------------------
--- Server version	8.0.29-0ubuntu0.20.04.3
+-- Server version	8.0.30-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `bill_amounts`;
 CREATE TABLE `bill_amounts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `user_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `component_price` int DEFAULT NULL,
   `service_charge` int DEFAULT NULL,
   `total_price` int DEFAULT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `bill_amounts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `bill_amounts` (
 
 LOCK TABLES `bill_amounts` WRITE;
 /*!40000 ALTER TABLE `bill_amounts` DISABLE KEYS */;
-INSERT INTO `bill_amounts` VALUES (1,'2022-07-20','jayan',140,60,200,200,'2022-07-20 11:32:25','2022-07-20 11:32:25'),(2,'2022-07-20','cilin',80,120,200,200,'2022-07-20 11:34:23','2022-07-20 11:34:23'),(11,'2022-08-05','bat',40,0,40,0,'2022-08-05 11:22:21','2022-08-05 11:22:21'),(12,'2022-08-09','Aneesh',147,253,400,400,'2022-08-09 04:34:24','2022-08-10 10:27:37');
+INSERT INTO `bill_amounts` VALUES (1,'2022-07-20','jayan',140,60,200,200,'2022-07-20 11:32:25','2022-07-20 11:32:25'),(2,'2022-07-20','cilin',80,120,200,200,'2022-07-20 11:34:23','2022-07-20 11:34:23'),(11,'2022-08-05','bat',40,0,40,0,'2022-08-05 11:22:21','2022-08-05 11:22:21'),(12,'2022-08-09','Aneesh',147,253,400,400,'2022-08-09 04:34:24','2022-08-10 10:27:37'),(13,'2022-08-28','amma',40,0,40,0,'2022-08-28 09:10:12','2022-08-28 09:10:12'),(14,'2022-08-28','Aneesh',60,40,100,100,'2022-08-28 09:10:47','2022-08-28 09:10:47');
 /*!40000 ALTER TABLE `bill_amounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,8 +55,8 @@ DROP TABLE IF EXISTS `component_prices`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `component_prices` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `comp_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `comp_unit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comp_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comp_unit` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `price` double(8,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -83,8 +83,8 @@ DROP TABLE IF EXISTS `components_names`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `components_names` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE `expense_amounts` (
   KEY `expense_amounts_expense_name_foreign` (`expense_name`),
   CONSTRAINT `expense_amounts_expense_name_foreign` FOREIGN KEY (`expense_name`) REFERENCES `expense_names` (`id`) ON DELETE CASCADE,
   CONSTRAINT `expense_amounts_finyear_foreign` FOREIGN KEY (`finyear`) REFERENCES `financial_years` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `expense_amounts` (
 
 LOCK TABLES `expense_amounts` WRITE;
 /*!40000 ALTER TABLE `expense_amounts` DISABLE KEYS */;
-INSERT INTO `expense_amounts` VALUES (12,'2022-05-02',2,15,11000,'2022-06-13 10:20:37','2022-06-13 10:20:37',1),(13,'2022-05-02',2,16,4000,'2022-06-13 10:21:06','2022-06-13 10:21:06',1),(14,'2022-06-01',2,15,25000,'2022-06-13 10:21:39','2022-06-13 10:21:39',1),(15,'2022-06-01',2,16,3500,'2022-06-13 10:22:01','2022-06-13 10:22:01',1),(16,'2022-06-06',2,17,1700,'2022-06-13 10:22:19','2022-06-13 10:22:19',1),(17,'2022-04-30',2,14,27477,'2022-06-13 10:25:09','2022-06-13 10:25:09',0),(18,'2022-05-31',2,14,11079,'2022-06-13 10:27:07','2022-06-13 10:27:07',0),(19,'2022-06-01',2,1,250,'2022-06-13 10:28:04','2022-06-13 10:28:04',0),(24,'2022-06-06',2,21,210,'2022-06-13 10:31:29','2022-06-13 10:31:29',0),(25,'2022-06-06',2,6,419,'2022-06-13 10:31:42','2022-06-13 10:31:42',0),(26,'2022-06-06',2,2,1000,'2022-06-13 10:32:03','2022-06-13 10:32:03',0),(27,'2022-06-06',2,4,2200,'2022-06-13 10:32:26','2022-06-13 10:32:26',0),(28,'2022-06-06',2,14,3250,'2022-06-13 10:32:45','2022-06-13 10:32:45',0),(29,'2022-06-06',2,14,100,'2022-06-13 10:33:06','2022-06-13 10:33:06',0),(30,'2022-06-06',2,23,148,'2022-06-13 10:33:45','2022-06-13 10:33:45',0),(31,'2022-06-06',2,14,387,'2022-06-13 10:34:11','2022-06-13 10:34:11',0),(32,'2022-06-10',2,1,600,'2022-06-13 10:34:27','2022-06-13 10:34:27',0),(34,'2022-06-15',2,14,40,'2022-06-15 10:20:06','2022-06-15 10:20:06',0),(35,'2022-06-18',2,14,60,'2022-06-18 10:22:52','2022-06-18 10:22:52',0),(37,'2022-06-19',2,1,650,'2022-06-20 10:37:48','2022-06-20 10:37:48',0),(38,'2022-06-21',2,14,680,'2022-06-21 11:03:06','2022-06-21 11:03:06',0),(39,'2022-06-21',2,24,300,'2022-06-21 11:04:00','2022-06-21 11:04:00',0),(40,'2022-06-25',2,1,600,'2022-06-27 10:06:34','2022-06-27 10:06:34',0),(41,'2022-06-24',2,21,200,'2022-06-27 10:07:03','2022-06-27 10:07:03',0),(42,'2022-06-26',2,24,200,'2022-06-27 10:07:22','2022-06-27 10:07:22',0),(43,'2022-07-02',2,15,25000,'2022-07-02 10:07:58','2022-07-02 10:07:58',1),(45,'2022-07-02',2,25,479,'2022-07-02 10:10:18','2022-07-02 10:10:18',0),(46,'2022-07-02',2,2,5000,'2022-07-02 10:10:38','2022-07-02 10:10:38',0),(47,'2022-07-02',2,26,100,'2022-07-02 10:12:00','2022-07-02 10:12:00',0),(49,'2022-07-04',2,17,2700,'2022-07-08 10:20:33','2022-07-08 10:20:33',1),(50,'2022-07-08',2,16,3500,'2022-07-08 10:21:11','2022-07-08 10:21:11',1),(52,'2022-07-08',2,4,120,'2022-07-08 10:23:16','2022-07-08 10:23:16',0),(53,'2022-07-09',2,4,150,'2022-07-09 22:43:29','2022-07-09 22:43:29',0),(55,'2022-07-09',2,28,150,'2022-07-09 22:45:49','2022-07-09 22:45:49',0),(56,'2022-07-09',2,29,2000,'2022-07-09 22:47:15','2022-07-09 22:47:15',0),(57,'2022-07-09',2,1,600,'2022-07-09 22:47:33','2022-07-09 22:47:33',0),(58,'2022-07-09',2,30,20,'2022-07-09 22:47:58','2022-07-09 22:47:58',0),(60,'2022-07-12',2,21,240,'2022-07-13 10:25:15','2022-07-13 10:25:15',0),(61,'2022-07-17',2,1,600,'2022-07-17 09:19:58','2022-07-17 09:19:58',0),(62,'2022-07-17',2,24,50,'2022-07-17 09:20:17','2022-07-17 09:20:17',0),(63,'2022-07-20',2,21,50,'2022-07-20 10:11:42','2022-07-20 10:11:42',0),(64,'2022-07-20',2,8,500,'2022-07-20 10:12:00','2022-07-20 10:12:00',0),(65,'2022-07-25',2,1,600,'2022-07-25 10:40:28','2022-07-25 10:40:28',0),(66,'2022-07-26',2,26,50,'2022-07-26 11:43:41','2022-07-26 11:43:41',0),(67,'2022-07-26',2,21,90,'2022-07-26 11:44:34','2022-07-26 11:44:34',0),(68,'2022-07-27',2,21,1295,'2022-07-28 10:43:22','2022-07-28 10:43:22',0),(69,'2022-07-28',2,21,2100,'2022-07-28 10:54:33','2022-07-28 10:54:33',0),(70,'2022-07-28',2,25,479,'2022-07-28 10:54:55','2022-07-28 10:54:55',0),(71,'2022-04-01',2,17,0,'2022-07-31 10:23:34','2022-07-31 10:23:34',1),(72,'2022-08-01',2,1,600,'2022-07-31 10:25:58','2022-07-31 10:25:58',0),(73,'2022-08-01',2,24,150,'2022-07-31 10:26:35','2022-07-31 10:26:35',0),(74,'2022-08-01',2,4,100,'2022-08-01 10:30:56','2022-08-01 10:30:56',0),(75,'2022-08-01',2,21,50,'2022-08-01 10:32:05','2022-08-01 10:32:05',0),(76,'2022-07-27',2,25,479,'2022-08-01 10:32:58','2022-08-01 10:32:58',0),(77,'2022-08-02',2,33,2000,'2022-08-02 10:30:53','2022-08-02 10:41:14',1),(78,'2022-08-02',2,34,0,'2022-08-02 10:31:06','2022-08-02 10:31:06',0),(79,'2022-08-04',2,2,5000,'2022-08-03 21:38:43','2022-08-03 21:38:43',0),(80,'2022-08-04',2,26,1000,'2022-08-03 21:38:58','2022-08-03 21:38:58',0),(81,'2022-08-04',2,15,30900,'2022-08-03 21:44:32','2022-08-03 21:44:32',1),(82,'2022-08-04',2,17,1700,'2022-08-04 10:38:39','2022-08-04 10:38:39',1),(83,'2022-08-04',2,25,479,'2022-08-04 10:42:38','2022-08-04 10:42:38',0),(84,'2022-08-05',2,35,255,'2022-08-05 11:08:01','2022-08-05 11:08:01',0),(85,'2022-08-05',2,4,43,'2022-08-05 11:08:17','2022-08-05 11:08:17',0),(86,'2022-08-06',2,30,1708,'2022-08-06 20:45:14','2022-08-06 20:45:14',0),(87,'2022-08-06',2,29,736,'2022-08-06 20:48:00','2022-08-06 20:48:00',0),(88,'2022-08-06',2,21,170,'2022-08-06 20:49:12','2022-08-06 20:49:12',0),(89,'2022-08-06',2,29,3390,'2022-08-06 20:52:15','2022-08-06 20:52:15',0),(90,'2022-08-06',2,21,580,'2022-08-06 20:53:04','2022-08-06 20:53:04',0),(91,'2022-08-06',2,21,41,'2022-08-06 20:53:36','2022-08-06 20:53:36',0),(92,'2022-08-06',2,29,1082,'2022-08-06 20:55:16','2022-08-06 20:55:16',0),(93,'2022-08-06',2,29,2330,'2022-08-06 20:56:11','2022-08-06 20:56:11',0),(94,'2022-08-06',2,21,1321,'2022-08-06 20:57:02','2022-08-06 20:57:02',0),(95,'2022-08-07',2,4,2700,'2022-08-09 04:28:37','2022-08-09 04:28:37',0),(96,'2022-08-08',2,16,3250,'2022-08-09 04:29:07','2022-08-09 04:29:07',1),(97,'2022-08-07',2,1,500,'2022-08-09 04:31:20','2022-08-09 04:31:20',0),(98,'2022-08-08',2,34,2000,'2022-08-09 05:31:00','2022-08-09 05:31:00',0),(99,'2022-08-08',2,24,500,'2022-08-09 05:31:20','2022-08-09 05:31:20',0),(100,'2022-08-10',2,21,90,'2022-08-10 10:29:23','2022-08-10 10:29:23',0),(101,'2022-08-11',2,24,500,'2022-08-11 10:49:11','2022-08-11 10:49:11',0);
+INSERT INTO `expense_amounts` VALUES (12,'2022-05-02',2,15,11000,'2022-06-13 10:20:37','2022-06-13 10:20:37',1),(13,'2022-05-02',2,16,4000,'2022-06-13 10:21:06','2022-06-13 10:21:06',1),(14,'2022-06-01',2,15,25000,'2022-06-13 10:21:39','2022-06-13 10:21:39',1),(15,'2022-06-01',2,16,3500,'2022-06-13 10:22:01','2022-06-13 10:22:01',1),(16,'2022-06-06',2,17,1700,'2022-06-13 10:22:19','2022-06-13 10:22:19',1),(17,'2022-04-30',2,14,27477,'2022-06-13 10:25:09','2022-06-13 10:25:09',0),(18,'2022-05-31',2,14,11079,'2022-06-13 10:27:07','2022-06-13 10:27:07',0),(19,'2022-06-01',2,1,250,'2022-06-13 10:28:04','2022-06-13 10:28:04',0),(24,'2022-06-06',2,21,210,'2022-06-13 10:31:29','2022-06-13 10:31:29',0),(25,'2022-06-06',2,6,419,'2022-06-13 10:31:42','2022-06-13 10:31:42',0),(26,'2022-06-06',2,2,1000,'2022-06-13 10:32:03','2022-06-13 10:32:03',0),(27,'2022-06-06',2,4,2200,'2022-06-13 10:32:26','2022-06-13 10:32:26',0),(28,'2022-06-06',2,14,3250,'2022-06-13 10:32:45','2022-06-13 10:32:45',0),(29,'2022-06-06',2,14,100,'2022-06-13 10:33:06','2022-06-13 10:33:06',0),(30,'2022-06-06',2,23,148,'2022-06-13 10:33:45','2022-06-13 10:33:45',0),(31,'2022-06-06',2,14,387,'2022-06-13 10:34:11','2022-06-13 10:34:11',0),(32,'2022-06-10',2,1,600,'2022-06-13 10:34:27','2022-06-13 10:34:27',0),(34,'2022-06-15',2,14,40,'2022-06-15 10:20:06','2022-06-15 10:20:06',0),(35,'2022-06-18',2,14,60,'2022-06-18 10:22:52','2022-06-18 10:22:52',0),(37,'2022-06-19',2,1,650,'2022-06-20 10:37:48','2022-06-20 10:37:48',0),(38,'2022-06-21',2,14,680,'2022-06-21 11:03:06','2022-06-21 11:03:06',0),(39,'2022-06-21',2,24,300,'2022-06-21 11:04:00','2022-06-21 11:04:00',0),(40,'2022-06-25',2,1,600,'2022-06-27 10:06:34','2022-06-27 10:06:34',0),(41,'2022-06-24',2,21,200,'2022-06-27 10:07:03','2022-06-27 10:07:03',0),(42,'2022-06-26',2,24,200,'2022-06-27 10:07:22','2022-06-27 10:07:22',0),(43,'2022-07-02',2,15,25000,'2022-07-02 10:07:58','2022-07-02 10:07:58',1),(45,'2022-07-02',2,25,479,'2022-07-02 10:10:18','2022-07-02 10:10:18',0),(46,'2022-07-02',2,2,5000,'2022-07-02 10:10:38','2022-07-02 10:10:38',0),(47,'2022-07-02',2,26,100,'2022-07-02 10:12:00','2022-07-02 10:12:00',0),(49,'2022-07-04',2,17,2700,'2022-07-08 10:20:33','2022-07-08 10:20:33',1),(50,'2022-07-08',2,16,3500,'2022-07-08 10:21:11','2022-07-08 10:21:11',1),(52,'2022-07-08',2,4,120,'2022-07-08 10:23:16','2022-07-08 10:23:16',0),(53,'2022-07-09',2,4,150,'2022-07-09 22:43:29','2022-07-09 22:43:29',0),(55,'2022-07-09',2,28,150,'2022-07-09 22:45:49','2022-07-09 22:45:49',0),(56,'2022-07-09',2,29,2000,'2022-07-09 22:47:15','2022-07-09 22:47:15',0),(57,'2022-07-09',2,1,600,'2022-07-09 22:47:33','2022-07-09 22:47:33',0),(58,'2022-07-09',2,30,20,'2022-07-09 22:47:58','2022-07-09 22:47:58',0),(60,'2022-07-12',2,21,240,'2022-07-13 10:25:15','2022-07-13 10:25:15',0),(61,'2022-07-17',2,1,600,'2022-07-17 09:19:58','2022-07-17 09:19:58',0),(62,'2022-07-17',2,24,50,'2022-07-17 09:20:17','2022-07-17 09:20:17',0),(63,'2022-07-20',2,21,50,'2022-07-20 10:11:42','2022-07-20 10:11:42',0),(64,'2022-07-20',2,8,500,'2022-07-20 10:12:00','2022-07-20 10:12:00',0),(65,'2022-07-25',2,1,600,'2022-07-25 10:40:28','2022-07-25 10:40:28',0),(66,'2022-07-26',2,26,50,'2022-07-26 11:43:41','2022-07-26 11:43:41',0),(67,'2022-07-26',2,21,90,'2022-07-26 11:44:34','2022-07-26 11:44:34',0),(68,'2022-07-27',2,21,1295,'2022-07-28 10:43:22','2022-07-28 10:43:22',0),(69,'2022-07-28',2,21,2100,'2022-07-28 10:54:33','2022-07-28 10:54:33',0),(70,'2022-07-28',2,25,479,'2022-07-28 10:54:55','2022-07-28 10:54:55',0),(71,'2022-04-01',2,17,0,'2022-07-31 10:23:34','2022-07-31 10:23:34',1),(72,'2022-08-01',2,1,600,'2022-07-31 10:25:58','2022-07-31 10:25:58',0),(73,'2022-08-01',2,24,150,'2022-07-31 10:26:35','2022-07-31 10:26:35',0),(74,'2022-08-01',2,4,100,'2022-08-01 10:30:56','2022-08-01 10:30:56',0),(75,'2022-08-01',2,21,50,'2022-08-01 10:32:05','2022-08-01 10:32:05',0),(76,'2022-07-27',2,25,479,'2022-08-01 10:32:58','2022-08-01 10:32:58',0),(77,'2022-08-02',2,33,2000,'2022-08-02 10:30:53','2022-08-02 10:41:14',1),(78,'2022-08-02',2,34,0,'2022-08-02 10:31:06','2022-08-02 10:31:06',0),(79,'2022-08-04',2,2,5000,'2022-08-03 21:38:43','2022-08-03 21:38:43',0),(80,'2022-08-04',2,26,1000,'2022-08-03 21:38:58','2022-08-03 21:38:58',0),(81,'2022-08-04',2,15,30900,'2022-08-03 21:44:32','2022-08-03 21:44:32',1),(82,'2022-08-04',2,17,1700,'2022-08-04 10:38:39','2022-08-04 10:38:39',1),(83,'2022-08-04',2,25,479,'2022-08-04 10:42:38','2022-08-04 10:42:38',0),(84,'2022-08-05',2,35,255,'2022-08-05 11:08:01','2022-08-05 11:08:01',0),(85,'2022-08-05',2,4,43,'2022-08-05 11:08:17','2022-08-05 11:08:17',0),(86,'2022-08-06',2,30,1708,'2022-08-06 20:45:14','2022-08-06 20:45:14',0),(87,'2022-08-06',2,29,736,'2022-08-06 20:48:00','2022-08-06 20:48:00',0),(88,'2022-08-06',2,21,170,'2022-08-06 20:49:12','2022-08-06 20:49:12',0),(89,'2022-08-06',2,29,3390,'2022-08-06 20:52:15','2022-08-06 20:52:15',0),(90,'2022-08-06',2,21,580,'2022-08-06 20:53:04','2022-08-06 20:53:04',0),(91,'2022-08-06',2,21,41,'2022-08-06 20:53:36','2022-08-06 20:53:36',0),(92,'2022-08-06',2,29,1082,'2022-08-06 20:55:16','2022-08-06 20:55:16',0),(93,'2022-08-06',2,29,2330,'2022-08-06 20:56:11','2022-08-06 20:56:11',0),(94,'2022-08-06',2,21,1321,'2022-08-06 20:57:02','2022-08-06 20:57:02',0),(95,'2022-08-07',2,4,2700,'2022-08-09 04:28:37','2022-08-09 04:28:37',0),(96,'2022-08-08',2,16,3250,'2022-08-09 04:29:07','2022-08-09 04:29:07',1),(97,'2022-08-07',2,1,500,'2022-08-09 04:31:20','2022-08-09 04:31:20',0),(98,'2022-08-08',2,34,2000,'2022-08-09 05:31:00','2022-08-09 05:31:00',0),(99,'2022-08-08',2,24,500,'2022-08-09 05:31:20','2022-08-09 05:31:20',0),(100,'2022-08-10',2,21,90,'2022-08-10 10:29:23','2022-08-10 10:29:23',0),(101,'2022-08-11',2,24,500,'2022-08-11 10:49:11','2022-08-11 10:49:11',0),(102,'2022-08-27',2,1,1150,'2022-08-28 00:41:19','2022-08-28 00:41:19',0),(103,'2022-08-22',2,37,395,'2022-08-28 08:39:30','2022-08-28 08:39:30',0),(104,'2022-08-25',2,33,395,'2022-08-28 08:42:24','2022-08-28 08:42:24',1),(105,'2022-08-28',2,14,13500,'2022-08-28 08:44:33','2022-08-28 08:44:33',0);
 /*!40000 ALTER TABLE `expense_amounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,12 +145,12 @@ DROP TABLE IF EXISTS `expense_names`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `expense_names` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `expense_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expense_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `state` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `expense_names` (
 
 LOCK TABLES `expense_names` WRITE;
 /*!40000 ALTER TABLE `expense_names` DISABLE KEYS */;
-INSERT INTO `expense_names` VALUES (1,'petrol','2022-05-30 18:30:00','2022-05-30 18:30:00',0),(2,'home',NULL,NULL,0),(3,'Chitty','2022-06-07 10:45:14','2022-06-07 10:45:14',0),(4,'wife','2022-06-07 10:47:46','2022-06-07 10:47:46',0),(5,'Loan','2022-06-07 10:48:57','2022-06-07 10:48:57',0),(6,'Entertainment','2022-06-07 10:50:00','2022-06-07 10:50:00',0),(7,'Education','2022-06-07 10:50:11','2022-06-07 10:50:11',0),(8,'Donation','2022-06-07 10:54:19','2022-06-07 10:54:19',0),(14,'Other','2022-06-11 04:24:03','2022-06-11 04:24:03',0),(15,'NIC','2022-06-11 10:53:46','2022-06-11 10:53:46',1),(16,'Prathibha','2022-06-11 10:54:31','2022-06-11 10:54:31',1),(17,'Tuition','2022-06-11 10:58:28','2022-06-11 10:58:28',1),(21,'Food','2022-06-13 10:30:20','2022-06-13 10:30:20',0),(23,'Charges','2022-06-13 10:33:29','2022-06-13 10:33:29',0),(24,'health','2022-06-21 11:03:45','2022-06-21 11:03:45',0),(25,'recharge','2022-07-02 10:10:05','2022-07-02 10:10:05',0),(26,'Devotional','2022-07-02 10:11:48','2022-07-02 10:11:48',0),(28,'Trip','2022-07-09 22:44:49','2022-07-09 22:44:49',0),(29,'Dress','2022-07-09 22:46:57','2022-07-09 22:46:57',0),(30,'Bike','2022-07-09 22:47:44','2022-07-09 22:47:44',0),(33,'Debt Earns','2022-08-02 10:29:56','2022-08-02 10:29:56',1),(34,'Debt Paid','2022-08-02 10:30:12','2022-08-02 10:30:12',0),(35,'Treat','2022-08-05 11:07:35','2022-08-05 11:07:35',0);
+INSERT INTO `expense_names` VALUES (1,'petrol','2022-05-30 18:30:00','2022-05-30 18:30:00',0),(2,'home',NULL,NULL,0),(3,'Chitty','2022-06-07 10:45:14','2022-06-07 10:45:14',0),(4,'wife','2022-06-07 10:47:46','2022-06-07 10:47:46',0),(5,'Loan','2022-06-07 10:48:57','2022-06-07 10:48:57',0),(6,'Entertainment','2022-06-07 10:50:00','2022-06-07 10:50:00',0),(7,'Education','2022-06-07 10:50:11','2022-06-07 10:50:11',0),(8,'Donation','2022-06-07 10:54:19','2022-06-07 10:54:19',0),(14,'Other','2022-06-11 04:24:03','2022-06-11 04:24:03',0),(15,'NIC','2022-06-11 10:53:46','2022-06-11 10:53:46',1),(16,'Prathibha','2022-06-11 10:54:31','2022-06-11 10:54:31',1),(17,'Tuition','2022-06-11 10:58:28','2022-06-11 10:58:28',1),(21,'Food','2022-06-13 10:30:20','2022-06-13 10:30:20',0),(23,'Charges','2022-06-13 10:33:29','2022-06-13 10:33:29',0),(24,'health','2022-06-21 11:03:45','2022-06-21 11:03:45',0),(25,'recharge','2022-07-02 10:10:05','2022-07-02 10:10:05',0),(26,'Devotional','2022-07-02 10:11:48','2022-07-02 10:11:48',0),(28,'Trip','2022-07-09 22:44:49','2022-07-09 22:44:49',0),(29,'Dress','2022-07-09 22:46:57','2022-07-09 22:46:57',0),(30,'Bike','2022-07-09 22:47:44','2022-07-09 22:47:44',0),(33,'Debt Earns','2022-08-02 10:29:56','2022-08-02 10:29:56',1),(34,'Debt Paid','2022-08-02 10:30:12','2022-08-02 10:30:12',0),(35,'Treat','2022-08-05 11:07:35','2022-08-05 11:07:35',0),(36,'Debt get','2022-08-28 08:38:30','2022-08-28 08:38:30',1),(37,'Debt given','2022-08-28 08:38:45','2022-08-28 08:38:45',0);
 /*!40000 ALTER TABLE `expense_names` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,9 +172,9 @@ DROP TABLE IF EXISTS `expenses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `expenses` (
   `expense_id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `expense_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expense_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `expense_date` date DEFAULT NULL,
-  `expense_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expense_amount` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -200,11 +200,11 @@ DROP TABLE IF EXISTS `failed_jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -233,7 +233,7 @@ CREATE TABLE `financial_years` (
   `end_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -257,7 +257,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -282,7 +282,7 @@ DROP TABLE IF EXISTS `months`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `months` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -306,8 +306,8 @@ DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -331,11 +331,11 @@ DROP TABLE IF EXISTS `personal_access_tokens`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -362,11 +362,11 @@ DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
@@ -380,7 +380,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('FKth7iFKcH8KoVra9YiDJlk2t0IgbYMbJapOo7VR',1,'127.0.0.1','Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNEFjRjducjFrTGNLdW1xcFBKZzU5Vmswb0lBa1F1c0RNVENFY09UZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi1kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJGJ6RGsyUENBZkhZWklCNUo2UERici5FaDgzU2YyaHh4dnBYbDRLWHdvQkRCRnkwWDZOcVRtIjt9',1660238480);
+INSERT INTO `sessions` VALUES ('XPEuSRG2dxNlDwYR60Zeovc6qiFVTuPfP1JMwKn0',1,'127.0.0.1','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36','YTo1OntzOjY6Il90b2tlbiI7czo0MDoiakoyQTJna05VR1ppcmx3c0ptb0JIWTNrN2FOeThtYWRuUWNPNVE5OCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMToiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJGJ6RGsyUENBZkhZWklCNUo2UERici5FaDgzU2YyaHh4dnBYbDRLWHdvQkRCRnkwWDZOcVRtIjt9',1661697658);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,11 +393,11 @@ DROP TABLE IF EXISTS `stock_names`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stock_names` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,7 +406,7 @@ CREATE TABLE `stock_names` (
 
 LOCK TABLES `stock_names` WRITE;
 /*!40000 ALTER TABLE `stock_names` DISABLE KEYS */;
-INSERT INTO `stock_names` VALUES (1,'Delta Corp','2022-06-15 10:44:57','2022-06-15 10:44:57'),(4,'ITC','2022-06-15 10:48:15','2022-06-15 10:48:15'),(5,'Vikas Life','2022-06-15 10:48:58','2022-06-15 10:48:58'),(6,'Federal Bank','2022-06-15 10:49:16','2022-06-15 10:49:16');
+INSERT INTO `stock_names` VALUES (1,'Delta Corp','2022-06-15 10:44:57','2022-06-15 10:44:57'),(4,'ITC','2022-06-15 10:48:15','2022-06-15 10:48:15'),(5,'Vikas Life','2022-06-15 10:48:58','2022-06-15 10:48:58'),(6,'Federal Bank','2022-06-15 10:49:16','2022-06-15 10:49:16'),(7,'Franklin India','2022-08-28 00:40:24','2022-08-28 00:40:24');
 /*!40000 ALTER TABLE `stock_names` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,7 +472,7 @@ CREATE TABLE `stocks` (
   KEY `stocks_stock_name_foreign` (`stock_name`),
   CONSTRAINT `stocks_finyear_foreign` FOREIGN KEY (`finyear`) REFERENCES `financial_years` (`id`) ON DELETE CASCADE,
   CONSTRAINT `stocks_stock_name_foreign` FOREIGN KEY (`stock_name`) REFERENCES `stock_names` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -481,7 +481,7 @@ CREATE TABLE `stocks` (
 
 LOCK TABLES `stocks` WRITE;
 /*!40000 ALTER TABLE `stocks` DISABLE KEYS */;
-INSERT INTO `stocks` VALUES (2,2,4,4,'2021-10-12',240.00,960.00,0.00,1,'2022-07-14 11:29:26','2022-07-14 11:29:26'),(3,2,5,90,'2022-02-24',4.94,444.60,0.00,1,'2022-07-14 11:38:20','2022-07-14 11:38:20'),(4,2,6,60,'2022-05-18',86.00,5160.00,0.00,1,'2022-07-14 11:39:34','2022-07-14 11:39:34'),(5,2,1,5,'2022-05-20',232.80,1164.00,0.00,1,'2022-07-14 11:40:46','2022-07-14 11:40:46');
+INSERT INTO `stocks` VALUES (2,2,4,4,'2021-10-12',240.00,960.00,0.00,1,'2022-07-14 11:29:26','2022-07-14 11:29:26'),(3,2,5,90,'2022-02-24',4.94,444.60,0.00,1,'2022-07-14 11:38:20','2022-07-14 11:38:20'),(4,2,6,60,'2022-05-18',86.00,5160.00,0.00,1,'2022-07-14 11:39:34','2022-07-14 11:39:34'),(5,2,1,5,'2022-05-20',232.80,1164.00,0.00,1,'2022-07-14 11:40:46','2022-07-14 11:40:46'),(6,2,7,1,'2022-08-25',500.00,500.00,0.00,1,'2022-08-28 00:40:50','2022-08-28 00:40:50');
 /*!40000 ALTER TABLE `stocks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -494,16 +494,16 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `current_team_id` bigint unsigned DEFAULT NULL,
-  `profile_photo_path` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_photo_path` varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `role` int NOT NULL DEFAULT '0',
@@ -531,4 +531,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-11 22:54:28
+-- Dump completed on 2022-08-28 20:33:39
