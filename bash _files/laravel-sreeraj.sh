@@ -33,6 +33,9 @@ read msg
 echo "${green}Committed successfully and start to push...${reset}"
 echo "${reset1}"
 
-git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git sreeraj
+git push https://sreeraj-sanju:@github.com/sreeraj-sanju/diary.git sreeraj
 
 echo "${green}pushed successfully${reset}"
+
+
+# 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

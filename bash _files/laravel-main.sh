@@ -13,5 +13,5 @@ git checkout main
 git pull origin main
 git pull origin sreeraj
 echo "${reset1}"
-git push https://sreeraj-sanju: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@github.com/sreeraj-sanju/diary.git main
+git push https://sreeraj-sanju:@github.com/sreeraj-sanju/diary.git main
 echo "${green}Pushed to main branch${reset}"
