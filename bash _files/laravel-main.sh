@@ -17,4 +17,4 @@ git push origin main
 
 echo "${green}Pushed to main branch${reset}"
 
-# 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
+# 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
