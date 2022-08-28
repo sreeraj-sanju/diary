@@ -31,6 +31,7 @@ echo "${cyan}Enter the commit message${reset}"
 read msg
  git commit -m "${msg##*  }"
 echo "${green}Committed successfully and start to push...${reset}"
+
 echo "${reset1}"
 
 git push origin sreeraj

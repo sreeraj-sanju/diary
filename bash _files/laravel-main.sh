@@ -14,4 +14,5 @@ git pull origin main
 git pull origin sreeraj
 echo "${reset1}"
 git push origin main
+
 echo "${green}Pushed to main branch${reset}"
