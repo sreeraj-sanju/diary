@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#earningsAmountModal">
+<button type="button" class="btn btn-primary sr-button" data-toggle="modal" data-target="#earningsAmountModal">
 	+ New Earnings Amount
 </button>
 

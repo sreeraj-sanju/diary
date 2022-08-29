@@ -1,34 +1,71 @@
-
-.sr-header{
+.sr-header {
     background-color: rgb(150, 180, 180);
- 
 }
 
-.sr-title{
+.sr-title {
     color: rgb(16, 82, 82);
     font-weight: 600;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
 }
 
-.sr-modal-dialog{
-   max-width: 50% !important;
-   box-shadow: 7px 7px 5px rgb(85, 87, 87);
+@media (max-width: 500px) {
+    .sr-modal-dialog {
+        max-width: 80% !important;
+        box-shadow: 7px 7px 5px rgb(85, 87, 87);
+    }
 }
-.sr-body{
+@media (min-width: 501px) {
+    .sr-modal-dialog {
+        max-width: 50% !important;
+        box-shadow: 7px 7px 5px rgb(85, 87, 87);
+    }
+}
+.sr-body {
     background-color: rgb(223, 229, 229);
 }
-.sr-footer{
+.sr-footer {
     background-color: rgb(240, 247, 247);
 }
-.sr-table-div{
-   border: 2px solid rgb(16, 82, 82);
-   border-radius: 5px;
-   padding: 5px;
-   margin-top: 5px;
+.sr-table-div {
+    border: 2px solid rgb(16, 82, 82);
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    overflow-x: auto;
 }
-.sr-button-div{
+.sr-button-div {
     border: 2px solid rgb(16, 82, 82);
     border-radius: 5px;
     padding-left: 10px;
     padding-top: 10px;
- }
+}
+
+@media (max-width: 500px) {
+    .sr-button {
+        width: 97%;
+    }
+}
+
+/* @media (min-width: 411px) {
+    .sr-button{
+        width: 50%;
+    }   
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+} */

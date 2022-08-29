@@ -1,3 +1,4 @@
+
 <div class="container-fluid py-4 px-4">
   <div class="sr-button-div">
     @include('livewire.stocks.stock_name')
@@ -12,7 +13,7 @@
     <div class="row">
         {{-- stock buy start --}}
       <div class="col-md-8 sr-table-div">
-        <table class="table table-bordered mt-5 data-table">
+        <table class="table table-bordered  mt-5 data-table">
           <thead>
               <tr>
                 <th>No.</th>
@@ -40,7 +41,7 @@
       {{-- stock buy ends --}}
       {{-- stock names start --}}
       <div class="col-md-4 pull-right sr-table-div">
-        <table class="table table-bordered data-table">
+        <table class="table table-bordered  data-table">
           <thead>
               <tr>
                 <th>No.</th>
@@ -60,7 +61,7 @@
       {{-- stock names ends --}}
 
       {{-- stock sell start --}}
-      <div class="col-md-12 sr-table-div">
+      <div class="col-md-12 sr-table-div ">
         <table class="table table-bordered mt-5 data-table">
           <thead>
               <tr>

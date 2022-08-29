@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#base_modal">
+<button type="button" class="btn btn-primary sr-button" data-toggle="modal" data-target="#base_modal">
 	+ Bills
 </button>
 
