@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-  <title>My Diary - Personal Budget Calculator @yield('title')</title>
+  <title>{{env('APP_NAME')}} - Personal Budget Calculator @yield('title')</title>
   @if (env('APP_ENV') == 'local')
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/fonts.css')}}" />

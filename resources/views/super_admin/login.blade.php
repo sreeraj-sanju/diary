@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>My_Diary - Login</title>
+  	<title>{{env('APP_NAME')}} - Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -23,7 +23,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">My Dairy - Find The Hero In You</h2>
+						<h2 class="heading-section">{{env('APP_NAME')}} - Find The Hero In You</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">
