@@ -24,4 +24,17 @@ class LoginApiController extends Controller
         $error = array('status' => 'success', );
         return response()->file(public_path("/images/bg.jpg"));
     }
+
+    // START LOGIN
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+        return response([
+            'status' => 200,
+            'message' => 'Login successful',
+            'token' => 1234
+        ]);
+    }
+    // END LOGIN
 }
