@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\{
     StockNames,
     Stock,
+    StockAnalys,
     StockSell,
     FinancialYear
 };
@@ -26,7 +27,14 @@ class Stocks extends Component
         $sell_count,
         $total_sell_amount,
         $profit,
-        $name
+        $name,
+        $current_price,
+        $debt_equity,
+        $promoter_holding,
+        $roe,
+        $roce,
+        $divident,
+        $profit_aft_tax
     ;
     public function render()
     {
@@ -123,6 +131,36 @@ class Stocks extends Component
      }  
      //end stock buy new
 
+    // start stock analysis
+    public function analys_stock_store()
+    {
+        $validatedName = $this->validate([
+            'stock_name' => 'required',
+            'current_price' => 'required|numeric|min:0',
+            'debt_equity' => 'required|numeric|min:0',
+            'promoter_holding' => 'required|numeric|min:0',
+            'roe' => 'required|numeric|min:0',
+            'roce' => 'required|numeric|min:0',
+            'profit_aft_tax' => 'required|numeric|min:0',
+            'divident' => 'required|numeric|min:0',
+        ]);
+        // $fin_id = FinancialYear::max('id');
+
+        // $validatedName['finyear']=$fin_id;
+        try{
+            DB::beginTransaction();
+            StockAnalys::create($validatedName);
+            DB::commit();
+            $this->resetInputFields();
+            $this->emit('successAction'); // Close model to using to jquery
+        }catch(\Exception $e){
+            DB::rollBack();
+           dd($e->getMessage());
+            $this->emit('failedAction'); // Close model to using to jquery
+        }
+    }  
+    // end stock analysis
+
     //function for reset input fields
     private function resetInputFields(){
         $this->name = '';
@@ -136,6 +174,13 @@ class Stocks extends Component
         $this->sell_amount_single = '';
         $this->sell_count = '';
         $this->total_sell_amount = '';
+        $this->current_price = '';
+        $this->debt_equity = '';
+        $this->promoter_holding = '';
+        $this->roe = '';
+        $this->roce = '';
+        $this->divident = '';
+        $this->profit_aft_tax = '';
     }
 
     public function cancel(){

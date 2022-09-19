@@ -4,6 +4,7 @@
     @include('livewire.stocks.stock_name')
     @include('livewire.stocks.stock_buy')
     @include('livewire.stocks.stock_sell')
+    @include('livewire.stocks.stock_analysis')
   </div>
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
