@@ -6,6 +6,7 @@
     color: rgb(16, 82, 82);
     font-weight: 600;
     font-family: "Times New Roman", Times, serif;
+    text-transform: capitalize;
 }
 
 @media (max-width: 500px) {

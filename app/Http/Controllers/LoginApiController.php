@@ -31,10 +31,9 @@ class LoginApiController extends Controller
         $email = $request->email;
         $password = $request->password;
         return response([
-            'status' => 200,
             'message' => 'Login successful',
             'token' => 1234
-        ]);
+        ], 200);
     }
     // END LOGIN
 }

@@ -211,7 +211,7 @@
         showConfirmButton: false,
         timer: 1000
       }).then(() => {
-        window.location.reload();
+        //window.location.reload();
     });
 
     });
