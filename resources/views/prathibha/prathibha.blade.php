@@ -162,7 +162,7 @@
 				</div>
 				<div class="modal-body">
 					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/images/pr.png")}}" type="video/mp4">
+						<source src="{{URL::asset("/assets/sampleMp4.mp4")}}" type="video/mp4">
 					</video>
 				</div>
 			</div>
@@ -179,9 +179,9 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/images/pr.png")}}" type="video/mp4">
-					</video>
+					<audio controls>
+						<source src="{{asset('assets/sampleMp3.mp3')}}" type="audio/mpeg">
+					  </audio>
 				</div>
 			</div>
 			</div>
