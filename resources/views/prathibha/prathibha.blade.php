@@ -13,12 +13,12 @@
 
 
 	</head>
-	<body class="img_pr" style="background-image: url(images/prathibha.jpeg);">
+	<body class="img_pr img-fluid" style="background-image: url(images/pr.png);">
 		<section class="ftco-section_pr">
 			<div class="container pr_container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section pr_heading">QUIZ COMPETETION 2022-23</h2>
+						<h2 class="heading-section_pr pr_heading">QUIZ COMPETETION 2022-23</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">
@@ -32,8 +32,14 @@
 					<div class="col-md-4">
 						<button type="button" class="form-control btn btn-primary bg-primary">UP</button>
 					</div>
+					<div class="col-sm d-md-none">
+						<br>
+					</div>
 					<div class="col-md-4">
 						<button type="button" class="form-control btn btn-primary bg-primary">HS</button>
+					</div>
+					<div class="col-sm d-md-none">
+						<br>
 					</div>
 					<div class="col-md-4">
 						<button type="button" class="form-control btn btn-primary bg-primary">HSS</button>
