@@ -7237,6 +7237,10 @@ a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
     background-color: #0062cc !important;
+    color: white !important;
+    font-size: 25px;
+    font-weight: 500;
+
 }
 
 .bg-secondary {
@@ -10969,6 +10973,23 @@ h5,
     padding: 7em 0;
 }
 
+.ftco-section_pr {
+    padding: 12em 0;
+}
+
+.pr_container{
+    padding-top: 10%;
+}
+
+.pr_heading{
+    font-weight: 900;
+    font-size: 50px !important;
+    box-shadow:5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+.pr_text{
+    font-weight: 900 !important;
+    font-size: 50px !important;
+}
 .ftco-no-pt {
     padding-top: 0;
 }
@@ -10982,10 +11003,21 @@ h5,
     color: #fff;
 }
 
+.heading-section_pr {
+    color: #fff;
+    padding-top: 15%;
+}
+
 .img {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.img_pr {
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position: center center; */
 }
 
 .login-wrap {

@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExpenseController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\{
+    DashboardController, PrathibhaController
+};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +39,6 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::view('components', 'livewire.electronics.components_layout')->name('component');
     Route::view('bills', 'livewire.electronics.bills_layout')->name('bills');
 });
+
+// ROUTE SET FOR PRATHIBHA
+Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prathibha');
