@@ -92,5 +92,44 @@
       </div>
       {{-- stock sell ends --}}
 
+      {{-- start stock analysis --}}
+      <div class="col-md-12 sr-table-div ">
+        <table class="table table-bordered mt-5 data-table">
+          <thead>
+              <tr>
+                <th>No.</th>
+                <th>Company Name</th>
+                <th>Current Price</th>
+                <th>Debt Equity</th>
+                <th>Divident</th>
+                <th>Promoter Holding</th>
+                <th>Profit Growth</th>
+                <th>ROE</th>
+                <th>ROCE</th>
+                <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+            @foreach($stock_code as $stocks)
+            <tr>
+              <td>{{$loop->index + 1}}</td>
+              <td>{{$stocks->stock_name}}</td>
+              <td>{{$stocks->current_price}}</td>
+              <td>{{$stocks->debt_equity}}</td>
+              <td>{{$stocks->divident}}</td>
+              <td>{{$stocks->promoter_holding}}</td>
+              <td>{{$stocks->profit_aft_tax}}</td>
+              <td>{{$stocks->roe}}</td>
+              <td>{{$stocks->roce}}</td>
+              <td>
+                <button class="btn btn-info btn-sm" type="button" wire:click="edit({{$stocks->id}})" data-toggle="modal" data-target="#stockAnalysModal">Edit</button>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+      {{-- End stock analysis  --}}
+
     <div>
 </div>

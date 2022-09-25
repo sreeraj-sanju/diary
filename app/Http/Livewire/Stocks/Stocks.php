@@ -35,12 +35,13 @@ class Stocks extends Component
         $roce,
         $divident,
         $profit_aft_tax,
-        $stock_code
+        $stock_code,
+        $selected_id
     ;
     public function render()
     {
         $this->stock_names = StockNames::orderBy('id', 'desc')->get();
-        $this->stock_code = StockAnalys::where('buy_status', 0)->orderBy('id', 'desc')->get();
+        $this->stock_code = StockAnalys::where('buy_status', 0)->orderBy('debt_equity', 'asc')->get();
         $this->buy_stocks = DB::table('stocks as s')->join('stock_names as sn', 's.stock_name', '=', 'sn.id')
             ->where('s.is_active', true)->orderBy('s.id', 'DESC')->get();
         $this->sell_stocks = DB::table('stock_sells as s')->join('stock_names as sn', 's.stock_name', '=', 'sn.id')
@@ -204,6 +205,49 @@ class Stocks extends Component
         }
     }  
     // end stock analysis
+
+    public function edit($id)
+    {
+        $this->updateMode = true;
+        $record = StockAnalys::findOrFail($id);
+        $this->selected_id = $id;
+        $this->stock_name = $record->stock_name;
+        $this->current_price = $record->current_price;
+        $this->debt_equity = $record->debt_equity;
+        $this->promoter_holding = $record->promoter_holding;
+        $this->roe = $record->roe;
+        $this->roce = $record->roce;
+        $this->profit_aft_tax = $record->profit_aft_tax;
+        $this->divident = $record->divident;
+    }
+
+    //function for updation
+    public function analys_stock_update(){
+        $validatedName = $this->validate([
+            'stock_name' => 'required',
+            'current_price' => 'required|numeric|min:0',
+            'debt_equity' => 'required|numeric|min:0',
+            'promoter_holding' => 'required|numeric|min:0',
+            'roe' => 'required|numeric|min:0',
+            'roce' => 'required|numeric|min:0',
+            'profit_aft_tax' => 'required|numeric|min:0',
+            'divident' => 'required|numeric|min:0',
+        ]);
+        if ($this->selected_id) {
+            $record = StockAnalys::find($this->selected_id);
+            try{
+                DB::beginTransaction();
+                $record->update($validatedName);
+                DB::commit();
+                $this->resetInputFields();
+                $this->updateMode = false;
+                $this->emit('successAction'); // Close model to using to jquery
+            }catch(\Exception $e){
+                DB::rollBack();
+                $this->emit('failedAction'); // Close model to using to jquery
+            }
+        }
+    }
 
     //function for reset input fields
     private function resetInputFields(){
