@@ -34,11 +34,13 @@ class Stocks extends Component
         $roe,
         $roce,
         $divident,
-        $profit_aft_tax
+        $profit_aft_tax,
+        $stock_code
     ;
     public function render()
     {
         $this->stock_names = StockNames::orderBy('id', 'desc')->get();
+        $this->stock_code = StockAnalys::where('buy_status', 0)->orderBy('id', 'desc')->get();
         $this->buy_stocks = DB::table('stocks as s')->join('stock_names as sn', 's.stock_name', '=', 'sn.id')
             ->where('s.is_active', true)->orderBy('s.id', 'DESC')->get();
         $this->sell_stocks = DB::table('stock_sells as s')->join('stock_names as sn', 's.stock_name', '=', 'sn.id')
@@ -51,6 +53,7 @@ class Stocks extends Component
     {
         $validatedName = $this->validate([
             'name' => 'required',
+            'stock_code' => 'required'
         ]);
        
         try{
@@ -80,9 +83,13 @@ class Stocks extends Component
         $fin_id = FinancialYear::max('id');
 
         $validatedName['finyear']=$fin_id;
+        
+        $stock_code = StockNames::find($validatedName['stock_name']);
+       
         try{
             DB::beginTransaction();
             Stock::create($validatedName);
+            StockAnalys::where('stock_code', $stock_code->stock_code)->update(['buy_status' => 1]);
             DB::commit();
             $this->resetInputFields();
             $this->emit('successAction'); // Close model to using to jquery
@@ -97,7 +104,7 @@ class Stocks extends Component
      //start stock buy new
      public function stock_sell_store()
      {
-         $validatedName = $this->validate([
+        $validatedName = $this->validate([
              'stock_name' => 'required',
              'sell_date' => 'required',
              'sell_amount_single' => 'required|numeric|min:0',
@@ -105,29 +112,62 @@ class Stocks extends Component
              'total_sell_amount' => 'required|numeric|min:0',
              'buy_charge' => 'required|numeric|min:0'
  
-         ]);
-         $fin_id = FinancialYear::max('id');
+        ]);
+        $fin_id = FinancialYear::max('id');
  
-         $validatedName['finyear']=$fin_id;
-         $total_buy_amount = Stock::where('stock_name', $validatedName['stock_name'])
+        $validatedName['finyear']=$fin_id;
+
+        $total_buy_amount = Stock::where('stock_name', $validatedName['stock_name'])
             ->selectRaw('sum(total_buy_amount) as total')->selectRaw('sum(buy_charge) as charge')
+            ->selectRaw('sum(buy_count) as count')
             ->groupBy('stock_name')->get();
         
+        $total_sell_count = StockSell::where('stock_name', $validatedName['stock_name'])
+            ->selectRaw('sum(sell_count) as count')
+            ->groupBy('stock_name')->get();
+        
+        $stock_code = StockNames::find($validatedName['stock_name']);
+
         foreach($total_buy_amount as $data){
             $buy_amount = $data->total + $data->charge;
+            $buy_count = $data->count;
         }
-        $validatedName['profit'] = $validatedName['total_sell_amount']-$validatedName['buy_charge']-$buy_amount;
-         try{
-             DB::beginTransaction();
-             StockSell::create($validatedName);
-             DB::commit();
-             $this->resetInputFields();
-             $this->emit('successAction'); // Close model to using to jquery
-         }catch(\Exception $e){
-             DB::rollBack();
-            dd($e->getMessage());
-             $this->emit('failedAction'); // Close model to using to jquery
-         }
+        foreach($total_sell_count as $value){
+            $sell_count = $value->count;
+        }
+
+        $count_diff = $buy_count-$validatedName['sell_count'];
+        $sell_count = $validatedName['sell_count'] + $sell_count;
+        if($count_diff==0 || $sell_count == $buy_count){
+            $validatedName['profit'] = $validatedName['total_sell_amount']-$validatedName['buy_charge']-$buy_amount;
+            try{
+                DB::beginTransaction();
+                StockSell::create($validatedName);
+                StockAnalys::where('stock_code', $stock_code->stock_code)->update(['buy_status' => 0]);
+                DB::commit();
+                $this->resetInputFields();
+                $this->emit('successAction'); // Close model to using to jquery
+            }catch(\Exception $e){
+                DB::rollBack();
+                dd($e->getMessage());
+                $this->emit('failedAction'); // Close model to using to jquery
+            }
+        }elseif($count_diff <0){
+            $this->emit('failedinfo');
+        }else{
+            $validatedName['profit'] = $validatedName['total_sell_amount']-$validatedName['buy_charge']-$buy_amount;
+            try{
+                DB::beginTransaction();
+                StockSell::create($validatedName);
+                DB::commit();
+                $this->resetInputFields();
+                $this->emit('successAction'); // Close model to using to jquery
+            }catch(\Exception $e){
+                DB::rollBack();
+                dd($e->getMessage());
+                $this->emit('failedAction'); // Close model to using to jquery
+            }
+        }
      }  
      //end stock buy new
 
@@ -144,12 +184,16 @@ class Stocks extends Component
             'profit_aft_tax' => 'required|numeric|min:0',
             'divident' => 'required|numeric|min:0',
         ]);
-        // $fin_id = FinancialYear::max('id');
+        $stock_code = 'srstock'.StockAnalys::max('id')+1;
 
-        // $validatedName['finyear']=$fin_id;
+        $validatedName['stock_code']=$stock_code;
         try{
             DB::beginTransaction();
             StockAnalys::create($validatedName);
+            StockNames::create([
+                'name' => $validatedName['stock_name'],
+                'stock_code' => $validatedName['stock_code']
+            ]);
             DB::commit();
             $this->resetInputFields();
             $this->emit('successAction'); // Close model to using to jquery

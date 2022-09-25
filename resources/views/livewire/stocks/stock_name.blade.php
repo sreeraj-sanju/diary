@@ -19,6 +19,20 @@
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Name" wire:model="name">
                         @error('name') <span class="text-danger error">{{ $message }}</span>@enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="stock_name" class="col-md-4 col-form-label">Stock Code</label>
+                       
+                            <select name="stock_code" class="form-control"  id="" >
+                                <option value="">select a stock code</option>
+                                @foreach ($stock_code as $code)
+                                <option value="{{$code->id}}">{{$code->stock_code}}</option>
+                                @endforeach
+                            </select>
+                            @error('stock_code') <span class="text-danger error">{{ $message }}</span>@enderror
+                       
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer sr-footer">

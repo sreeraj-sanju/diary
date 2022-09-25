@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\{
-    DashboardController, PrathibhaController
+    DashboardController, PrathibhaController,StockController
 };
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +42,4 @@ Route::middleware(['admin:admin'])->group(function(){
 
 // ROUTE SET FOR PRATHIBHA
 Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prathibha');
+Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
