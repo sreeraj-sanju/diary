@@ -4,7 +4,7 @@
        <div class="modal-content">
             <div class="modal-header sr-header">
                 <h5 class="modal-title sr-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click.prevent="cancel()">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>

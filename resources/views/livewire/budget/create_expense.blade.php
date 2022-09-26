@@ -8,7 +8,7 @@
         <div class="modal-content">
             <div class="modal-header sr-header">
                 <h5 class="modal-title sr-title" id="exampleModalLabel">Add New Expense Amount</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click.prevent="cancel()">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
             </div>
@@ -44,7 +44,7 @@
                 </form>
             </div>
             <div class="modal-footer sr-footer">
-                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                 <button type="button" wire:click.prevent="expense_amount_store()" class="btn btn-primary close-modal">Save</button>
             </div>
         </div>

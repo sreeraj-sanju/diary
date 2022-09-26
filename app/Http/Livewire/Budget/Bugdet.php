@@ -131,6 +131,7 @@ class Bugdet extends Component
     {
         $this->updateMode = false;
         $this->resetInputFields();
+        $this->emit('refresh');
     }
 
     //for update expense amount
