@@ -110,4 +110,4 @@
       </div>
       {{-- earnings amount ends --}}
     </div>
-</>
+  </div>

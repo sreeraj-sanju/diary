@@ -38,6 +38,7 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::view('stocks','livewire.stocks.stocks_layout')->name('stocks');
     Route::view('components', 'livewire.electronics.components_layout')->name('component');
     Route::view('bills', 'livewire.electronics.bills_layout')->name('bills');
+    Route::view('actions', 'livewire.actions.items_layout')->name('actions');
 });
 
 // ROUTE SET FOR PRATHIBHA
