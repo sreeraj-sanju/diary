@@ -5,7 +5,8 @@ namespace App\Http\Livewire\Actions;
 use Livewire\Component;
 use App\Models\{
     Priority,
-    PlanItem
+    PlanItem,
+    ProductExpiry
 };
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,9 @@ class PlannedItems extends Component
         $priorities,
         $priority,
         $product_name,
-        $expected_amount
+        $expected_amount,
+        $start_date,
+        $end_date
     ;
     public function render()
     {
@@ -26,6 +29,9 @@ class PlannedItems extends Component
         $this->planed_item = PlanItem::join('priorities', 'plan_items.priority', '=', 'priorities.id')
             ->orderBy('priorities.priority_code')
             ->get();
+        // $expiredItem = ProductExpiry::whereDate('end_date', '>=', now())->get();
+        $this->expiredItem = ProductExpiry::orderby('id', 'desc')->get();
+
         return view('livewire.actions.planned-items');
     }
 
@@ -72,6 +78,28 @@ class PlannedItems extends Component
     }
     // End function for  store planed products for buy
 
+    // Start function for store expiry of products
+    public function expiry_store()
+    {
+        $validatedDate = $this->validate([
+            'product_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+        ]);
+         
+        try{
+            DB::beginTransaction();
+            ProductExpiry::create($validatedDate);
+            DB::commit();
+            $this->resetInputFields();
+            $this->emit('successAction'); 
+        }catch(\Exception $e){
+            DB::rollBack();
+            $this->emit('failedAction'); // Close model to using to jquery
+        }
+    }
+    // End function for store expiry of products
+
     //cancel button operation
     public function cancel()
     {
@@ -84,5 +112,8 @@ class PlannedItems extends Component
     private function resetInputFields(){
         $this->priority_name = '';
         $this->priority_code = '';
+        $this->product_name = '';
+        $this->start_date ='';
+        $this->end_date = '';
     }
 }

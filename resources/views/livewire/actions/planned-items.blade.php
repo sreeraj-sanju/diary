@@ -3,6 +3,7 @@
     <div class="sr-button-div">
       @include('livewire.actions.priority')
       @include('livewire.actions.planned_items')
+      @include('livewire.actions.expiry_products')
     </div>
       @if (session()->has('message'))
           <div class="alert alert-success" style="margin-top:30px;">x
@@ -11,7 +12,7 @@
       @endif
       <div class="row">
         {{-- priority start --}}
-        <div class="col-md-6 sr-table-div">
+        <div class="col-md-4 sr-table-div">
           <table class="table table-bordered table-hover data-table">
             <thead>
                 <tr>
@@ -38,7 +39,7 @@
         {{-- priority ends --}}
         
         {{-- start planned item listing --}}
-        <div class="col-md-6 sr-table-div">
+        <div class="col-md-4 sr-table-div">
           <table class="table table-bordered table-hover data-table">
             <thead>
                 <tr>
@@ -65,5 +66,40 @@
           </table>
         </div>
         {{-- End planned item listing --}}
+
+        {{-- start expired item listing --}}
+        <div class="col-md-4 sr-table-div">
+          <table class="table table-bordered table-hover new-data-table">
+            <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Product Name</th>
+                  <th>Start From</th>
+                  <th>Expired On</th>
+                </tr>
+            </thead>
+            <tbody>
+              @foreach($expiredItem as $item)
+              <tr>
+                <td>{{$loop->index + 1}}</td>
+                <td>{{$item->product_name}}</td>
+                <td>{{$item->start_date}}</td>
+                <td>{{$item->end_date}}</td>
+              </tr>
+              @endforeach
+              <tr>
+                <td colspan="3">Total Items</td>
+                <td>ok</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {{-- End expired item listing --}}
       </div>
     </div>
+    <script>
+      $('.new-data-table').DataTable();
+      $(document).ready(function () {
+          $('.new-data-table').DataTable();
+      });
+    </script>
