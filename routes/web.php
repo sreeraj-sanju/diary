@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\{
-    DashboardController, PrathibhaController
+    DashboardController, PrathibhaController,StockController
 };
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +38,9 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::view('stocks','livewire.stocks.stocks_layout')->name('stocks');
     Route::view('components', 'livewire.electronics.components_layout')->name('component');
     Route::view('bills', 'livewire.electronics.bills_layout')->name('bills');
+    Route::view('actions', 'livewire.actions.items_layout')->name('actions');
 });
 
 // ROUTE SET FOR PRATHIBHA
 Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prathibha');
+Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');

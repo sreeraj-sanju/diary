@@ -8,12 +8,13 @@
         <div class="modal-content">
             <div class="modal-header sr-header">
                 <h5 class="modal-title sr-title" id="exampleModalLabel">add a stock for analysis</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" wire:click.prevent="cancel()" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
             </div>
            <div class="modal-body sr-body">
                 <form>
+                    <input type="hidden" wire:model="selected_id">
 
                     <div class="form-group row">
                         <label for="date" class="col-md-3 col-form-label">Stock Name</label>
@@ -82,8 +83,8 @@
                 </form>
             </div>
             <div class="modal-footer sr-footer">
-                <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="analys_stock_store()" class="btn btn-primary close-modal">Save</button>
+                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
+                <button type="button" wire:click.prevent="{{ $selected_id ? 'analys_stock_update()':'analys_stock_store()'}}" class="btn btn-primary close-modal">{{ $selected_id ? 'Update':'Save'}}</button>
             </div>
         </div>
     </div>

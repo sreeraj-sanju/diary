@@ -226,6 +226,17 @@
       });
     });
 
+    window.livewire.on('failedinfo', () => {
+      // window.location.reload();
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Stock sell count more than buy count !!',
+        showConfirmButton: false,
+        timer: 1000
+      });
+    });
+
     //refresh action
     window.livewire.on('refresh', () => {
       window.location.reload();

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\expenseAmount;
 use App\Models\ExpenseName;
 use App\Models\Stock;
-use App\Models\StockSell;
+use App\Models\{StockSell, StockAnalys};
 use App\Models\Electronics\BillAmount;
 use App\Models\FinancialYear;
 
@@ -215,11 +215,17 @@ class DashboardController extends Controller
         $amount_to_get = BillAmount::sum('total_price')-$total_price;
         //end electronics
 
+        // start stock analysis
+        $stocks = StockAnalys::select('*')
+            ->where('buy_status', 0)
+            ->orderBy('debt_equity')
+            ->get();
+        // end stock analysis
         return view('super_admin/dashboard',compact(
             'value', 'label', 'labelEar', 'valueEar', 'labelEx', 'valueEx', 'finYear', 'labelEr', 'valueEr',
             'savings', 'savings_perc', 'total_exp', 'total_ear', 'debtPA', 'debtEA', 'debtIA', 'labelYEx', 
             'valueYEx', 'valueYEr', 'stockLabel', 'stockData', 'stockSell', 'total_sav', 'sav_percent',
-            'stockTotal', 'stockSellAmount', 'profit', 'profit_perc', 'amount_got', 'amount_to_get'
+            'stockTotal', 'stockSellAmount', 'profit', 'profit_perc', 'amount_got', 'amount_to_get', 'stocks'
         ));
     }
 }
