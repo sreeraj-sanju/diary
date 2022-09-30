@@ -220,7 +220,7 @@
 				</div>
 				<div class="modal-body">
 					<audio controls>
-						<source src="{{asset('assets/sampleMp3.mp3')}}" type="audio/mpeg">
+						<source src="{{asset('assets/lp.mp3')}}" type="audio/mpeg">
 					  </audio>
 				</div>
 			</div>
@@ -291,7 +291,7 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/pr.png')}}" alt="">
+					<img width="100%" max-height="60%" src="{{asset('assets/droupadi.jpg')}}" alt="">
 				</div>
 			</div>
 			</div>
@@ -345,7 +345,7 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/pr.png')}}" alt="">
+					<img width="100%" max-height="60%" src="{{asset('assets/prsreejesh.jpg')}}" alt="">
 				</div>
 			</div>
 			</div>
@@ -399,7 +399,7 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/pr.png')}}" alt="">
+					<img width="100%" max-height="60%" src="{{asset('assets/neeraj_chopra.jpeg')}}" alt="">
 				</div>
 			</div>
 			</div>
