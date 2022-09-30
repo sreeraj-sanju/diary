@@ -13,7 +13,7 @@
 
 
 	</head>
-	<body class="img_pr img-fluid" style="background-image: url(images/pr.png);">
+	<body class="img_pr img-fluid" style="background-image: url(images/prathibha.jpg);">
 		<section class="ftco-section_pr">
 			<div class="container pr_container">
 				<div class="row justify-content-center">
