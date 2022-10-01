@@ -13,7 +13,7 @@
 
 
 	</head>
-	<body class="img_pr img-fluid" style="background-image: url(images/pr.png);">
+	<body class="img_pr img-fluid" style="background-image: url(images/new_pr.jpg);">
 		<section class="ftco-section_pr">
 			<div class="container pr_container">
 				<div class="row justify-content-center">
@@ -220,7 +220,7 @@
 				</div>
 				<div class="modal-body">
 					<audio controls>
-						<source src="{{asset('assets/sampleMp3.mp3')}}" type="audio/mpeg">
+						<source src="{{asset('assets/lp.mp3')}}" type="audio/mpeg">
 					  </audio>
 				</div>
 			</div>
@@ -274,7 +274,7 @@
 				</div>
 				<div class="modal-body">
 					<audio controls>
-						<source src="{{asset('assets/sampleMp3.mp3')}}" type="audio/mpeg">
+						<source src="{{asset('assets/sachin.mp3')}}" type="audio/mpeg">
 					  </audio>
 				</div>
 			</div>
@@ -291,7 +291,7 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/pr.png')}}" alt="">
+					<img width="100%" max-height="60%" src="{{asset('assets/droupadi.jpg')}}" alt="">
 				</div>
 			</div>
 			</div>
@@ -310,7 +310,7 @@
 				</div>
 				<div class="modal-body">
 					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/images/pr.png")}}" type="video/mp4">
+						<source src="{{URL::asset("assets/ithi.mp4")}}" type="video/mp4">
 					</video>
 				</div>
 			</div>
@@ -345,7 +345,7 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/pr.png')}}" alt="">
+					<img width="100%" max-height="60%" src="{{asset('assets/prsreejesh.jpg')}}" alt="">
 				</div>
 			</div>
 			</div>
@@ -382,7 +382,7 @@
 				</div>
 				<div class="modal-body">
 					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/images/pr.png")}}" type="video/mp4">
+						<source src="{{URL::asset("assets/boby.mp3")}}" type="video/mp4">
 					</video>
 				</div>
 			</div>
@@ -399,7 +399,7 @@
 				</button>
 				</div>
 				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/pr.png')}}" alt="">
+					<img width="100%" max-height="60%" src="{{asset('assets/neeraj_chopra.jpeg')}}" alt="">
 				</div>
 			</div>
 			</div>
