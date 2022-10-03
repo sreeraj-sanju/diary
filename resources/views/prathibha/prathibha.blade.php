@@ -256,7 +256,7 @@
 				</div>
 				<div class="modal-body">
 					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/assets/sampleMp4.mp4")}}" type="video/mp4">
+						<source src="{{URL::asset("/assets/pazhassi.mp4")}}" type="video/mp4">
 					</video>
 				</div>
 			</div>
