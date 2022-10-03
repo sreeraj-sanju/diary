@@ -5,6 +5,7 @@
 /vendor
 .env
 .env.backup
+laravel_sreeraj.sh
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json

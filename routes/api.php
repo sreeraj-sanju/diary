@@ -18,8 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// base url 
-Route::get("base_url", [LoginApiController::class, "get_base_url"])->name("base_url");
 //app login images
-Route::get("login_images", [LoginApiController::class, "login_images"])->name("login_images");
+Route::post("blog_register", [LoginApiController::class, "blog_register"])->name("blog_register");
 Route::post("blog_login", [LoginApiController::class, "login"])->name("blog_login");
