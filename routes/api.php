@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //app login images
 Route::post("blog_register", [LoginApiController::class, "blog_register"])->name("blog_register");
-Route::post("blog_login", [LoginApiController::class, "login"])->name("blog_login");
+Route::post("blog_login", [LoginApiController::class, "blog_login"])->name("blog_login");

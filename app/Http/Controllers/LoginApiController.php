@@ -6,39 +6,50 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 
 class LoginApiController extends Controller
 {
+    use HasApiTokens;
     // START REGISTER FUNCTION
     public function blog_register(Request $request)
     {
+        // $data = $request->validate([
+        //     'name' => 'required | string',
+        //     'email' => 'required| email | unique:blog_users,email',
+        //     'password' => 'required|min:6',
+        //     'deviceName' => 'required',
+        //     'version' => 'required',
+        //     'identifier' => 'required'
+        // ]);
+
         $data = $request->validate([
             'name' => 'required | string',
-            'email' => 'required| email | unique:blog_users,email',
+            'email' => 'required| email',
             'password' => 'required|min:6',
-            'deviceName' => 'required',
-            'version' => 'required',
-            'identifier' => 'required'
         ]);
 
         try{
             DB::beginTransaction();
-            $blog_user = connection('mysql2')->BlogUser::create([
+            $blog_user = DB::connection('mysql2')->table('blog_users')->insert([
                 'bloggerName' => $data['name'],
                 'email' => $data['email'],
-                'password' => bcrypt($data['password'])    
+                // 'password' => bcrypt($data['password'])   
+                'password' => $data['password']    
             ]);
             DB::commit();
-            $this->resetInputFields();
-            $this->emit('successAction'); // Close model to using to jquery
         }catch(\Exception $e){
             DB::rollBack();
-            $this->emit('failedAction'); // Close model to using to jquery
+            return response([
+                'message' => $e->getMessage()
+            ], 400);
         }
         return response([
             'user' => $blog_user,
             'tocken' => $blog_user->createToken('secret')->plainTextToken
-        ]);
+        ], 200);
     }
     // END REGISTER FUNCTION
 
@@ -54,22 +65,25 @@ class LoginApiController extends Controller
     }
 
     // START LOGIN
-    public function login(Request $request)
+    public function blog_login(Request $request)
     {
         
         $data = $request->validate([
-            'email' => 'required| email | unique:blog_users,email',
+            'email' => 'required| email',
             'password' => 'required|min:6',
         ]);
 
-        if(!Auth::attempt($data)){
-            return response([
-                'message' => 'Invalid credentials',
-            ], 403);
-        }
+        // if(!Auth::attempt($data)){
+        //     return response([
+        //         'message' => 'Invalid credentials',
+        //     ], 403);
+        // }
+
+        $user = DB::connection('mysql2')->table('blog_users')->where($data)->first();
+   
         return response([
-            'user' => auth()->user(),
-            'tocken' => auth()->user()->createToken('secret')->plainTextToken
+            'user' => $user,
+            'tocken' => $user->createToken('secret')->plainTextToken
         ], 200);
     }
     // END LOGIN
