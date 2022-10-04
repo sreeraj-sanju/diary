@@ -310,7 +310,7 @@
 				</div>
 				<div class="modal-body">
 					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("assets/ithi.mp4")}}" type="video/mp4">
+						<source src="{{URL::asset("assets/kayamkulam.mp4")}}" type="video/mp4">
 					</video>
 				</div>
 			</div>
