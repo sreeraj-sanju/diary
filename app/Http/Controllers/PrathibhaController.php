@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     DB, Validator, Session
 };
+use App\Models\{
+    Anniversary
+ };
+  
 
 class PrathibhaController extends Controller
 {
@@ -20,39 +24,33 @@ class PrathibhaController extends Controller
 
      public function program_store(Request $request)
     {
-        dd($request);
         $validator=Validator::make($request->all(),[
             'class' => 'required',
-            'program' => 'required',
-            'group'=> 'required',
-            'contestant_name' => 'required',
+            'contastant_name' => 'required',
+            'program_name' => 'required',
             'song_name' => 'required ',
-            'song' => 'required'
+            'file_name' => 'required',
         ])->validate();
-        
-       $song=$request->file("song");
-       $date=date("M-Y");
-       $destination="prathibha/prAsset/";
-       $song_name=$song->getClientOriginalName();
-       $song->move($destination, $song_name);
-       dd('success');
+        $year = 2022;
        DB::beginTransaction();
        try{
-           FleetCategory::create([
-               "code"              =>  $request["code"],
-               "name"              =>  $request["name"],
-               "image"             =>  $date.'/'.$image_name,
-               "status"            =>  $request["status"]
+           Anniversary::create([
+            'year' => $year,
+            'class' => $request['class'],
+            'contastant' => $request['contastant_name'],
+            'program_name' => $request['program_name'],
+            'song_name' => $request['song_name'],
+            'file_name' => $request['file_name'],
            ]);
            DB::commit();
-           return redirect()->route("fleet_categories.index")->with(
-               Session::flash("message", " Fleet category added successfully"), 
+           return redirect()->route("prathibha_2022")->with(
+               Session::flash("message", " Program Added Successfully"), 
                Session::flash("alert-class", "alert-success"),
            );
        }catch(\Exception $e){
            DB::rollback();
            return back()->with(
-               Session::flash("message", "Cannot add the fleet category"), 
+               Session::flash("message", $e->getMessage()), 
                Session::flash("alert-class", "alert-danger"),
            );
        }

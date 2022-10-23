@@ -9,7 +9,7 @@
     <link href="{{ asset('/new_assets/fonts.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('/new_assets/font-awesome.min.css') }}">
-    
+
     <link rel="stylesheet" href="{{ asset('/assets/css/login.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/new_assets/bootstrap.min.css') }}">
@@ -20,17 +20,22 @@
             background-color: rgba(50, 50, 50, .5);
             color: rgb(2, 31, 31) !important;
         }
+
+        .form-control {
+            color: black !important;
+        }
     </style>
 </head>
 
 <body class="img_pr img-fluid" style="background-image: url(images/new_pr.jpg);">
 
     <section class="ftco-section_pr">
-        {{-- <div>
-				<button type="button" class="btn btn-primary sr-button" data-toggle="modal" data-target="#program">
-					+ New Programme
-				</button>
-			</div> --}}
+        <div>
+            @include('livewire.prathibha.programmes')
+            @if (Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+        </div>
         <div class="container pr_container">
             <table class="table table-hover table-bordered text-center">
                 <thead class="thead-dark">
