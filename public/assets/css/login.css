@@ -10974,17 +10974,40 @@ h5,
 }
 
 .ftco-section_pr {
-    padding: 12em 0;
+    padding: 2em 0;
 }
 
 .pr_container{
-    padding-top: 10%;
+    background-color: rgba(25, 75, 50, 0.9) !important;
+    padding: 5px;
+    border-radius: 5px;
+    height: 600px;
 }
 
+.btn-circle{
+    border-radius: 1.5rem !important;
+}
 .pr_heading{
     font-weight: 700;
     font-size: 48px !important;
     box-shadow:5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.program_heading{
+    font-weight: 700;
+    font-size: 28px !important;
+    color: rgb(255, 240, 230);
+}
+.content-row{
+    color: rgb(255, 240, 230);
+}
+.audio-button{
+    background-color: #062c33;
+    color: rgb(255, 240, 230);
+}
+
+.toggler{
+    max-width: 100px !important;
 }
 .pr_text{
     font-weight: 900 !important;
