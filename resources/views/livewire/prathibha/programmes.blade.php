@@ -59,6 +59,7 @@
                                 <option value="duet">Duet Dance</option>
                                 <option value="group">Group Dance</option>
                                 <option value="folk">Folk Dance</option>
+                                <option value="chain">Chain Dance</option>
                                 <option value="classical">Classical Dance</option>
                                 <option value="skit">Skit</option>
                                 <option value="drama">Drama</option>

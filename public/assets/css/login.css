@@ -10981,7 +10981,8 @@ h5,
     background-color: rgba(25, 75, 50, 0.9) !important;
     padding: 5px;
     border-radius: 5px;
-    height: 600px;
+    max-height: 600px !important;
+    overflow: scroll;
 }
 
 .btn-circle{
@@ -10990,6 +10991,13 @@ h5,
 .pr_heading{
     font-weight: 700;
     font-size: 48px !important;
+    box-shadow:5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pr_an_heading{
+    font-weight: 700;
+    font-size: 20px !important;
+    color: white;
     box-shadow:5px 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
