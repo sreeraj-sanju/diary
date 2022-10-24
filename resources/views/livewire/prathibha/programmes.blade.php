@@ -7,7 +7,7 @@
     <div class="modal-dialog sr-modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header sr-header">
-                <h5 class="modal-title sr-title" id="exampleModalLabel">Add New Earnings Amount</h5>
+                <h5 class="modal-title sr-title" id="exampleModalLabel">Add New Program</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                     wire:click.prevent="cancel()">
                     <span aria-hidden="true close-btn">×</span>

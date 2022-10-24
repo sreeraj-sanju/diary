@@ -45,5 +45,5 @@ Route::middleware(['admin:admin'])->group(function(){
 Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prathibha');
 Route::get('/prathibha_2022', [PrathibhaController::class, 'prathibha_2022'])->name('prathibha_2022');
 Route::POST('/program_store', [PrathibhaController::class, 'program_store'])->name('program_store');
-Route::get('/program_edit/{$id}', [PrathibhaController::class, 'program_edit'])->name('program_edit');
+Route::GET('/program_edit/{id}', [PrathibhaController::class, 'program_edit'])->name('program_edit');
 Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');

@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Anniversary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
-use Illuminate\Support\Facades\{
-    DB, Validator, Session
-};
-use App\Models\{
-    Anniversary
- };
-  
+use Illuminate\Support\Facades\Validator;
 
 class PrathibhaController extends Controller
 {
-    public function prathibha(){
+    public function prathibha()
+    {
         return view('prathibha.prathibha');
     }
 
-    public function prathibha_2022(){
+    public function prathibha_2022()
+    {
         $lp = Anniversary::where('class', 'lp')->get();
         $v = Anniversary::where('class', 'v')->get();
         $vi = Anniversary::where('class', 'vi')->get();
@@ -40,18 +39,18 @@ class PrathibhaController extends Controller
         $tot_classical = count(Anniversary::where('program_name', 'classical')->get());
         $tot_karoke = count(Anniversary::where('program_name', 'karoke')->get());
         $tot_mime = count(Anniversary::where('program_name', 'mime')->get());
-        
+
         return view('prathibha.prathibha_2022', compact(
-            'lp', 'v','vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo','total', 
-            'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet','tot_skit',
+            'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
+            'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet', 'tot_skit',
             'tot_drama', 'tot_classical', 'tot_karoke', 'tot_mime'
-            
+
         ));
     }
 
-     public function program_store(Request $request)
+    public function program_store(Request $request)
     {
-        $validator=Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'class' => 'required',
             'contastant_name' => 'required',
             'program_name' => 'required',
@@ -59,32 +58,52 @@ class PrathibhaController extends Controller
             'file_name' => 'required',
         ])->validate();
         $year = 2022;
-       DB::beginTransaction();
-       try{
-           Anniversary::create([
-            'year' => $year,
-            'class' => $request['class'],
-            'contastant' => $request['contastant_name'],
-            'program_name' => $request['program_name'],
-            'song_name' => $request['song_name'],
-            'file_name' => $request['file_name'],
-           ]);
-           DB::commit();
-           return redirect()->route("prathibha_2022")->with(
-               Session::flash("message", " Program Added Successfully"), 
-               Session::flash("alert-class", "alert-success"),
-           );
-       }catch(\Exception $e){
-           DB::rollback();
-           return back()->with(
-               Session::flash("message", $e->getMessage()), 
-               Session::flash("alert-class", "alert-danger"),
-           );
-       }
-    }  
+        DB::beginTransaction();
+        try {
+            Anniversary::create([
+                'year' => $year,
+                'class' => $request['class'],
+                'contastant' => $request['contastant_name'],
+                'program_name' => $request['program_name'],
+                'song_name' => $request['song_name'],
+                'file_name' => $request['file_name'],
+            ]);
+            DB::commit();
+            return redirect()->route("prathibha_2022")->with(
+                Session::flash("message", " Program Added Successfully"),
+                Session::flash("alert-class", "alert-success"),
+            );
+        } catch (\Exception$e) {
+            DB::rollback();
+            return back()->with(
+                Session::flash("message", $e->getMessage()),
+                Session::flash("alert-class", "alert-danger"),
+            );
+        }
+    }
 
     public function program_edit($id)
     {
-        dd($id);
+        $data = Anniversary::where('id', $id)->get();
+        if ($data) {
+            foreach ($data as $value) {
+                $contastant = $value->contastant;
+                $song = $value->song_name;
+                $file = $value->file_name;
+                $program = $value->program_name;
+            }
+            return response()->json([
+                'status' => 200,
+                'contastant'=>$contastant,
+                'id' => $id,
+                'song' => $song,
+                'file' => $file,
+                'program' => $program
+            ]);
+        }else{
+            return response()->json([
+                'status' => 400,
+            ]);
+        }
     }
 }
