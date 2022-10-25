@@ -27,6 +27,7 @@ class PrathibhaController extends Controller
         $x = Anniversary::where('class', 'x')->get();
         $plusOne = Anniversary::where('class', '+1')->get();
         $plusTwo = Anniversary::where('class', '+2')->get();
+        $special = Anniversary::where('class', 'special')->get();
 
         $total = Anniversary::count('id');
         $tot_chain = count(Anniversary::where('program_name', 'chain')->get());
@@ -39,11 +40,12 @@ class PrathibhaController extends Controller
         $tot_classical = count(Anniversary::where('program_name', 'classical')->get());
         $tot_karoke = count(Anniversary::where('program_name', 'karoke')->get());
         $tot_mime = count(Anniversary::where('program_name', 'mime')->get());
+        $tot_special = count(Anniversary::where('class', 'special')->get());
 
         return view('prathibha.prathibha_2022', compact(
             'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
             'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet', 'tot_skit',
-            'tot_drama', 'tot_classical', 'tot_karoke', 'tot_mime'
+            'tot_drama', 'tot_classical', 'tot_karoke', 'tot_mime', 'special', 'tot_special'
 
         ));
     }
@@ -91,6 +93,7 @@ class PrathibhaController extends Controller
                 $song = $value->song_name;
                 $file = $value->file_name;
                 $program = $value->program_name;
+                $class = $value->class;
             }
             return response()->json([
                 'status' => 200,
@@ -98,9 +101,60 @@ class PrathibhaController extends Controller
                 'id' => $id,
                 'song' => $song,
                 'file' => $file,
-                'program' => $program
+                'program' => $program,
+                'class' => $class
             ]);
         }else{
+            return response()->json([
+                'status' => 400,
+            ]);
+        }
+    }
+
+    public function program_update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'class' => 'required',
+            'contastant_name' => 'required',
+            'program_name' => 'required',
+            'song_name' => 'required ',
+            'file_name' => 'required',
+        ])->validate();
+        $id = $request->post('id');
+        DB::beginTransaction();
+        try {
+            Anniversary::where('id', $id)->update([
+                'class' => $request['class'],
+                'contastant' => $request['contastant_name'],
+                'program_name' => $request['program_name'],
+                'song_name' => $request['song_name'],
+                'file_name' => $request['file_name'],
+            ]);
+            DB::commit();
+            return redirect()->route("prathibha_2022")->with(
+                Session::flash("message", " Program Updated Successfully"),
+                Session::flash("alert-class", "alert-success"),
+            );
+        } catch (\Exception$e) {
+            DB::rollback();
+            return back()->with(
+                Session::flash("message", $e->getMessage()),
+                Session::flash("alert-class", "alert-danger"),
+            );
+        }
+    }
+
+    public function program_delete($id)
+    {
+        DB::beginTransaction();
+        try {
+            Anniversary::where('id', $id)->delete();
+            DB::commit();
+            return response()->json([
+                'status' => 200,
+            ]);
+        } catch (\Exception$e) {
+            DB::rollback();
             return response()->json([
                 'status' => 400,
             ]);

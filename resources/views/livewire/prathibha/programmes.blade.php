@@ -32,6 +32,7 @@
                                 <option value="x">X</option>
                                 <option value="+1">+1</option>
                                 <option value="+2">+2</option>
+                                <option value="special">Special Program</option>
                             </select>
                             @error('class')
                                 <span class="text-danger error">{{ $message }}</span>

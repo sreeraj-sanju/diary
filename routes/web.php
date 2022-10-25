@@ -46,4 +46,6 @@ Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prath
 Route::get('/prathibha_2022', [PrathibhaController::class, 'prathibha_2022'])->name('prathibha_2022');
 Route::POST('/program_store', [PrathibhaController::class, 'program_store'])->name('program_store');
 Route::GET('/program_edit/{id}', [PrathibhaController::class, 'program_edit'])->name('program_edit');
+Route::POST('/program_update', [PrathibhaController::class, 'program_update'])->name('program_update');
+Route::GET('/program_delete/{id}', [PrathibhaController::class, 'program_delete'])->name('program_delete');
 Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
