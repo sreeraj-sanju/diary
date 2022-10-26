@@ -11012,8 +11012,12 @@ h5,
 .audio-button{
     background-color: #062c33;
     color: rgb(255, 240, 230);
+    margin-top: 0px !important;
 }
-
+.audio-style{
+    max-width: 250px; 
+    max-height: 35px;
+}
 .toggler{
     max-width: 100px !important;
 }
