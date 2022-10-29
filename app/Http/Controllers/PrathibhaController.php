@@ -6,7 +6,6 @@ use App\Models\Anniversary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
 use Illuminate\Support\Facades\Validator;
 
 class PrathibhaController extends Controller
@@ -60,15 +59,21 @@ class PrathibhaController extends Controller
             'file_name' => 'required',
         ])->validate();
         $year = 2022;
+        $class = $request['class'];
+        $audio = $request->file("file_name");
+        $destination = "prathibha_annual_22/" . $class;
+        $audio_name = $audio->getClientOriginalName();
+        $audio->move($destination, $audio_name);
+
         DB::beginTransaction();
         try {
             Anniversary::create([
                 'year' => $year,
-                'class' => $request['class'],
+                'class' => $class,
                 'contastant' => $request['contastant_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
-                'file_name' => $request['file_name'],
+                'file_name' => $audio_name,
             ]);
             DB::commit();
             return redirect()->route("prathibha_2022")->with(
@@ -97,14 +102,14 @@ class PrathibhaController extends Controller
             }
             return response()->json([
                 'status' => 200,
-                'contastant'=>$contastant,
+                'contastant' => $contastant,
                 'id' => $id,
                 'song' => $song,
                 'file' => $file,
                 'program' => $program,
-                'class' => $class
+                'class' => $class,
             ]);
-        }else{
+        } else {
             return response()->json([
                 'status' => 400,
             ]);
@@ -118,9 +123,17 @@ class PrathibhaController extends Controller
             'contastant_name' => 'required',
             'program_name' => 'required',
             'song_name' => 'required ',
-            'file_name' => 'required',
         ])->validate();
         $id = $request->post('id');
+
+        $class = $request['class'];
+        $audio = $request->file("file_name");
+        if ($audio) {
+            $destination = "prathibha_annual_22/" . $class;
+            $audio_name = $audio->getClientOriginalName();
+            $audio->move($destination, $audio_name);
+        }
+
         DB::beginTransaction();
         try {
             Anniversary::where('id', $id)->update([
@@ -128,8 +141,13 @@ class PrathibhaController extends Controller
                 'contastant' => $request['contastant_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
-                'file_name' => $request['file_name'],
             ]);
+
+            if ($audio) {
+                Anniversary::where('id', $id)->update([
+                    'file_name' => $audio_name,
+                ]);
+            }
             DB::commit();
             return redirect()->route("prathibha_2022")->with(
                 Session::flash("message", " Program Updated Successfully"),

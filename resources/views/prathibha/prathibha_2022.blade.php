@@ -435,7 +435,7 @@
                                 <td>{{ $plusOne1->song_name }}</td>
                                 <td>
                                     <audio id="{{'plusOne'.$plusOne1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/plusOne/'.$plusOne1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/+1/'.$plusOne1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{'plusOne'.$plusOne1->id}}"
                                         onclick="playPause('{{'plusOne'.$plusOne1->id}}')">Play
@@ -485,7 +485,7 @@
                                 <td>{{ $plusTwo1->song_name }}</td>
                                 <td>
                                     <audio id="{{'plusTwo'.$plusTwo1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/plusTwo/'.$plusTwo1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/+2/'.$plusTwo1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{'plusTwo'.$plusTwo1->id}}"
                                         onclick="playPause('{{'plusTwo'.$plusTwo1->id}}')">Play
@@ -648,7 +648,7 @@
                         <div class="form-group row">
                             <label for="file_name" class="col-md-3 col-form-label">File Name</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="file_name" id='file_name'>
+                                <input type="file" class="form-control" name="file_name" id='file_name'>
                                 @error('file_name')
                                     <span class="text-danger error">{{ $message }}</span>
                                 @enderror
@@ -718,7 +718,7 @@
                 if (response.status == 200) {
                     $('#program_edit').modal('show');
                     $('#selected_id').val(response.id);
-                    $('#file_name').val(response.file);
+                    //$('#file_name').val(response.file);
                     $('#song_name').val(response.song);
                     $('#contastant_name').val(response.contastant);
                     $('#program').val(response.program);

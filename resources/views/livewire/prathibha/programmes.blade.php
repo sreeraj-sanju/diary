@@ -87,7 +87,7 @@
                     <div class="form-group row">
                         <label for="file_name" class="col-md-3 col-form-label">File Name</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="file_name" wire:model='file_name'>
+                            <input type="file" class="form-control" name="file_name" wire:model='file_name'>
                             @error('file_name')
                                 <span class="text-danger error">{{ $message }}</span>
                             @enderror
