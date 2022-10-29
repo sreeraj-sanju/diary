@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="{{ asset('/new_assets/fonts.css') }}" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('/new_assets/font-awesome.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('/assets/css/login.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/new_assets/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/dev.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/new_assets/font-awesome.min.css') }}">
+    {{-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> --}}
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <style>
         .form-color {
             background-color: rgba(50, 50, 50, .5);
@@ -57,8 +57,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#lp"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                LP
+                                aria-expanded="false" onclick="toggleBtn('#lpIcon');" aria-controls="collapseExample">
+                                <i id = "lpIcon" class=" icon-plus-sign"></i> LP
                             </button>
                         </td>
                         <td colspan="5">
@@ -108,8 +108,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                V
+                                aria-expanded="false" onclick="toggleBtn('#vIcon');" aria-controls="collapseExample">
+                                <i id = "vIcon" class=" icon-plus-sign"></i> V
                             </button>
                         </td>
                         <td colspan="5">
@@ -158,8 +158,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#vi"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                VI
+                                aria-expanded="false" aonclick="toggleBtn('#viIcon');" aria-controls="collapseExample">
+                                <i id = "viIcon" class=" icon-plus-sign"></i> VI
                             </button>
                         </td>
                         <td colspan="5">
@@ -208,8 +208,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#vii"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                vii
+                                aria-expanded="false" onclick="toggleBtn('#viiIcon');" aria-controls="collapseExample">
+                                <i id = "viiIcon" class=" icon-plus-sign"></i> vii
                             </button>
                         </td>
                         <td colspan="5">
@@ -258,8 +258,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#viii" aria-expanded="false" aria-controls="collapseExample">
-                                viii
+                                data-target="#viii" aria-expanded="false" onclick="toggleBtn('#viiiIcon');" aria-controls="collapseExample">
+                                <i id = "viiiIcon" class=" icon-plus-sign"></i> viii
                             </button>
                         </td>
                         <td colspan="5">
@@ -308,8 +308,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#ix"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                ix
+                                aria-expanded="false" onclick="toggleBtn('#ixIcon');" aria-controls="collapseExample">
+                                <i id = "ixIcon" class=" icon-plus-sign"></i> ix
                             </button>
                         </td>
                         <td colspan="5">
@@ -358,8 +358,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#x"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                x
+                                aria-expanded="false" onclick="toggleBtn('#xIcon');" aria-controls="collapseExample">
+                                <i id = "xIcon" class=" icon-plus-sign"></i> x
                             </button>
                         </td>
                         <td colspan="5">
@@ -408,8 +408,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#plusOne" aria-expanded="false" aria-controls="collapseExample">
-                                plusOne
+                                data-target="#plusOne" aria-expanded="false" onclick="toggleBtn('#oneIcon');" aria-controls="collapseExample">
+                                <i id = "oneIcon" class=" icon-plus-sign"></i> plusOne
                             </button>
                         </td>
                         <td colspan="5">
@@ -458,8 +458,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#plusTwo" aria-expanded="false" aria-controls="collapseExample">
-                                plusTwo
+                                data-target="#plusTwo" aria-expanded="false" onclick="toggleBtn('#twoIcon');" aria-controls="collapseExample">
+                                <i id = "twoIcon" class=" icon-plus-sign"></i> plusTwo
                             </button>
                         </td>
                         <td colspan="5">
@@ -508,8 +508,8 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#special" aria-expanded="false" aria-controls="collapseExample">
-                                special
+                                data-target="#special" aria-expanded="false" onclick="toggleBtn('#specialIcon');" aria-controls="collapseExample">
+                                <i id = "specialIcon" class=" icon-plus-sign"></i> special
                             </button>
                         </td>
                         <td colspan="5">
@@ -751,6 +751,11 @@
             }
         });
     });
+
+    
+    function toggleBtn(id){
+        $(id).toggleClass('icon-minus-sign');
+    }
 </script>
 
 </html>
