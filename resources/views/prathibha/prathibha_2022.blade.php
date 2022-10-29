@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/new_assets/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/dev.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/new_assets/font-awesome.min.css') }}">
+    <link  href="{{ asset('/new_assets/font-awesome.css') }}" rel="stylesheet" >
     {{-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> --}}
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <style>
