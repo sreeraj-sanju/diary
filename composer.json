@@ -11,6 +11,7 @@
         "kris/laravel-form-builder": "^1.51",
         "laravel/framework": "^8.75",
         "laravel/jetstream": "^2.8",
+        "laravel/passport": "^11.3",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",

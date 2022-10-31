@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'blog_users',
+        ],
     ],
 
     /*
@@ -63,6 +67,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'blog_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\BlogUser::class,
         ],
 
         // 'users' => [
@@ -89,6 +98,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'blog_users' => [
+            'provider' => 'blog_users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\BlogUser;
 
 class LoginApiController extends Controller
 {
@@ -78,12 +79,13 @@ class LoginApiController extends Controller
         //         'message' => 'Invalid credentials',
         //     ], 403);
         // }
-
+        dump(auth()->attempt($data));
         $user = DB::connection('mysql2')->table('blog_users')->where($data)->first();
-   
+        dd(auth()->user());
+        $token = auth()->user()->createToken('RestaurantCustomerAuth')->accessToken;
         return response([
             'user' => $user,
-            'tocken' => $user->createToken('secret')->plainTextToken
+            'token' => $token
         ], 200);
     }
     // END LOGIN
