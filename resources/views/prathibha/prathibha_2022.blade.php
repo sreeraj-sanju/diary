@@ -135,7 +135,7 @@
                                 <td>{{ $v1->song_name }}</td>
                                 <td>
                                     <audio id="{{$v1->class.$v1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/5/'.$v1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/v/'.$v1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{$v1->class.$v1->id}}"
                                         onclick="playPause('{{$v1->class.$v1->id}}')">Play
@@ -185,7 +185,7 @@
                                 <td>{{ $vi1->song_name }}</td>
                                 <td>
                                     <audio id="{{$vi1->class.$vi1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/6/'.$vi1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/vi/'.$vi1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{$vi1->class.$vi1->id}}"
                                         onclick="playPause('{{$vi1->class.$vi1->id}}')">Play
@@ -235,7 +235,7 @@
                                 <td>{{ $vii1->song_name }}</td>
                                 <td>
                                     <audio id="{{$vii1->class.$vii1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/7/'.$vii1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/vii/'.$vii1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{$vii1->class.$vii1->id}}"
                                         onclick="playPause('{{$vii1->class.$vii1->id}}')">Play
@@ -285,7 +285,7 @@
                                 <td>{{ $viii1->song_name }}</td>
                                 <td>
                                     <audio id="{{$viii1->class.$viii1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/8/'.$viii1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/viii/'.$viii1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{$viii1->class.$viii1->id}}"
                                         onclick="playPause('{{$viii1->class.$viii1->id}}')">Play
@@ -335,7 +335,7 @@
                                 <td>{{ $ix1->song_name }}</td>
                                 <td>
                                     <audio id="{{$ix1->class.$ix1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/9/'.$ix1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/ix/'.$ix1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{$ix1->class.$ix1->id}}"
                                         onclick="playPause('{{$ix1->class.$ix1->id}}')">Play
@@ -385,7 +385,7 @@
                                 <td>{{ $x1->song_name }}</td>
                                 <td>
                                     <audio id="{{$x1->class.$x1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/10/'.$x1->file_name) }}" type="audio/mpeg">
+                                        <source src="{{ asset('prathibha_annual_22/x/'.$x1->file_name) }}" type="audio/mpeg">
                                     </audio>
                                     {{-- <button class="audio-button" id="playPauseBtn{{$x1->class.$x1->id}}"
                                         onclick="playPause('{{$x1->class.$x1->id}}')">Play
