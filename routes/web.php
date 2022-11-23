@@ -39,6 +39,8 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::view('components', 'livewire.electronics.components_layout')->name('component');
     Route::view('bills', 'livewire.electronics.bills_layout')->name('bills');
     Route::view('actions', 'livewire.actions.items_layout')->name('actions');
+    Route::view('to_do_list', 'livewire.to_do_list.list')->name('to_do_list');
+    Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
 });
 
 // ROUTE SET FOR PRATHIBHA
@@ -48,4 +50,3 @@ Route::POST('/program_store', [PrathibhaController::class, 'program_store'])->na
 Route::GET('/program_edit/{id}', [PrathibhaController::class, 'program_edit'])->name('program_edit');
 Route::POST('/program_update', [PrathibhaController::class, 'program_update'])->name('program_update');
 Route::GET('/program_delete/{id}', [PrathibhaController::class, 'program_delete'])->name('program_delete');
-Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
