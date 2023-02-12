@@ -184,14 +184,15 @@ class DashboardController extends Controller
 
         //start stock 
         $stocks = DB::table('stock_names', 'sn')
+        ->select(DB::raw("SUM(s.total_buy_amount) as total"), 'sn.name', DB::raw("SUM(ss.total_sell_amount) as totalSell"))
             ->leftJoin('stocks as s', 's.stock_name', '=', 'sn.id')
             ->leftJoin('stock_sells as ss', 'ss.stock_name', '=', 'sn.id')
-            ->select(DB::raw("SUM(s.total_buy_amount) as total"), 'sn.name', DB::raw("SUM(ss.total_sell_amount) as totalSell"))
             ->groupBy('sn.id')
             ->get();
         $stockData=[];
         $stockLabel=[];
         $stockSell = [];
+        
         foreach($stocks as $stock){
             array_push($stockLabel, $stock->name);
             $buy = $stock->total;

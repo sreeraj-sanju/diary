@@ -35,6 +35,14 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="expense_item_name" class="col-md-2 col-form-label">Expense Item Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="expense_item_name" wire:model='expense_item_name'>
+                            @error('expense_item_name') <span class="text-danger error">{{ $message }}</span>@enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="expense_amount" class="col-md-2 col-form-label">Expense Amount</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control" name="expense_amount" wire:model='expense_amount'>

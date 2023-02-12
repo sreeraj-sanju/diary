@@ -128,7 +128,7 @@ class Stocks extends Component
             ->groupBy('stock_name')->get();
         
         $stock_code = StockNames::find($validatedName['stock_name']);
-
+        $sell_count =0;
         foreach($total_buy_amount as $data){
             $buy_amount = $data->total + $data->charge;
             $buy_count = $data->count;

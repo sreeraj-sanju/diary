@@ -24,7 +24,8 @@ class Bugdet extends Component
         $expense_name, 
         $expense_date, 
         $expense_amount, 
-        $state
+        $state,
+        $expense_item_name
     ;
 
     public $updateMode = false;
@@ -74,6 +75,7 @@ class Bugdet extends Component
             'expense_name' => 'required',
             'expense_date'  => 'required',
             'expense_amount' => 'required | integer',
+            'expense_item_name' => 'required'
         ]);
         $fin_id = FinancialYear::max('id');
 
@@ -123,6 +125,7 @@ class Bugdet extends Component
         $this->expense_name = $expense_amount->expense_name;
         $this->expense_date = $expense_amount->expense_date;
         $this->expense_amount = $expense_amount->expense_amount;
+        $this->expense_item_name = $expense_amount->expense_item_name;
         
     }
 
@@ -150,7 +153,8 @@ class Bugdet extends Component
                 $expense_amount->update([
                     'expense_name' => $this->expense_name,
                     'expense_date' => $this->expense_date,
-                    'expense_amount' => $this->expense_amount
+                    'expense_amount' => $this->expense_amount,
+                    'expense_item_name' => $this->expense_item_name
                 ]);
                 DB::commit();
                 $this->updateMode = false;
