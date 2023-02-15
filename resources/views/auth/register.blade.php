@@ -8,7 +8,7 @@
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{{asset('/assets/css/material-design-iconic-font.min.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('/assets/fonts/register-font-awesome.min.css')}}">
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('/assets/css/register.css')}} ">

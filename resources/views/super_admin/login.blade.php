@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link href="{{asset('/assets/fonts/login_google_font.css')}}" rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{asset('/assets/fonts/login-font-awesome.min.css')}}">
     
 	<link rel="stylesheet" href="{{ asset('/assets/css/login.css')}}">
 
@@ -23,7 +23,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">{{env('APP_NAME')}} - Find The Hero In You</h2>
+						<h2 class="heading-section">{{env('APP_NAME')}} - Your Best Companion</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">

@@ -11279,7 +11279,8 @@ textarea.form-control {
 }
 
 .submit:hover {
-    border: 1px solid #fbceb5;
-    background: transparent;
-    color: #fbceb5;
+    border: 2px solid #fbceb5 !important;
+    background: transparent !important;
+    color: #fbceb5 !important;
+    font-weight: 700;
 }
