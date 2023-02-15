@@ -1,17 +1,4 @@
-<!--
-=========================================================
-* Material Dashboard 2 - v=3.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +21,6 @@
     <!-- CSS Files -->
     
     <link id="pagestyle" href="{{asset('/assets/css/material-dashboard.min.css')}}" rel="stylesheet" />
-    <!-- <link id="pagestyle" href="{{asset('/assets/css/material-dashboard.css')}}" rel="stylesheet" /> -->
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/jquery.dataTables.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('/css/jquery-confirm.min.css')}}">
@@ -44,7 +30,7 @@
     <link href="{{asset ('/css/select2.min.css')}}" rel="stylesheet" />
     {{-- <link href="{{asset ('/css/fontawesome.min.css')}}" rel="stylesheet" /> --}}
   @else
-    <!--     Fonts and icons     -->
+    {{-- <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
     <!-- Nucleo Icons -->
     <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -63,7 +49,7 @@
     <link rel="stylesheet" type="text/css" href="./css/sweetalert2.min.css">
     <link rel="stylesheet" type="text/css" href="./css/selectstyle.css">
     <link rel="stylesheet" type="text/css" href="./css/dev.css">
-    <link href="./css/select2.min.css" rel="stylesheet" />
+    <link href="./css/select2.min.css" rel="stylesheet" /> --}}
   @endif
 
   @livewireStyles
@@ -93,7 +79,7 @@
     <div class="card shadow-lg">
       <div class="card-header pb-0 pt-3">
         <div class="float-start">
-          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
+          <h5 class="mt-3 mb-0">Future Today Configurator</h5>
           <p>See our dashboard options.</p>
         </div>
         <div class="float-end mt-4">
@@ -145,17 +131,17 @@
           </div>
         </div>
         <hr class="horizontal dark my-sm-4">
-        <a class="btn btn-outline-dark w-100" href="">View documentation</a>
-        <div class="w-100 text-center">
-          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+        {{-- <a class="btn btn-outline-dark w-100" href="">View documentation</a> --}}
+        {{-- <div class="w-100 text-center">
+          <a class="github-button" href="hd" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
           <h6 class="mt-3">Thank you for sharing!</h6>
-          <a href="https://twitter.com/intent/tweet?text=Check%20Material%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
+          <a href="amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
             <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
           </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
+          <a href="ial-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
             <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
           </a>
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>

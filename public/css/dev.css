@@ -70,3 +70,7 @@
         max-width: 1140px;
     }
 } */
+
+.sr-nav-style{
+    border: 1px solid black !important;
+}
