@@ -227,7 +227,7 @@
                 </div>
                 <div class="error-or">
                     <div class="or-line"></div>
-                    <div class="or"><a class ="orBack" href="{{route('admin_dashboard')}}">Back</a></div>
+                    <div class="or"><a class ="orBack" href="{{route('dashboard')}}">Back</a></div>
                 </div>
                 {{-- <div class="error-textbox">
                     <input type="text" class="form-control" autofocus="">

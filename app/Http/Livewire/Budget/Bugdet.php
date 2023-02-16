@@ -204,5 +204,6 @@ class Bugdet extends Component
         $this->expense_name = '';
         $this->expense_date = '';
         $this->expense_amount = '';
+        $this->expense_item_name ='';
     }
 }

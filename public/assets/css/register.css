@@ -273,9 +273,10 @@ h2 {
 }
 
 body {
-    font-size: 14px;
+    font-size: 18px;
+    font-weight: 700;
     line-height: 1.8;
-    color: #fff;
+    color: #042041;
     font-weight: 600;
     font-family: 'Poppins';
     margin: 0px;
@@ -289,13 +290,17 @@ body {
     background-position: center center;
 }
 
+.form-input{
+    font-size: large;
+}
+
 .main {
     position: relative;
 }
 
 .container {
-    margin-top: 120px;
-    margin-bottom: 70px;
+    margin-top: 30px;
+    margin-bottom: 20px;
     width: 1123px;
     padding-top: 135px;
     padding-bottom: 115px;
@@ -313,8 +318,11 @@ body {
 .signup-content {
     width: 562px;
     margin-right: 0px;
+    padding: 10px;
     background: rgba(177, 135, 77, 0.75);
     float: right;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .signup-form {
@@ -456,6 +464,7 @@ input[type=checkbox]:not(old):checked+label>span:before {
     text-transform: uppercase;
     font-size: 13px;
     cursor: pointer;
+    margin: 5px 0px 0px 0px;
 }
 
 .submit-link {
@@ -466,6 +475,9 @@ input[type=checkbox]:not(old):checked+label>span:before {
     padding: 12px 0;
     text-align: center;
     color: #fff;
+    width: 200px;
+    margin: 5px 0px 0px 0px;
+    
 }
 
 .submit-link:hover {
