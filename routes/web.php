@@ -52,6 +52,8 @@ Route::middleware([
     });
 });
 
+Route::get('/session_out', [SettingsController::class, 'sessionOut'])->name('sessionOut');
+
 // ROUTE SET FOR PRATHIBHA
 Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prathibha');
 Route::get('/prathibha_2022', [PrathibhaController::class, 'prathibha_2022'])->name('prathibha_2022');

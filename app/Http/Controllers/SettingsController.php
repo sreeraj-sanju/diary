@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class SettingsController extends Controller
@@ -66,5 +67,16 @@ class SettingsController extends Controller
                 Session::flash("alert-class", "alert-danger"),
             );
         }
+    }
+
+    public function sessionOut()
+    {
+        Session::flush();
+        
+        Auth::logout();
+        return redirect()->route("lo")->with(
+            Session::flash("message", "Logout Successfully"),
+            Session::flash("alert-class", "alert-success"),
+        );
     }
 }
