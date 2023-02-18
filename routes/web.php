@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrathibhaController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,8 @@ Route::middleware([
         Route::view('actions', 'livewire.actions.items_layout')->name('actions');
         Route::view('to_do_list', 'livewire.to_do_list.list')->name('to_do_list');
         Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
+        Route::get('/edit_settings', [SettingsController::class, 'edit_settings'])->name('edit_settings');
+        Route::post('/update_settings', [SettingsController::class, 'update_settings'])->name('update_settings');
     });
 
     Route::middleware(['auth', 'usercheck:user'])->group(function () {

@@ -8,7 +8,6 @@
         "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "kris/laravel-form-builder": "^1.51",
         "laravel/framework": "^9.0",
         "laravel/jetstream": "^2.8",
         "laravel/passport": "^11.3",
