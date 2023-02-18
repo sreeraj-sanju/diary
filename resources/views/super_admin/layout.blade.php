@@ -1,13 +1,18 @@
-
+<?php
+use App\Models\Settings;
+$favicon = Settings::select('favicon')->first();
+$name = Settings::select('app_name')->first();
+$desc = Settings::select('app_description')->first();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
-  <title>{{env('APP_NAME')}} - Personal Budget Calculator @yield('title')</title>
+  {{-- <link rel="apple-touch-icon" sizes="760x76" href=".data:image/png;base64,{{ chunk_split(base64_encode($favicon->favicon)) }}"> --}}
+  <link rel="shortcut icon" type="image/x-icon"  href="data:image/png;base64,{{ chunk_split(base64_encode($favicon->favicon)) }}">
+  <title>{{$name->app_name}} - {{$desc->app_description}}@yield('title')</title>
   @if (env('APP_ENV') == 'local')
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/fonts.css')}}" />
