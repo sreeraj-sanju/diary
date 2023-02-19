@@ -30,10 +30,12 @@ class SettingsController extends Controller
 
         $logo = $request->file('logo');
         $favi = $request->file('favicon');
+        $sIcon = $request->file('sideIcon');
 
         // Get the contents of the file
         $logo = $logo ? $logo->openFile()->fread($logo->getSize()) :'';
-        $favi = $favi ? $favi->openFile()->fread($favi->getSize()) :'';    
+        $favi = $favi ? $favi->openFile()->fread($favi->getSize()) :'';
+        $sIcon = $sIcon ? $sIcon->openFile()->fread($sIcon->getSize()) :'';    
 
         DB::beginTransaction();
         try {
@@ -53,6 +55,12 @@ class SettingsController extends Controller
             if ($favi) {
                 Settings::where('id', $id)->update([
                     'favicon' => $favi,
+                ]);
+            }
+
+            if ($sIcon) {
+                Settings::where('id', $id)->update([
+                    'side_icon' => $sIcon,
                 ]);
             }
             DB::commit();

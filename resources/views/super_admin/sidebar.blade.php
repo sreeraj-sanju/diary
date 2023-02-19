@@ -1,6 +1,6 @@
 <?php
 use App\Models\Settings;
-$logo = Settings::select('logo')->first();
+$logo = Settings::select('*')->first();
 $name = Settings::select('app_name')->first();
 ?>
 
@@ -102,4 +102,13 @@ $name = Settings::select('app_name')->first();
         <a class="btn bg-gradient-primary mt-4 w-100" href="" type="button">Upgrade to pro</a>
       </div>
     </div> --}}
+
+    <div class="sidenav-footer position-absolute w-100 bottom-2 ">
+      <div class="mx-3">
+        <a href=" ">
+            <img src="data:image/png;base64,{{ chunk_split(base64_encode($logo->side_icon)) }}" alt="side_logo" style="width:213px; height:210px; margin:5px; border: 1px solid rgba(255,255,255, .3); border-radius: 10px" >
+            {{-- <span class="ms-1 font-weight-bold text-white">{{ $name->app_name }}</span> --}}
+        </a>
+      </div>
+    </div>
 </aside>
