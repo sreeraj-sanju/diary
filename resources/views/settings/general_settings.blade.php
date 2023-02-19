@@ -59,7 +59,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="form-outline mb-4 col-md-6">
+                                        <div class="form-outline mb-4 col-md-4">
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <img class="" src="data:image/png;base64,{{ chunk_split(base64_encode($setting->favicon)) }}" height="50" alt="pic">
@@ -70,7 +70,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-outline mb-4 col-md-6">
+                                        <div class="form-outline mb-4 col-md-4">
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <img class="" src="data:image/png;base64,{{ chunk_split(base64_encode($setting->logo)) }}" height="50" alt="pic">
@@ -78,6 +78,17 @@
                                                 <div class="col-md-10">
                                                     <input type="file" class="form-control" name="logo" />
                                                     <label class="form-label" for="form3Example1q">Logo</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-outline mb-4 col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <img class="" src="data:image/png;base64,{{ chunk_split(base64_encode($setting->side_icon)) }}" height="50" alt="pic">
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="file" class="form-control" name="sideIcon" />
+                                                    <label class="form-label" for="form3Example1q">Sidebar Icon</label>
                                                 </div>
                                             </div>
                                         </div>

@@ -63,6 +63,9 @@ $desc = Settings::select('app_description')->first();
       height: 50%;
       width: 100%;
     }
+    th{
+      color: rgb(250, 250, 250);
+    }
   </style>
 </head>
 
@@ -71,10 +74,10 @@ $desc = Settings::select('app_description')->first();
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
   @include('super_admin.navbar')
   {{-- @include('navigation-menu') --}}
-
+  <section class="h-100 h-custom" style="background-color: #8fc4b7;">
     @yield('content')
    
-   
+  </section>
     @include('super_admin.footer')
   </main>
   <div class="fixed-plugin">
