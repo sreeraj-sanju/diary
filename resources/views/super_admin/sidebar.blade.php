@@ -37,20 +37,29 @@ $name = Settings::select('app_name')->first();
             </li>
 
             <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('budget') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">receipt_long</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Budget</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link text-white " href="{{ route('stocks') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
+                        <i class="material-icons opacity-10">bar_chart</i>
                     </div>
                     <span class="nav-link-text ms-1">Stocks</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{ route('budget') }}">
+                <a class="nav-link text-white " href="{{ route('trading') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">receipt_long</i>
+                        <i class="material-icons opacity-10">insights</i>
                     </div>
-                    <span class="nav-link-text ms-1">Budget</span>
+                    <span class="nav-link-text ms-1">Trading</span>
                 </a>
             </li>
 

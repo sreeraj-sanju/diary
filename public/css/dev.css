@@ -70,7 +70,12 @@
         max-width: 1140px;
     }
 } */
-
+.sr-trading{
+    width: 100% !important;
+}
 .sr-nav-style{
     border: 1px solid black !important;
+}
+.srmodal{
+    z-index: 9999;
 }
