@@ -40,6 +40,8 @@ Route::middleware([
         Route::view('bills', 'livewire.electronics.bills_layout')->name('bills');
         Route::view('actions', 'livewire.actions.items_layout')->name('actions');
         Route::view('to_do_list', 'livewire.to_do_list.list')->name('to_do_list');
+        Route::view('trading_list', 'livewire.trading.trading')->name('trading');
+
         Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
         Route::get('/edit_settings', [SettingsController::class, 'edit_settings'])->name('edit_settings');
         Route::post('/update_settings', [SettingsController::class, 'update_settings'])->name('update_settings');
