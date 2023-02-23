@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Trading;
 
 use App\Models\FinancialYear;
-use App\Models\StockSell;use App\Models\Trading;use Illuminate\Support\Facades\DB;
+use App\Models\StockSell;
+use App\Models\Trading;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class TradingList extends Component
@@ -21,8 +23,8 @@ class TradingList extends Component
     $profit,
     $buy_reason,
     $loss_reason,
-    $updateMode = false,
-        $selected_id
+        $selected_id,
+        $total
     ;
     public function render()
     {
@@ -52,6 +54,7 @@ class TradingList extends Component
 
                 DB::commit();
                 $this->resetInputFields();
+                $this->updateMode = false;
                 $this->emit('successAction'); // Close model to using to jquery
             } catch (\Exception$e) {
                 DB::rollBack();
@@ -83,7 +86,6 @@ class TradingList extends Component
                 $this->emit('successAction'); // Close model to using to jquery
             } catch (\Exception$e) {
                 DB::rollBack();
-                dd($e->getMessage());
                 $this->emit('failedAction'); // Close model to using to jquery
             }
         }
@@ -122,7 +124,6 @@ class TradingList extends Component
         $this->sell_date = '';
         $this->total_sell_amount = '';
         $this->sell_brocker = '';
-        $this->total_buy_amount = '';
         $this->buy_reason = '';
         $this->loss_reason = '';
         $this->profit = '';
@@ -134,4 +135,12 @@ class TradingList extends Component
         $this->resetInputFields();
         $this->emit('refresh');
     }
+
+    public function updated($key, $value)
+    {
+        if(in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker'])){
+            $this->total_buy_amount = ($this->single_stock_amount*$this->buy_count)+$this->buy_brocker;
+        }
+    }
+
 }

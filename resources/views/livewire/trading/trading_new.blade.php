@@ -77,7 +77,7 @@
                             <div class="form-group row">
                                 <label for="buy_count" class="col-md-4 col-form-label"> Stock Buy Count</label>
                                 <div class="col-md-7">
-                                    <input type="number" class="form-control" name="buy_count" wire:model='buy_count' wire:keydown="total()">
+                                    <input type="number" class="form-control" name="buy_count" wire:model='buy_count'>
                                     @error('buy_count')
                                         <span class="text-danger error">{{ $message }}</span>
                                     @enderror
@@ -85,7 +85,17 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            @livewire('trading.total-buy')
+                            <div class="form-group row">
+                                <label for="total_buy_amount" class="col-md-4 col-form-label"> Total Buy Amount</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" name="total_buy_amount"
+                                        wire:model='total_buy_amount' >
+                                    @error('total_buy_amount')
+                                        <span class="text-danger error">{{ $message }}</span>
+                                    @enderror
+                                    {{$total}}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -157,8 +167,7 @@
                 </form>
             </div>
             <div class="modal-footer sr-footer">
-                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn"
-                    data-dismiss="modal">Close</button>
+                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
                 <button type="button" wire:click.prevent="trade_save()"
                     class="btn btn-primary close-modal">Save</button>
             </div>

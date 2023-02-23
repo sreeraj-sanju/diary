@@ -247,6 +247,11 @@ $desc = Settings::select('app_description')->first();
     $(document).ready(function () {
         $('.data-table').DataTable();
     });
+
+    //refresh action
+    window.livewire.on('refresh', () => {
+      window.location.reload();
+    });
   </script>
 
 </body>

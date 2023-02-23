@@ -24,7 +24,6 @@
                         <th>Profit/Loss</th>
                         <th>Buy Reason</th>
                         <th>Loss Reason</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +34,10 @@
                     @endphp
                     @foreach ($tradings as $trade)
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $loop->index + 1 }}
+                                <button class="btn btn-info btn-sm" type="button" wire:click="edit({{ $trade->id }})"
+                                    data-toggle="modal" data-target="#tradeBuyModal">Edit</button>
+                            </td>
                             <td>{{ $trade->buy_date }}</td>
                             <td>{{ $trade->stock_name }}</td>
                             <td>{{ $trade->single_stock_amount }}</td>
@@ -46,10 +48,6 @@
                             <td>{{ $trade->profit }}</td>
                             <td>{{ $trade->buy_reason }}</td>
                             <td>{{ $trade->loss_reason }}</td>
-                            <td>
-                                <button class="btn btn-info btn-sm" type="button" wire:click="edit({{ $trade->id }})"
-                                    data-toggle="modal" data-target="#tradeBuyModal">Edit</button>
-                            </td>
                             @php
                                 $buy +=$trade->total_buy_amount;
                                 $sell+=$trade->total_sell_amount;
