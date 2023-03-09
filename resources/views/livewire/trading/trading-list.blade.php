@@ -1,6 +1,7 @@
 <div class="container-fluid py-4 px-4">
     <div class="sr-button-div">
         @include('livewire.trading.trading_new')
+        @include('livewire.trading.divident')
     </div>
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
@@ -61,6 +62,51 @@
                         <td>total_sell_amount</td>
                         <td>{{$sell}}</td>
                         <td colspan="4">Profit - {{$profit}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12 sr-table-div">
+            <table class="table table-bordered  mt-5 data-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Date</th>
+                        <th>Stock Name</th>
+                        <th>Buy Amount</th>
+                        <th>Divident Percentage</th>
+                        <th>Total Divident Amount</th>
+                        <th>Issue Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $stock_count = 0;
+                        $percentage = 0;
+                        $amount=0;
+                    @endphp
+                    @foreach ($divident_stocks as $stock)
+                        <tr>
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $stock->date }}</td>
+                            <td>{{ $stock->stock_name }}</td>
+                            <td>{{ $stock->stock_count }}</td>
+                            <td>{{ $stock->divident_percentage }}</td>
+                            <td>{{ $stock->divident_amount }}</td>
+                            <td>{{ $stock->issue_date }}</td>
+                            @php
+                                $stock_count +=$stock->stock_count;
+                                $percentage+=$stock->divident_percentage;
+                                $amount+=$stock->divident_amount;
+                            @endphp
+                        </tr>
+                    @endforeach
+                    <tr>
+                        <td colspan="3" class="text-center">Total </td>
+                        <td>{{ $stock_count }}</td>
+                        <td>{{$percentage}}</td>
+                        <td colspan="4">{{$amount}}</td>
                     </tr>
                 </tbody>
             </table>

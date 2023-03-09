@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Trading;
 
+use App\Models\Divident;
 use App\Models\FinancialYear;
-use App\Models\StockSell;
+use App\Models\StockNames;
 use App\Models\Trading;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -11,24 +12,32 @@ use Livewire\Component;
 class TradingList extends Component
 {
     public $stock_name,
-    $buy_date,
-    $single_stock_amount,
-    $buy_count,
-    $total_buy_amount,
-    $buy_brocker,
-    $buy_stocks,
-    $sell_date,
-    $sell_brocker,
-    $total_sell_amount,
-    $profit,
-    $buy_reason,
-    $loss_reason,
+        $buy_date,
+        $single_stock_amount,
+        $buy_count,
+        $total_buy_amount,
+        $buy_brocker,
+        $buy_stocks,
+        $sell_date,
+        $sell_brocker,
+        $total_sell_amount,
+        $profit,
+        $buy_reason,
+        $loss_reason,
         $selected_id,
-        $total
+        $total,
+        $stock_names,
+        $date,
+        $issue_date,
+        $divident_percentage,
+        $stock_count,
+        $divident_amount
     ;
     public function render()
     {
+        $this->stock_names = StockNames::orderBy('id', 'desc')->get();
         $this->tradings = Trading::orderBy('id', 'desc')->get();
+        $this->divident_stocks = Divident::orderBy('id', 'desc')->get();
         return view('livewire.trading.trading-list');
     }
 
@@ -91,6 +100,30 @@ class TradingList extends Component
         }
     }
 
+    public function divident_store()
+    {
+        $validated= $this->validate([
+            'stock_name' => 'required',
+            'date' => 'required',
+            'issue_date' => 'required',
+            'divident_percentage' => 'required|numeric|min:0',
+            'stock_count' => 'required|integer|min:0',
+            'divident_amount' => 'required|numeric|min:0',
+        ]);
+            $fin_id = FinancialYear::max('id');
+            $validated['fin_id']=$fin_id;
+            try {
+                DB::beginTransaction();
+                Divident::create($validated);
+                DB::commit();
+                $this->resetInputFields();
+                $this->emit('successAction'); // Close model to using to jquery
+            } catch (\Exception $e) {
+                DB::rollBack();
+                $this->emit('failedAction'); // Close model to using to jquery
+            }
+    }
+    
     public function edit($id)
     {
         $this->updateMode = true;
@@ -127,6 +160,11 @@ class TradingList extends Component
         $this->buy_reason = '';
         $this->loss_reason = '';
         $this->profit = '';
+        $this->stock_count ='';
+        $this->divident_percentage='';
+        $this->divident_amount='';
+        $this->date='';
+        $this->issue_date='';
     }
 
     public function cancel()
