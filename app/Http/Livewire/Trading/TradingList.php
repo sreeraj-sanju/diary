@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Trading;
 
 use App\Models\Divident;
+use App\Models\Calculation;
 use App\Models\FinancialYear;
 use App\Models\StockNames;
 use App\Models\Trading;
@@ -31,13 +32,24 @@ class TradingList extends Component
         $issue_date,
         $divident_percentage,
         $stock_count,
-        $divident_amount
+        $divident_amount,
+        $buy_amount,
+        $amount_avail,
+        $stop_loss,
+        $target,
+        $expected_loss,
+        $expected_profit,
+        $ratio,
+        $calc_date,
+        $amount_accnt,
+        $updateMode
     ;
     public function render()
     {
         $this->stock_names = StockNames::orderBy('id', 'desc')->get();
         $this->tradings = Trading::orderBy('id', 'desc')->get();
         $this->divident_stocks = Divident::orderBy('id', 'desc')->get();
+        $this->stock_calc = Calculation::orderBy('id', 'asc')->get();
         return view('livewire.trading.trading-list');
     }
 
@@ -145,15 +157,59 @@ class TradingList extends Component
 
     }
 
+    public function calculation_store()
+    {
+        $validated= $this->validate([
+            'stock_name' => 'required',
+            'calc_date' => 'required',
+            'amount_avail' => 'required',
+            'buy_amount' => 'required|numeric|min:0',
+            'buy_count' => 'required|integer|min:0',
+            'total_buy_amount' => 'required|numeric|min:0',
+            'stop_loss' => 'required',
+            'target' => 'required',
+            'expected_loss' => 'required',
+            'expected_profit' => 'required',
+            'ratio' => 'required',
+            'amount_accnt' => 'required',
+        ]);
+            $fin_id = FinancialYear::max('id');
+            $validated['fin_id']=$fin_id;
+            try {
+                DB::beginTransaction();
+                Calculation::create($validated);
+                DB::commit();
+                $this->resetInputFields();
+                $this->emit('successAction'); // Close model to using to jquery
+            } catch (\Exception $e) {
+                DB::rollBack();
+                $this->emit('failedAction'); // Close model to using to jquery
+            }
+    }
+
+    public function amount()
+    {
+        $lastEntry = Calculation::latest('id')->first();
+        if($lastEntry){
+            $this->amount_avail=$lastEntry->amount_accnt - Calculation::sum('total_buy_amount');
+            $this->amount_accnt = $lastEntry->amount_accnt;
+        }
+    }
+
+    public function amount_fill()
+    {
+        $lastEntry = Calculation::latest('id')->first();
+        $lastEntry->update(['amount_accnt'=>$this->amount_accnt]);
+    }
     //function for reset input fields
     private function resetInputFields()
     {
         $this->stock_name = '';
         $this->buy_date = '';
-        $this->single_stock_amount = '';
-        $this->buy_count = '';
+        $this->single_stock_amount = 0;
+        $this->buy_count = 0;
         $this->total_buy_amount = '';
-        $this->buy_brocker = '';
+        $this->buy_brocker = 0;
         $this->sell_date = '';
         $this->total_sell_amount = '';
         $this->sell_brocker = '';
@@ -165,6 +221,7 @@ class TradingList extends Component
         $this->divident_amount='';
         $this->date='';
         $this->issue_date='';
+        $this->buy_amount=0;
     }
 
     public function cancel()
@@ -176,9 +233,26 @@ class TradingList extends Component
 
     public function updated($key, $value)
     {
-        if(in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker'])){
+        if(in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker']) && $value!= null){
             $this->total_buy_amount = ($this->single_stock_amount*$this->buy_count)+$this->buy_brocker;
         }
+
+        if(in_array($key, ['buy_amount', 'total_buy_amount', 'buy_count', 'stop_loss','target']) && $value!= null){
+            $this->total_buy_amount = ($this->buy_amount*$this->buy_count);
+            $this->expected_loss = ($this->total_buy_amount-($this->stop_loss*$this->buy_count));
+            $this->expected_profit = (($this->target*$this->buy_count)-$this->total_buy_amount);
+            $this->ratio = $this->getRatio($this->expected_loss, $this->expected_profit);
+        }
+    }
+
+    function getRatio($num1, $num2){
+        for($i = $num2; $i > 1; $i--) {
+            if(($num1 % $i) == 0 && ($num2 % $i) == 0) {
+                $num1 = $num1 / $i;
+                $num2 = $num2 / $i;
+            }
+        }
+        return "$num1:$num2";
     }
 
 }

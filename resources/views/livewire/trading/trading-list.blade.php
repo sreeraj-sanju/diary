@@ -2,6 +2,7 @@
     <div class="sr-button-div">
         @include('livewire.trading.trading_new')
         @include('livewire.trading.divident')
+        @include('livewire.trading.calculation')
     </div>
     @if (session()->has('message'))
         <div class="alert alert-success" style="margin-top:30px;">x
@@ -31,7 +32,7 @@
                     @php
                         $buy = 0;
                         $sell = 0;
-                        $profit=0;
+                        $profit = 0;
                     @endphp
                     @foreach ($tradings as $trade)
                         <tr>
@@ -50,9 +51,9 @@
                             <td>{{ $trade->buy_reason }}</td>
                             <td>{{ $trade->loss_reason }}</td>
                             @php
-                                $buy +=$trade->total_buy_amount;
-                                $sell+=$trade->total_sell_amount;
-                                $profit+=$trade->profit;
+                                $buy += $trade->total_buy_amount;
+                                $sell += $trade->total_sell_amount;
+                                $profit += $trade->profit;
                             @endphp
                         </tr>
                     @endforeach
@@ -60,8 +61,8 @@
                         <td colspan="5" class="text-center">Total Buy Amount</td>
                         <td>{{ $buy }}</td>
                         <td>total_sell_amount</td>
-                        <td>{{$sell}}</td>
-                        <td colspan="4">Profit - {{$profit}}</td>
+                        <td>{{ $sell }}</td>
+                        <td colspan="4">Profit - {{ $profit }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -84,7 +85,7 @@
                     @php
                         $stock_count = 0;
                         $percentage = 0;
-                        $amount=0;
+                        $amount = 0;
                     @endphp
                     @foreach ($divident_stocks as $stock)
                         <tr>
@@ -96,21 +97,65 @@
                             <td>{{ $stock->divident_amount }}</td>
                             <td>{{ $stock->issue_date }}</td>
                             @php
-                                $stock_count +=$stock->stock_count;
-                                $percentage+=$stock->divident_percentage;
-                                $amount+=$stock->divident_amount;
+                                $stock_count += $stock->stock_count;
+                                $percentage += $stock->divident_percentage;
+                                $amount += $stock->divident_amount;
                             @endphp
                         </tr>
                     @endforeach
                     <tr>
                         <td colspan="3" class="text-center">Total </td>
                         <td>{{ $stock_count }}</td>
-                        <td>{{$percentage}}</td>
-                        <td colspan="4">{{$amount}}</td>
+                        <td>{{ $percentage }}</td>
+                        <td colspan="4">{{ $amount }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+        <div class="col-md-12 sr-table-div">
+            <table class="table table-bordered  mt-5 data-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Calc Date</th>
+                        <th>Stock Name</th>
+                        <th>Stock Price</th>
+                        <th>Stock Count</th>
+                        <th>Total Amount</th>
+                        <th>StopLoss/Profit</th>
+                        <th>Expected Loss / Proft</th>
+                        <th>Ratio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $total = 0;
+                        $accnt=0;
+                    @endphp
+                    @foreach ($stock_calc as $calc)
+                        <tr class="text-center">
+                            <td>{{ $loop->index + 1 }}</td>
+                            <td>{{ $calc->calc_date }}</td>
+                            <td>{{ $calc->stock_name }}</td>
+                            <td>{{ $calc->buy_amount}}</td>
+                            <td>{{ $calc->buy_count}}</td>
+                            <td>{{ $calc->total_buy_amount }}</td>
+                            <td>{{ $calc->stop_loss }} / {{$calc->target}}</td>
+                            <td>{{ $calc->expected_loss }} / {{$calc->expected_profit}}</td>
+                            <td>{{ $calc->ratio }}</td>
+                            @php
+                                $total += $calc->total_buy_amount;
+                                $accnt = $calc->amount_accnt;
+                            @endphp
+                        </tr>
+                    @endforeach
+                    <tr class="text-center">
+                        <td colspan="5" class="text-center">Total </td>
+                        <td>{{ $total }}</td>
+                        <td>{{ $accnt-$total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div>
         </div>
