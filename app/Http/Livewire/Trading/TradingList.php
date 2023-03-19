@@ -222,6 +222,12 @@ class TradingList extends Component
         $this->date='';
         $this->issue_date='';
         $this->buy_amount=0;
+        $lastEntry = Calculation::latest('id')->first();
+        if($lastEntry){
+            $remain = $lastEntry->amount_accnt - Calculation::sum('total_buy_amount');
+            $this->amount_avail=round($remain, 2);
+            $this->amount_accnt = $lastEntry->amount_accnt;
+        }
     }
 
     public function cancel()
@@ -233,11 +239,11 @@ class TradingList extends Component
 
     public function updated($key, $value)
     {
-        if(in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker']) && $value!= null){
+        if(in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker']) && $value!= null && $value!=0){
             $this->total_buy_amount = ($this->single_stock_amount*$this->buy_count)+$this->buy_brocker;
         }
 
-        if(in_array($key, ['buy_amount', 'total_buy_amount', 'buy_count', 'stop_loss','target']) && $value!= null){
+        if(in_array($key, ['buy_amount', 'total_buy_amount', 'buy_count', 'stop_loss','target']) && $value!= null && $value!=0){
             $this->total_buy_amount = ($this->buy_amount*$this->buy_count);
             $this->expected_loss = ($this->total_buy_amount-($this->stop_loss*$this->buy_count));
             $this->expected_profit = (($this->target*$this->buy_count)-$this->total_buy_amount);
@@ -252,7 +258,14 @@ class TradingList extends Component
                 $num2 = $num2 / $i;
             }
         }
-        return "$num1:$num2";
+        if($num1 !=0 || $num2 !=0){
+            $fnum = round($num1/$num1, 2);
+            $snum = round($num2/$num1, 2);
+        }else{
+            $fnum = $num1;
+            $snum = $num2;
+        }
+        return "$fnum : $snum";
     }
 
 }
