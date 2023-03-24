@@ -47,13 +47,13 @@
                             <td>{{ $trade->total_buy_amount }}</td>
                             <td>{{ $trade->sell_date }}</td>
                             <td>{{ $trade->total_sell_amount }}</td>
-                            <td>{{ $trade->profit }}</td>
+                            <td>{{ $trade->total_sell_amount - $trade->total_buy_amount }}</td>
                             <td>{{ $trade->buy_reason }}</td>
                             <td>{{ $trade->loss_reason }}</td>
                             @php
                                 $buy += $trade->total_buy_amount;
                                 $sell += $trade->total_sell_amount;
-                                $profit += $trade->profit;
+                                $profit += $sell - $buy;
                             @endphp
                         </tr>
                     @endforeach
@@ -62,7 +62,8 @@
                         <td>{{ $buy }}</td>
                         <td>total_sell_amount</td>
                         <td>{{ $sell }}</td>
-                        <td colspan="4">Profit - {{ $profit }}</td>
+                        <td colspan="4" class="{{ $profit > 0 ? 'text-success' : 'text-danger' }}">
+                            {{ $profit > 0 ? 'Profit' : 'Loss' }} - {{ $profit }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -125,24 +126,28 @@
                         <th>StopLoss/Profit</th>
                         <th>Expected Loss / Proft</th>
                         <th>Ratio</th>
+                        <th>Active</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                         $total = 0;
-                        $accnt=0;
+                        $accnt = 0;
                     @endphp
                     @foreach ($stock_calc as $calc)
                         <tr class="text-center">
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $calc->calc_date }}</td>
                             <td>{{ $calc->stock_name }}</td>
-                            <td>{{ $calc->buy_amount}}</td>
-                            <td>{{ $calc->buy_count}}</td>
+                            <td>{{ $calc->buy_amount }}</td>
+                            <td>{{ $calc->buy_count }}</td>
                             <td>{{ $calc->total_buy_amount }}</td>
-                            <td>{{ $calc->stop_loss }} / {{$calc->target}}</td>
-                            <td>{{ $calc->expected_loss }} / {{$calc->expected_profit}}</td>
+                            <td>{{ $calc->stop_loss }} / {{ $calc->target }}</td>
+                            <td>{{ $calc->expected_loss }} / {{ $calc->expected_profit }}</td>
                             <td>{{ $calc->ratio }}</td>
+                            <td>
+                                <input type="checkbox" id="toggle-active" data-value="{{$calc->id}}" data-path="{{route('toggle_active')}}" {{$calc->active == 1 ? 'checked':''}} data-toggle="toggle" data-onstyle="info" wire:click.prevent="toggle_active()">
+                            </td>
                             @php
                                 $total += $calc->total_buy_amount;
                                 $accnt = $calc->amount_accnt;
@@ -152,7 +157,7 @@
                     <tr class="text-center">
                         <td colspan="5" class="text-center">Total </td>
                         <td>{{ $total }}</td>
-                        <td>{{ $accnt-$total }}</td>
+                        <td>{{ $accnt - $total }}</td>
                     </tr>
                 </tbody>
             </table>

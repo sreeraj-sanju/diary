@@ -45,6 +45,7 @@ Route::middleware([
         Route::get('/stock_analysis', [StockController::class, 'stock_analysis'])->name('stock_analysis');
         Route::get('/edit_settings', [SettingsController::class, 'edit_settings'])->name('edit_settings');
         Route::post('/update_settings', [SettingsController::class, 'update_settings'])->name('update_settings');
+        Route::GET('/toggle_active', [StockController::class, 'toggle_active'])->name('toggle_active');
     });
 
     Route::middleware(['auth', 'usercheck:user'])->group(function () {

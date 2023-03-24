@@ -35,6 +35,8 @@ $desc = Settings::select('app_description')->first();
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/selectstyle.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/dev.css') }}">
         <link href="{{ asset('/css/select2.min.css') }}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+
         {{-- <link href="{{asset ('/css/fontawesome.min.css')}}" rel="stylesheet" /> --}}
     @else
         {{-- <!--     Fonts and icons     -->
@@ -185,7 +187,9 @@ $desc = Settings::select('app_description')->first();
         <script type="text/javascript" src="{{ asset('js/selectstyle.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/material-dashboard.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/kit-awesome.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/dev.js') }}"></script>
         <script src="{{ asset('js/select2.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
         {{-- <script src="{{asset ('js/fontawesome.min.js')}}"></script> --}}
     @else
         <!--   Core JS Files   -->

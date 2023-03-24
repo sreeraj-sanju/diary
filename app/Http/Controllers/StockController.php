@@ -8,7 +8,8 @@ use App\Models\{
     Stock,
     StockAnalys,
     StockSell,
-    FinancialYear
+    FinancialYear,
+    Calculation
 };
 use Illuminate\Support\Facades\DB;
 
@@ -99,5 +100,23 @@ class StockController extends Controller
         dd($stocks);
         //$data = DB::select( DB::raw("SELECT * FROM (SELECT * FROM stock_analys WHERE buy_status = :stat ORDER BY  debt_equity) AS d ORDER BY divident DESC"), ['stat' => 0]);
 
+    }
+
+    public function toggle_active(Request $request)
+    {
+        $record = Calculation::findOrFail($request->value);
+        $active = $record->active == 1 ? 0 : 1;
+            try {
+                DB::beginTransaction();
+                $record->update([
+                    'active' => $active
+                ]);
+
+                DB::commit();
+            } catch (\Exception$e) {
+                DB::rollBack();
+                $this->emit('failedAction'); // Close model to using to jquery
+            }
+        return response()->json(array('msg'=> 'success'), 200);
     }
 }

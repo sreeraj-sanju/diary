@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Trading;
 
-use App\Models\Divident;
 use App\Models\Calculation;
+use App\Models\Divident;
 use App\Models\FinancialYear;
 use App\Models\StockNames;
 use App\Models\Trading;
@@ -13,36 +13,38 @@ use Livewire\Component;
 class TradingList extends Component
 {
     public $stock_name,
-        $buy_date,
-        $single_stock_amount,
-        $buy_count,
-        $total_buy_amount,
-        $buy_brocker,
-        $buy_stocks,
-        $sell_date,
-        $sell_brocker,
-        $total_sell_amount,
-        $profit,
-        $buy_reason,
-        $loss_reason,
-        $selected_id,
-        $total,
-        $stock_names,
-        $date,
-        $issue_date,
-        $divident_percentage,
-        $stock_count,
-        $divident_amount,
-        $buy_amount,
-        $amount_avail,
-        $stop_loss,
-        $target,
-        $expected_loss,
-        $expected_profit,
-        $ratio,
-        $calc_date,
-        $amount_accnt,
-        $updateMode
+    $buy_date,
+    $single_stock_amount,
+    $buy_count,
+    $total_buy_amount,
+    $buy_brocker,
+    $buy_stocks,
+    $sell_date,
+    $sell_brocker,
+    $total_sell_amount,
+    $profit,
+    $buy_reason,
+    $loss_reason,
+    $selected_id,
+    $total,
+    $stock_names,
+    $date,
+    $issue_date,
+    $divident_percentage,
+    $stock_count,
+    $divident_amount,
+    $buy_amount,
+    $amount_avail,
+    $stop_loss,
+    $target,
+    $expected_loss,
+    $expected_profit,
+    $ratio,
+    $calc_date,
+    $amount_accnt,
+    $updateMode,
+    $sell_amount,
+        $sell_count
     ;
     public function render()
     {
@@ -71,15 +73,16 @@ class TradingList extends Component
                     'sell_brocker' => $this->sell_brocker,
                     'buy_reason' => $this->buy_reason,
                     'loss_reason' => $this->loss_reason,
+                    'sell_count' => $this->sell_count,
+                    'sell_amount' => $this->sell_amount,
                 ]);
 
                 DB::commit();
-                $this->resetInputFields();
+                // $this->resetInputFields();
                 $this->updateMode = false;
                 $this->emit('successAction'); // Close model to using to jquery
             } catch (\Exception$e) {
                 DB::rollBack();
-                dd($e->getMessage());
                 $this->emit('failedAction'); // Close model to using to jquery
             }
         } else {
@@ -100,6 +103,8 @@ class TradingList extends Component
                     'sell_brocker' => $this->sell_brocker,
                     'buy_reason' => $this->buy_reason,
                     'loss_reason' => $this->loss_reason,
+                    'sell_count' => $this->sell_count,
+                    'sell_amount' => $this->sell_amount,
                 ]);
 
                 DB::commit();
@@ -114,7 +119,7 @@ class TradingList extends Component
 
     public function divident_store()
     {
-        $validated= $this->validate([
+        $validated = $this->validate([
             'stock_name' => 'required',
             'date' => 'required',
             'issue_date' => 'required',
@@ -122,20 +127,20 @@ class TradingList extends Component
             'stock_count' => 'required|integer|min:0',
             'divident_amount' => 'required|numeric|min:0',
         ]);
-            $fin_id = FinancialYear::max('id');
-            $validated['fin_id']=$fin_id;
-            try {
-                DB::beginTransaction();
-                Divident::create($validated);
-                DB::commit();
-                $this->resetInputFields();
-                $this->emit('successAction'); // Close model to using to jquery
-            } catch (\Exception $e) {
-                DB::rollBack();
-                $this->emit('failedAction'); // Close model to using to jquery
-            }
+        $fin_id = FinancialYear::max('id');
+        $validated['fin_id'] = $fin_id;
+        try {
+            DB::beginTransaction();
+            Divident::create($validated);
+            DB::commit();
+            $this->resetInputFields();
+            $this->emit('successAction'); // Close model to using to jquery
+        } catch (\Exception$e) {
+            DB::rollBack();
+            $this->emit('failedAction'); // Close model to using to jquery
+        }
     }
-    
+
     public function edit($id)
     {
         $this->updateMode = true;
@@ -154,12 +159,14 @@ class TradingList extends Component
         $this->buy_reason = $record->buy_reason;
         $this->loss_reason = $record->loss_reason;
         $this->profit = $record->profit;
+        $this->sell_count = $record->sell_count;
+        $this->sell_amount = $record->sell_amount;
 
     }
 
     public function calculation_store()
     {
-        $validated= $this->validate([
+        $validated = $this->validate([
             'stock_name' => 'required',
             'calc_date' => 'required',
             'amount_avail' => 'required',
@@ -173,25 +180,25 @@ class TradingList extends Component
             'ratio' => 'required',
             'amount_accnt' => 'required',
         ]);
-            $fin_id = FinancialYear::max('id');
-            $validated['fin_id']=$fin_id;
-            try {
-                DB::beginTransaction();
-                Calculation::create($validated);
-                DB::commit();
-                $this->resetInputFields();
-                $this->emit('successAction'); // Close model to using to jquery
-            } catch (\Exception $e) {
-                DB::rollBack();
-                $this->emit('failedAction'); // Close model to using to jquery
-            }
+        $fin_id = FinancialYear::max('id');
+        $validated['fin_id'] = $fin_id;
+        try {
+            DB::beginTransaction();
+            Calculation::create($validated);
+            DB::commit();
+            $this->resetInputFields();
+            $this->emit('successAction'); // Close model to using to jquery
+        } catch (\Exception$e) {
+            DB::rollBack();
+            $this->emit('failedAction'); // Close model to using to jquery
+        }
     }
 
     public function amount()
     {
         $lastEntry = Calculation::latest('id')->first();
-        if($lastEntry){
-            $this->amount_avail=$lastEntry->amount_accnt - Calculation::sum('total_buy_amount');
+        if ($lastEntry) {
+            $this->amount_avail = $lastEntry->amount_accnt - Calculation::where('active', 1)->sum('total_buy_amount');
             $this->amount_accnt = $lastEntry->amount_accnt;
         }
     }
@@ -199,7 +206,12 @@ class TradingList extends Component
     public function amount_fill()
     {
         $lastEntry = Calculation::latest('id')->first();
-        $lastEntry->update(['amount_accnt'=>$this->amount_accnt]);
+        $amount = $lastEntry->amount_accnt + $this->amount_accnt;
+        $lastEntry->update(['amount_accnt' => $amount]);
+        $this->amount_accnt = $amount;
+        $this->amount_avail = $lastEntry->amount_accnt - Calculation::where('active', 1)->sum('total_buy_amount');
+        $this->amount_accnt = $lastEntry->amount_accnt;
+        session()->flash('message', 'Successfully updated.');
     }
     //function for reset input fields
     private function resetInputFields()
@@ -216,16 +228,16 @@ class TradingList extends Component
         $this->buy_reason = '';
         $this->loss_reason = '';
         $this->profit = '';
-        $this->stock_count ='';
-        $this->divident_percentage='';
-        $this->divident_amount='';
-        $this->date='';
-        $this->issue_date='';
-        $this->buy_amount=0;
+        $this->stock_count = '';
+        $this->divident_percentage = '';
+        $this->divident_amount = '';
+        $this->date = '';
+        $this->issue_date = '';
+        $this->buy_amount = 0;
         $lastEntry = Calculation::latest('id')->first();
-        if($lastEntry){
+        if ($lastEntry) {
             $remain = $lastEntry->amount_accnt - Calculation::sum('total_buy_amount');
-            $this->amount_avail=round($remain, 2);
+            $this->amount_avail = round($remain, 2);
             $this->amount_accnt = $lastEntry->amount_accnt;
         }
     }
@@ -239,33 +251,42 @@ class TradingList extends Component
 
     public function updated($key, $value)
     {
-        if(in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker']) && $value!= null && $value!=0){
-            $this->total_buy_amount = ($this->single_stock_amount*$this->buy_count)+$this->buy_brocker;
+        if (in_array($key, ['single_stock_amount', 'buy_count', 'buy_brocker']) && $value != null) {
+            $this->total_buy_amount = ($this->single_stock_amount * $this->buy_count) + $this->buy_brocker;
         }
 
-        if(in_array($key, ['buy_amount', 'total_buy_amount', 'buy_count', 'stop_loss','target']) && $value!= null && $value!=0){
-            $this->total_buy_amount = ($this->buy_amount*$this->buy_count);
-            $this->expected_loss = ($this->total_buy_amount-($this->stop_loss*$this->buy_count));
-            $this->expected_profit = (($this->target*$this->buy_count)-$this->total_buy_amount);
+        if (in_array($key, ['buy_amount', 'total_buy_amount', 'buy_count', 'stop_loss', 'target']) && $value != null && $value != 0) {
+            $this->total_buy_amount = ($this->buy_amount * $this->buy_count);
+            $this->expected_loss = ($this->total_buy_amount - ($this->stop_loss * $this->buy_count));
+            $this->expected_profit = (($this->target * $this->buy_count) - $this->total_buy_amount);
             $this->ratio = $this->getRatio($this->expected_loss, $this->expected_profit);
+        }
+
+        if (in_array($key, ['sell_count', 'sell_amount', 'sell_brocker']) && $value != null) {
+            $this->total_sell_amount = ($this->sell_count * $this->sell_amount) + $this->sell_brocker;
         }
     }
 
-    function getRatio($num1, $num2){
-        for($i = $num2; $i > 1; $i--) {
-            if(($num1 % $i) == 0 && ($num2 % $i) == 0) {
+    public function getRatio($num1, $num2)
+    {
+        for ($i = $num2; $i > 1; $i--) {
+            if (($num1 % $i) == 0 && ($num2 % $i) == 0) {
                 $num1 = $num1 / $i;
                 $num2 = $num2 / $i;
             }
         }
-        if($num1 !=0 || $num2 !=0){
-            $fnum = round($num1/$num1, 2);
-            $snum = round($num2/$num1, 2);
-        }else{
+        if ($num1 != 0 || $num2 != 0) {
+            $fnum = round($num1 / $num1, 2);
+            $snum = round($num2 / $num1, 2);
+        } else {
             $fnum = $num1;
             $snum = $num2;
         }
         return "$fnum : $snum";
     }
 
+    public function toggle_active()
+    {
+        dd(12);
+    }
 }

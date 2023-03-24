@@ -102,11 +102,12 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group row">
-                                <label for="buy_brockerage" class="col-md-4 col-form-label"> Buy Brockerage</label>
+                                <label for="total_sell_amount" class="col-md-4 col-form-label"> Total Sell
+                                    Quantity</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="buy_brocker"
-                                        wire:model='buy_brocker'>
-                                    @error('buy_brocker')
+                                    <input type="text" class="form-control" name="sell_count"
+                                        wire:model='sell_count'>
+                                    @error('sell_count')
                                         <span class="text-danger error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -114,11 +115,11 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group row">
-                                <label for="sell_brockerage" class="col-md-4 col-form-label"> Sell Brockerage</label>
+                                <label for="total_sell_amount" class="col-md-4 col-form-label"> Sell Price</label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control" name="sell_brocker"
-                                        wire:model='sell_brocker'>
-                                    @error('sell_brocker')
+                                    <input type="text" class="form-control" name="sell_amount"
+                                        wire:model='sell_amount'>
+                                    @error('sell_amount')
                                         <span class="text-danger error">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -132,6 +133,32 @@
                                     <input type="text" class="form-control" name="total_sell_amount"
                                         wire:model='total_sell_amount'>
                                     @error('total_sell_amount')
+                                        <span class="text-danger error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="buy_brockerage" class="col-md-4 col-form-label"> Buy Brockerage</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" name="buy_brocker"
+                                        wire:model='buy_brocker'>
+                                    @error('buy_brocker')
+                                        <span class="text-danger error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="sell_brockerage" class="col-md-4 col-form-label"> Sell Brockerage</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" name="sell_brocker"
+                                        wire:model='sell_brocker'>
+                                    @error('sell_brocker')
                                         <span class="text-danger error">{{ $message }}</span>
                                     @enderror
                                 </div>
