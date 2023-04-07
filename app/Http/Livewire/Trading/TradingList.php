@@ -51,7 +51,7 @@ class TradingList extends Component
         $this->stock_names = StockNames::orderBy('id', 'desc')->get();
         $this->tradings = Trading::orderBy('id', 'desc')->get();
         $this->divident_stocks = Divident::orderBy('id', 'desc')->get();
-        $this->stock_calc = Calculation::orderBy('id', 'asc')->get();
+        $this->stock_calc = Calculation::orderBy('id', 'desc')->get();
         return view('livewire.trading.trading-list');
     }
 

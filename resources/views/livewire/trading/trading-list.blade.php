@@ -53,7 +53,6 @@
                             @php
                                 $buy += $trade->total_buy_amount;
                                 $sell += $trade->total_sell_amount;
-                                $profit += $sell - $buy;
                             @endphp
                         </tr>
                     @endforeach
@@ -62,8 +61,8 @@
                         <td>{{ $buy }}</td>
                         <td>total_sell_amount</td>
                         <td>{{ $sell }}</td>
-                        <td colspan="4" class="{{ $profit > 0 ? 'text-success' : 'text-danger' }}">
-                            {{ $profit > 0 ? 'Profit' : 'Loss' }} - {{ $profit }}</td>
+                        <td colspan="4" class="{{ $sell - $buy > 0 ? 'text-success' : 'text-danger' }}">
+                            {{ $sell - $buy > 0 ? 'Profit' : 'Loss' }} - {{ $sell - $buy }}</td>
                     </tr>
                 </tbody>
             </table>
