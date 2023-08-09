@@ -35,7 +35,8 @@ $desc = Settings::select('app_description')->first();
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/selectstyle.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/dev.css') }}">
         <link href="{{ asset('/css/select2.min.css') }}" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+            rel="stylesheet">
 
         {{-- <link href="{{asset ('/css/fontawesome.min.css')}}" rel="stylesheet" /> --}}
     @else
@@ -272,6 +273,58 @@ $desc = Settings::select('app_description')->first();
         //refresh action
         window.livewire.on('refresh', () => {
             window.location.reload();
+        });
+
+        $(document).ready(function() {
+            var table = $('#myTable').DataTable({
+                paging: true,
+                
+                // Other configuration options
+            });
+
+            $('#filterDropdown').on('change', function() {
+                var filterValue = $(this).val();
+                var path = $("#filterForm").attr('action')
+
+                // AJAX request to fetch filtered data
+                $.ajax({
+                    url: path,
+                    type: 'GET',
+                    data: {
+                        filterValue: filterValue
+                    },
+                    success: function(response) {
+                        // Clear the existing table data
+                        table.clear().draw();
+
+                        // // Add the filtered data to the table
+                        if (response && response.length > 0) {
+                            var totalAmount = 0;
+                            $.each(response, function(index, item) {
+                                table.row.add([
+                                    item.expense_item_name,
+                                    item.expense_amount,
+                                    item.expense_date
+                                ]).draw();
+
+                                // Calculate the total amount
+                                totalAmount += parseFloat(item.expense_amount);
+                            });
+
+                            // Add the total amount row to the table
+                            table.row.add([
+                                'Total Amount:',
+                                totalAmount.toFixed(2), // Assuming 2 decimal places
+                                '' // Leave the date column empty for the total row
+                            ]).draw();
+                        }
+
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error
+                    }
+                });
+            });
         });
     </script>
 

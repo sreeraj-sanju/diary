@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrathibhaController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +47,7 @@ Route::middleware([
         Route::get('/edit_settings', [SettingsController::class, 'edit_settings'])->name('edit_settings');
         Route::post('/update_settings', [SettingsController::class, 'update_settings'])->name('update_settings');
         Route::GET('/toggle_active', [StockController::class, 'toggle_active'])->name('toggle_active');
+        Route::GET('/reports_index',[ReportController::class, 'reports_index'])->name('reports');
     });
 
     Route::middleware(['auth', 'usercheck:user'])->group(function () {
@@ -58,7 +60,7 @@ Route::middleware([
 Route::get('/session_out', [SettingsController::class, 'sessionOut'])->name('sessionOut');
 
 // ROUTE SET FOR PRATHIBHA
-Route::get('/prathibha', [PrathibhaController::class, 'prathibha'])->name('prathibha');
+Route::get('/prathibhaList', [PrathibhaController::class, 'prathibha'])->name('prathibha');
 Route::get('/prathibha_2022', [PrathibhaController::class, 'prathibha_2022'])->name('prathibha_2022');
 Route::POST('/program_store', [PrathibhaController::class, 'program_store'])->name('program_store');
 Route::GET('/program_edit/{id}', [PrathibhaController::class, 'program_edit'])->name('program_edit');

@@ -145,10 +145,14 @@
                             <td>{{ $calc->expected_loss }} / {{ $calc->expected_profit }}</td>
                             <td>{{ $calc->ratio }}</td>
                             <td>
-                                <input type="checkbox" id="toggle-active" data-value="{{$calc->id}}" data-path="{{route('toggle_active')}}" {{$calc->active == 1 ? 'checked':''}} data-toggle="toggle" data-onstyle="info" wire:click.prevent="toggle_active()">
+                                <input type="checkbox" id="toggle-active" data-value="{{ $calc->id }}"
+                                    data-path="{{ route('toggle_active') }}" {{ $calc->active == 1 ? 'checked' : '' }}
+                                    data-toggle="toggle" data-onstyle="info" wire:click.prevent="toggle_active()">
                             </td>
                             @php
-                                $total += $calc->total_buy_amount;
+                                if ($calc->active == 1) {
+                                    $total += $calc->total_buy_amount;
+                                }
                                 $accnt = $calc->amount_accnt;
                             @endphp
                         </tr>
