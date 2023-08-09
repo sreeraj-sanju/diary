@@ -1,501 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-  	<title>Prathibha</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <link rel="icon" href='{{asset("/favicon.ico")}}' />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href='{{asset("/manifest.json")}}' />
+    <!-- Bootstrap core CSS -->
+    {{-- <!-- <link href='{{asset("vendor/bootstrap/css/bootstrap.min.css")}}' rel="stylesheet"> --> --}}
+    <link href='{{asset("assets/prathibha/vendor/bootstrap/css/bootstrap5.min.css")}}' rel="stylesheet">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-	<link rel="stylesheet" href="{{ asset('/assets/css/login.css')}}">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/fontawesome.css")}}'>
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/templatemo-grad-school.css")}}'>
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/owl.css")}}'>
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/lightbox.css")}}'>
+    <link rel="stylesheet" type="text/css" href='{{asset("asset/prathibha/vendor/animate/animate.css")}}'>
+    <link rel="stylesheet" type="text/css" href='{{asset("asset/prathibha/vendor/css-hamburgers/hamburgers.min.css")}}'>
+    <link rel="stylesheet" type="text/css" href='{{asset("asset/prathibha/vendor/select2/select2.min.css")}}'>
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/login.css")}}'>
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/App.css")}}'>
+    <link rel="stylesheet" href='{{asset("assets/prathibha/css/util.css")}}'>
 
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-	</head>
-	<body class="img_pr img-fluid" style="background-image: url(images/new_pr.jpg);">
-		<section class="ftco-section_pr">
-			<div class="container pr_container">
-				<div class="row justify-content-center">
-					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section_pr pr_heading">QUIZ COMPETITION 2022-23</h2>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-md-6 col-lg-4">
-						<div class="login-wrap p-0">
-							{{-- <h3 class="mb-4 text-center pr_text">Are You Ready To Start?</h3> --}}
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<button type="button" id="lp_btn" class="form-control btn btn-primary bg-primary" >LP</button>
-					</div>
-					<div class="col-sm d-md-none">
-						<br>
-					</div>
-					<div class="col-md-3">
-						<button type="button" id="up_btn" class="form-control btn btn-primary bg-primary" data-toggle="modal" data-target="#exampleModalCenter">UP</button>
-					</div>
-					<div class="col-sm d-md-none">
-						<br>
-					</div>
-					<div class="col-md-3">
-						<button type="button" id="hs_btn" class="form-control btn btn-primary bg-primary">HS</button>
-					</div>
-					<div class="col-sm d-md-none">
-						<br>
-					</div>
-					<div class="col-md-3">
-						<button type="button" id="hss_btn" class="form-control btn btn-primary bg-primary">HSS</button>
-					</div>
-				</div>
-			</div>
-		</section>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>PRATHIBHA</title>
+  </head>
+  <body>
+   
+  <header class="main-header clearfix" role="header">
+        <div class="logo">
+        <img class="sr-logo animate__animated animate__fadeInLeft" alt='no' src="assets/prathibha/images/prathibha.jpg"/>
+        </div>
+        <div class="logo">
+        <img class="sr-logo-icon animate__animated animate__fadeInDown" alt='no' src="assets/prathibha/images/prathibha_logo.jpg"/>
+        </div>
+        <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+        <nav id="menu" class="main-nav animate__animated animate__lightSpeedInRight" role="navigation">
+          <ul class="main-menu">
+            <li><a href=''>Home</a></li>
+            <li class="has-submenu"><a href="#section2">Events</a>
+              <ul class="sub-menu">
+                <li><a href=''>Quiz Competetion</a></li>
+                <li><a href=''>Anniversary</a></li>
+              </ul>
+            </li>
+            <li><a href=''>Login</a></li>
+           <!-- {/* <li><a href="#section6">Contact</a></li> */} -->
+          </ul>
+        </nav>
+      </header>
 
-		<!--Start LP buton Modal -->
-		<div class="modal fade" id="lp_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">LP QUIZ QUESTIONS</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-4">
-							<button type="button" id="vdo_btn0" class="form-control btn btn-primary bg-primary">VIDEO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="ado_btn0" class="form-control btn btn-primary bg-primary">AUDIO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="img_btn0" class="form-control btn btn-primary bg-primary">IMAGE</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- End Lp button modal --}}
-  
-		<!--Start UP buton Modal -->
-		<div class="modal fade" id="up_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">UP QUIZ QUESTIONS</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-4">
-							<button type="button" id="vdo_btn1" class="form-control btn btn-primary bg-primary">VIDEO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="ado_btn1" class="form-control btn btn-primary bg-primary">AUDIO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="img_btn1" class="form-control btn btn-primary bg-primary">IMAGE</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- End up button modal --}}
+      @yield('content')
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{asset('assets/prathibha/vendor/jquery/jquery.min.js')}}"></script>
+    <!-- <script src={asset("assets/prathibha/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <script src='{{asset("assets/prathibha/vendor/bootstrap/js/bootstrap5.min.js")}}'></script>
 
-		<!--Start HS buton Modal -->
-		<div class="modal fade" id="hs_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HS QUIZ QUESTIONS</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-4">
-							<button type="button" id="vdo_btn2" class="form-control btn btn-primary bg-primary">VIDEO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="ado_btn2" class="form-control btn btn-primary bg-primary">AUDIO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="img_btn2" class="form-control btn btn-primary bg-primary">IMAGE</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- End HS button modal --}}
+    <script src='{{asset("assets/prathibha/js/isotope.min.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/owl-carousel.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/lightbox.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/tabs.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/video.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/slick-slider.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/custom.js")}}'></script>
+    <script src='{{asset("assets/prathibha/js/app.js")}}'></script>
+<!--===============================================================================================-->
+	<script src='{{asset("assets/prathibha/vendor/bootstrap/js/popper.js")}}'></script>
+<!--===============================================================================================-->
+	<script src='{{asset("assets/prathibha/vendor/select2/select2.min.js")}}'></script>
+<!--===============================================================================================-->
+	<script src='{{asset("assets/prathibha/vendor/tilt/tilt.jquery.min.js")}}'></script>
+  <script>
+    $('.js-tilt').tilt({
+      scale: 1.1
+    })
+  </script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
 
-		<!--Start HSS buton Modal -->
-		<div class="modal fade" id="hss_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HSS QUIZ QUESTIONS</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-4">
-							<button type="button" id="vdo_btn3" class="form-control btn btn-primary bg-primary">VIDEO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="ado_btn3" class="form-control btn btn-primary bg-primary">AUDIO</button>
-						</div>
-						<div class="col-sm d-md-none">
-							<br>
-						</div>
-						<div class="col-md-4">
-							<button type="button" id="img_btn3" class="form-control btn btn-primary bg-primary">IMAGE</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- End HSS button modal --}}
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
 
-		{{-- start LP video audio image section --}}
-		<div class="modal fade" id="vdo_div0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">LP VIDEO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/assets/marakar.mp4")}}" type="video/mp4">
-					</video>
-				</div>
-			</div>
-			</div>
-		</div>
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
 
-		<div class="modal fade" id="ado_div0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">LP AUDIO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<audio controls>
-						<source src="{{asset('assets/lp.mp3')}}" type="audio/mpeg">
-					  </audio>
-				</div>
-			</div>
-			</div>
-		</div>
+        };
 
-		<div class="modal fade" id="img_div0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog" role="document" style="max-width: 100%;">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">LP IMAGE QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('images/sanju.webp')}}" alt="">
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- end LP video audio image section --}}
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
 
-		{{-- start UP video audio image section --}}
-		<div class="modal fade" id="vdo_div1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">UP VIDEO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/assets/pazhassi.mp4")}}" type="video/mp4">
-					</video>
-				</div>
-			</div>
-			</div>
-		</div>
+        $('.main-menu, .scroll-to-section').on('click', 'a', function (e) {
+          if($(e.target).hasClass('external')) {
+            return;
+          }
+          e.preventDefault();
+          $('#menu').removeClass('active');
+          showSection($(this).attr('href'), true);
+        });
 
-		<div class="modal fade" id="ado_div1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">UP AUDIO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<audio controls>
-						<source src="{{asset('assets/sachin.mp3')}}" type="audio/mpeg">
-					  </audio>
-				</div>
-			</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="img_div1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog" role="document" style="max-width: 100%">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">UP IMAGE QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('assets/droupadi.jpg')}}" alt="">
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- end UP video audio image section --}}
-
-		{{-- start HS video audio image section --}}
-		<div class="modal fade" id="vdo_div2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HS VIDEO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("assets/kayamkulam.mp4")}}" type="video/mp4">
-					</video>
-				</div>
-			</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="ado_div2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HS AUDIO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<audio controls>
-						<source src="{{asset('assets/apj.mp3')}}" type="audio/mpeg">
-					  </audio>
-				</div>
-			</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="img_div2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog" role="document" style="max-width: 100%">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HS IMAGE QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('assets/prsreejesh.jpg')}}" alt="">
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- end HS video audio image section --}}
-
-		{{-- start HSS video audio image section --}}
-		<div class="modal fade" id="vdo_div3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HSS VIDEO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<video width="100%" height="100%" controls>
-						<source src="{{URL::asset("/assets/ilama.mp4")}}" type="video/mp4">
-					</video>
-				</div>
-			</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="ado_div3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HSS AUDIO QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<audio controls>
-						<source src="{{asset('assets/boby.mp3')}}" type="audio/mpeg">
-					  </audio>
-				</div>
-			</div>
-			</div>
-		</div>
-
-		<div class="modal fade" id="img_div3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-			<div class="modal-dialog" role="document" style="max-width: 100%">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">HSS IMAGE QUESTION</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					<img width="100%" max-height="60%" src="{{asset('assets/neeraj_chopra.jpeg')}}" alt="">
-				</div>
-			</div>
-			</div>
-		</div>
-		{{-- end HSS video audio image section --}}
-
-		<script src="{{asset('js/jquery.min.js')}}"></script>
-  		<script src="{{ asset('/assets/js/login.js')}}"></script>
-		<script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
-	</body>
-	<script>
-		$(document).ready(function () {
-			// start LP section
-			$('#lp_btn').click(function (e) { 
-				$('#lp_modal').modal('show');
-				e.preventDefault();
-				
-			});
-			$('#vdo_btn0').click(function (e) { 
-				e.preventDefault();
-				$('#vdo_div0').modal('show');
-			});
-			$('#ado_btn0').click(function (e) { 
-				e.preventDefault();
-				$('#ado_div0').modal('show');
-			});
-			$('#img_btn0').click(function (e) { 
-				e.preventDefault();
-				$('#img_div0').modal('show');
-			});
-			// End LP section
-
-			// start UP section
-			$('#up_btn').click(function (e) { 
-				$('#up_modal').modal('show');
-				e.preventDefault();
-				
-			});
-			$('#vdo_btn1').click(function (e) { 
-				e.preventDefault();
-				$('#vdo_div1').modal('show');
-			});
-			$('#ado_btn1').click(function (e) { 
-				e.preventDefault();
-				$('#ado_div1').modal('show');
-			});
-			$('#img_btn1').click(function (e) { 
-				e.preventDefault();
-				$('#img_div1').modal('show');
-			});
-			// End UP section
-
-			// Start HS section
-			$('#hs_btn').click(function (e) { 
-				$('#hs_modal').modal('show');
-				e.preventDefault();
-				
-			});
-			$('#vdo_btn2').click(function (e) { 
-				e.preventDefault();
-				$('#vdo_div2').modal('show');
-			});
-			$('#ado_btn2').click(function (e) { 
-				e.preventDefault();
-				$('#ado_div2').modal('show');
-			});
-			$('#img_btn2').click(function (e) { 
-				e.preventDefault();
-				$('#img_div2').modal('show');
-			});
-			// End HS section
-
-			// Start HSS section
-			$('#hss_btn').click(function (e) { 
-				$('#hss_modal').modal('show');
-				e.preventDefault();
-				
-			});
-			$('#vdo_btn3').click(function (e) { 
-				e.preventDefault();
-				$('#vdo_div3').modal('show');
-			});
-			$('#ado_btn3').click(function (e) { 
-				e.preventDefault();
-				$('#ado_div3').modal('show');
-			});
-			$('#img_btn3').click(function (e) { 
-				e.preventDefault();
-				$('#img_div3').modal('show');
-			});
-			$('.close').click(function (e) { 
-				e.preventDefault();
-				$('.modal').modal('hide');
-				window.location.reload();
-			});
-			// End hss section
-		});
-	</script>
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+  </body>
 </html>

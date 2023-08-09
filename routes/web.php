@@ -66,3 +66,7 @@ Route::POST('/program_store', [PrathibhaController::class, 'program_store'])->na
 Route::GET('/program_edit/{id}', [PrathibhaController::class, 'program_edit'])->name('program_edit');
 Route::POST('/program_update', [PrathibhaController::class, 'program_update'])->name('program_update');
 Route::GET('/program_delete/{id}', [PrathibhaController::class, 'program_delete'])->name('program_delete');
+
+Route::get('/quizList', [prathibhaController::class, 'quiz'])->name('quiz');
+Route::post('/quiz_ins', [prathibhaController::class, 'quiz_ins'])->name('quiz_ins');
+Route::post('/quiz_image', [prathibhaController::class, 'quiz_image'])->name('quiz_image');

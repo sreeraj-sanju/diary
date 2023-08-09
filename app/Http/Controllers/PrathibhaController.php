@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anniversary;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -12,7 +13,7 @@ class PrathibhaController extends Controller
 {
     public function prathibha()
     {
-        return view('prathibha.prathibha');
+        return view('prathibha.prathibha_home');
     }
 
     public function prathibha_2022()
@@ -80,7 +81,7 @@ class PrathibhaController extends Controller
                 Session::flash("message", " Program Added Successfully"),
                 Session::flash("alert-class", "alert-success"),
             );
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return back()->with(
                 Session::flash("message", $e->getMessage()),
@@ -153,7 +154,7 @@ class PrathibhaController extends Controller
                 Session::flash("message", " Program Updated Successfully"),
                 Session::flash("alert-class", "alert-success"),
             );
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return back()->with(
                 Session::flash("message", $e->getMessage()),
@@ -171,11 +172,134 @@ class PrathibhaController extends Controller
             return response()->json([
                 'status' => 200,
             ]);
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return response()->json([
                 'status' => 400,
             ]);
+        }
+    }
+
+    public function quiz_ins(Request $request)
+    {
+        $request->validate([
+            'std' => 'required|string|max:255',
+            'item' => 'required',
+            'file' => 'required', // Adjust the image validation rules as needed
+        ]);
+
+        $year = date('Y');
+        $file = $request->file('file');
+        $destination = $year . "/quiz/" . $request->input('std');
+        // dd($file->getClientOriginalExtension());
+        $file_name = time() . '.' . $file->getClientOriginalExtension();
+        $file->move($destination, $file_name);
+
+        // Create a new user or store the data in your database (assuming you have a `User` model)
+        $item = $request->input('item');
+        $std = $request->input('std');
+
+        $data = [
+            'std' => $std,
+            'year' => $year,
+        ];
+
+        if ($item == 'image') {
+            $data['imageName'] = $destination . '/' . $file_name;
+        } elseif ($item == 'audio') {
+            $data['audioName'] = $destination . '/' . $file_name;
+        } elseif ($item == 'video') {
+            $data['videoName'] = $destination . '/' . $file_name;
+        }
+
+        // Check if the record with the same 'std' and 'year' values exists,
+        // and either update it or insert a new record
+        $quiz = Quiz::updateOrInsert(
+            ['std' => $std, 'year' => $year],
+            $data
+        );
+
+        if ($quiz) {
+            session()->flash('message', 'Item was successfully created!');
+            return redirect()->route('quiz');
+        }
+    }
+
+    public function quiz()
+    {
+        $year = date('Y');
+        $quizes = Quiz::where('year', $year)->get();
+        return view('prathibha.quiz', ['quizes' => $quizes]);
+
+        $data = [];
+        $std = 'null';
+        $item = 'null';
+        $index = -1;
+
+        foreach ($quizes as $key => $value) {
+            // Check if $std is different from the current $value->std
+            if ($std != $value->std) {
+                $data[$key]['std'] = $value->std;
+                $data[$key]['year'] = $value->year;
+                $data[$key]['item'] = $value->item;
+                $data[$key]['imageUrl'] = ''; // Initialize imageUrl as an empty string
+                $data[$key]['audioUrl'] = ''; // Initialize audioUrl as an empty string
+                $data[$key]['videoUrl'] = ''; // Initialize videoUrl as an empty string
+                $index++;
+            }
+
+            // Check if $item is different from the current $value->item
+            if ($item != $value->item) {
+                // Update the corresponding URL based on the current $value->item
+                if ($value->item == 'image') {
+                    $data[$index]['imageUrl'] = $value->fileName;
+                } elseif ($value->item == 'audio') {
+                    $data[$index]['audioUrl'] = $value->fileName;
+                } elseif ($value->item == 'video') {
+                    $data[$index]['videoUrl'] = $value->fileName;
+                }
+            }
+
+            $std = $value->std; // Update $std to the current $value->std
+            $item = $value->item; // Update $item to the current $value->item
+        }
+
+        $merged = [];
+        $index = 0;
+        foreach ($data as $item) {
+            $std = $item['std'] ?? '';
+            if (!empty($std)) {
+                if (!isset($merged[$std])) {
+                    $merged[$index] = $item;
+                } else {
+                    $merged[$index] = array_merge($merged[$std], $item);
+                }
+            }
+            $index++;
+        }
+
+        // dd($merged);
+        $quizes = $merged;
+        return response()->json($quizes);
+    }
+
+    public function quiz_image(Request $request)
+    {
+        $id = $request->input('id');
+        $item = $request->input('item');
+        $year = date('Y');
+        $quiz = Quiz::where('year', $year)
+            ->where('id', $id)
+            ->first();
+        if ($item == 'image') {
+            $image = asset($quiz['imageName']);
+            return response()->json($image);
+        } else if ($item == 'audio') {
+            $audio = asset($quiz['audioName']);
+            return response()->json($audio);
+        } elseif ($item == 'video') {
+            $video = asset($quiz['videoName']);
+            return response()->json($video);
         }
     }
 }
