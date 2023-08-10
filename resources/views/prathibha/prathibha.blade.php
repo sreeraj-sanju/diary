@@ -35,7 +35,7 @@
 
     <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    href="{{asset('assets/prathibha/css/animate.min.css')}}"
   />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
