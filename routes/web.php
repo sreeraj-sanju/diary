@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrathibhaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ReportController;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('super_admin.login');
 })->name('lo');
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -70,3 +73,9 @@ Route::GET('/program_delete/{id}', [PrathibhaController::class, 'program_delete'
 Route::get('/quizList', [prathibhaController::class, 'quiz'])->name('quiz');
 Route::post('/quiz_ins', [prathibhaController::class, 'quiz_ins'])->name('quiz_ins');
 Route::post('/quiz_image', [prathibhaController::class, 'quiz_image'])->name('quiz_image');
+
+
+Route::get('/superadmin', function () {
+    return view('super_admin.profile_view');
+})->name('profile_view');
+Route::get('/todoList', [ProfileController::class, 'todoList'])->name('todoList');
