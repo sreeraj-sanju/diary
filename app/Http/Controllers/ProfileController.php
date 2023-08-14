@@ -9,9 +9,9 @@ class ProfileController extends Controller
 {
     public function todoList()
     {
-        $yest = Todo::where('completed', false)->whereDate('dateTime', '<', now())->orderBy('dateTime', 'desc')->get();
-        $tomo = Todo::where('completed', false)->whereDate('dateTime', '>', now())->orderBy('dateTime', 'desc')->get();
-        $today = Todo::where('completed', false)->whereDate('dateTime', '=', now())->orderBy('dateTime', 'desc')->get();
+        $yest = Todo::where('completed', false)->whereDate('dateTime', '<', now())->orderBy('dateTime', 'asc')->get();
+        $tomo = Todo::where('completed', false)->whereDate('dateTime', '>', now())->orderBy('dateTime', 'asc')->get();
+        $today = Todo::where('completed', false)->whereDate('dateTime', '=', now())->orderBy('dateTime', 'asc')->get();
         return view('super_admin.todo', ['yest' => $yest, 'tomo' => $tomo, 'today' => $today]);
     }
 
