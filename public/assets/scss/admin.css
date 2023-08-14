@@ -1065,7 +1065,7 @@ section .colour:nth-child(3) {
 
 .container {
   margin: 0px auto;
-    width: 85%;
+    width: 100%;
     display: flex;
     min-height: 400px;
     position: relative;
