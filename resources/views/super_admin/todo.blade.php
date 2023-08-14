@@ -1,17 +1,20 @@
 @extends('super_admin.profile')
 @section('content')
     <div class="content-section" id="todo">
-        <div class="content-section-title">About your today's plan</div>
+        <div class="content-section-title">About your today's plan
+        <a class="content-button status-button" href="{{route('todoIns')}}">Insert</a>
+        </div>
         <div class="apps-card">
             <div class="app-card">
                 <span>
                     <svg viewBox="0 0 512 512" style="border: 1px solid #a059a9">
                         <!-- <path xmlns="http://www.w3.org/2000/svg" -->
 
-<g xmlns ="" d="M480 0H32C14.368 0 0 14.368 0 32v448c0 17.664 14.368 32 32 32h448c17.664 0 32-14.336 32-32V32c0-17.632-14.336-32-32-32z"
+                        <g xmlns=""
+                            d="M480 0H32C14.368 0 0 14.368 0 32v448c0 17.664 14.368 32 32 32h448c17.664 0 32-14.336 32-32V32c0-17.632-14.336-32-32-32z"
                             fill="#210027" data-original="#7b1fa2" />
                         <!-- <g xmlns="http://www.w3.org/2000/svg"> -->
-                            <g xmlns ="">
+                        <g xmlns="">
                             <path
                                 d="M192 64h-80c-8.832 0-16 7.168-16 16v352c0 8.832 7.168 16 16 16s16-7.168 16-16V256h64c52.928 0 96-43.072 96-96s-43.072-96-96-96zm0 160h-64V96h64c35.296 0 64 28.704 64 64s-28.704 64-64 64zM400 256h-32c-18.08 0-34.592 6.24-48 16.384V272c0-8.864-7.168-16-16-16s-16 7.136-16 16v160c0 8.832 7.168 16 16 16s16-7.168 16-16v-96c0-26.464 21.536-48 48-48h32c8.832 0 16-7.168 16-16s-7.168-16-16-16z"
                                 fill="#f6e7fa" data-original="#e1bee7" />
@@ -19,9 +22,19 @@
                     </svg>
                     Previous Pending Tasks
                 </span>
-                <div class="app-card__subtext">Edit, master and create fully proffesional videos</div>
+                <div class="app-card__subtext">
+                    <ul>
+                        @foreach ($yest as $data)
+                            <li>{{ $data->description }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 <div class="app-card-buttons">
-                    <button class="content-button status-button">Update</button>
+                <form action="{{route('todoUpdate')}}" method="POST">
+                        @csrf
+                        <input type="hidden" value="1" name ='date'>
+                        <button class="content-button status-button">Edit</button>
+                    </form>
                     <div class="menu"></div>
                 </div>
             </div>
@@ -29,7 +42,7 @@
                 <span>
                     <svg viewBox="0 0 52 52" style="border: 1px solid #c1316d">
                         <!-- <g xmlns="http://www.w3.org/2000/svg"> -->
-                            <g xmlns ="">
+                        <g xmlns="">
                             <path
                                 d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
                                 fill="#2f0015" data-original="#6f2b41" />
@@ -42,25 +55,18 @@
                 </span>
                 <div class="app-card__subtext">
                     <ul>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
-                        <li>Design and publish great projects & mockups</li>
+                        @foreach ($today as $data)
+                            <li>{{ $data->description }}</li>
+                        @endforeach
+                        
                     </ul>
                 </div>
                 <div class="app-card-buttons">
-                    <button class="content-button status-button">Update</button>
+                    <form action="{{route('todoUpdate')}}" method="POST">
+                        @csrf
+                        <input type="hidden" value="3" name ='date'>
+                        <button class="content-button status-button">Edit</button>
+                    </form>
                     <div class="menu"></div>
                 </div>
             </div>
@@ -68,7 +74,7 @@
                 <span>
                     <svg viewBox="0 0 52 52" style="border: 1px solid #C75DEB">
                         <!-- <g xmlns="http://www.w3.org/2000/svg"> -->
-                            <g xmlns ="">
+                        <g xmlns="">
                             <path
                                 d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
                                 fill="#3a3375" data-original="#3a3375" />
@@ -79,9 +85,19 @@
                     </svg>
                     Things For My Future
                 </span>
-                <div class="app-card__subtext">Industry Standart motion graphics & visual effects</div>
+                <div class="app-card__subtext">
+                    <ul>
+                        @foreach ($tomo as $data)
+                            <li>{{ $data->description }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 <div class="app-card-buttons">
-                    <button class="content-button status-button">Update</button>
+                <form action="{{route('todoUpdate')}}" method="POST">
+                        @csrf
+                        <input type="hidden" value="2" name ='date'>
+                        <button class="content-button status-button">Edit</button>
+                    </form>
                     <div class="menu"></div>
                 </div>
             </div>

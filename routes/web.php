@@ -79,3 +79,7 @@ Route::get('/superadmin', function () {
     return view('super_admin.profile_view');
 })->name('profile_view');
 Route::get('/todoList', [ProfileController::class, 'todoList'])->name('todoList');
+Route::get('/todoIns', [ProfileController::class, 'todoIns'])->name('todoIns');
+Route::post('/todosave', [ProfileController::class, 'todoSave'])->name('todoSave');
+Route::post('/todoUpdate', [ProfileController::class, 'todoUpdate'])->name('todoUpdate');
+Route::post('/todoUpdated', [ProfileController::class, 'todoUpdated'])->name('todoUpdated');

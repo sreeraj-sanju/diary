@@ -9,11 +9,16 @@
 </head>
 
 <body>
-
+@if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
 
     <div class="video-bg">
         <video width="320" height="240" autoplay loop muted>
-            <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4">
+            <!-- <source src="https://assets.codepen.io/3364143/7btrrd.mp4" type="video/mp4"> -->
+            <source src="{{asset('video/we.mp4')}}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -197,7 +202,7 @@
                     <div class="header-menu">
                         <a class="main-header-link is-active" href="{{route('profile_view')}}">Profile</a>
                         <a class="main-header-link" href="{{route('todoList')}}">To Do </a>
-                        <a class="main-header-link" href="#">Web</a>
+                        <a class="main-header-link" href="">To DO Ins</a>
 
                     </div>
                 </div>
