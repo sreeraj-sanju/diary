@@ -58,7 +58,7 @@
                 <div class="side-wrapper">
                     <div class="side-title">Apps</div>
                     <div class="side-menu">
-                        <a href="#">
+                        <a href="">
                             <svg viewBox="0 0 512 512">
                                 <g xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                                     <path
@@ -198,7 +198,7 @@
             </div> -->
             <div class="main-container">
                 <div class="main-header">
-                    <a class="menu-link-main" href="#">All Apps</a>
+                    <a class="menu-link-main" href="{{route('lo')}}">All Apps</a>
                     <div class="header-menu">
                         <a class="main-header-link is-active" href="{{route('profile_view')}}">Profile</a>
                         <a class="main-header-link" href="{{route('todoList')}}">To Do </a>

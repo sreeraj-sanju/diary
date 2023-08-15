@@ -60,14 +60,14 @@
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav animate__animated animate__lightSpeedInRight" role="navigation">
           <ul class="main-menu">
-            <li><a href=''>Home</a></li>
+            <li><a href="{{route('prathibha')}}">Home</a></li>
             <li class="has-submenu"><a href="#section2">Events</a>
               <ul class="sub-menu">
                 <li><a href=''>Quiz Competetion</a></li>
                 <li><a href=''>Anniversary</a></li>
               </ul>
             </li>
-            <li><a href=''>Login</a></li>
+            <li><a href="{{route('lo')}}">Login</a></li>
            <!-- {/* <li><a href="#section6">Contact</a></li> */} -->
           </ul>
         </nav>

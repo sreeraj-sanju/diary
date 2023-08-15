@@ -62,6 +62,14 @@ $desc = Settings::select('app_description')->first();
                                 <div class="w-50 text-md-right">
                                     <a href="{{ route('password.request') }}" style="color: #fff">Forgot Password</a>
                                 </div>
+
+                                <div class="w-50 text-md-right">
+                                    <a href="{{ route('profile_view') }}" style="color: #fff">Admin</a>
+                                </div>
+
+                                <div class="w-50 text-md-right">
+                                    <a href="{{ route('prathibha') }}" style="color: #fff">Prathibha</a>
+                                </div>
                             </div>
                         </form>
                         <p class="w-100 text-center">&mdash; Haven't An Account &mdash;</p>
