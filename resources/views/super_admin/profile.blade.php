@@ -202,7 +202,7 @@
                     <div class="header-menu">
                         <a class="main-header-link is-active" href="{{route('profile_view')}}">Profile</a>
                         <a class="main-header-link" href="{{route('todoList')}}">To Do </a>
-                        <a class="main-header-link" href="">To DO Ins</a>
+                        <a class="main-header-link" href="{{route('forex')}}">Forex</a>
 
                     </div>
                 </div>

@@ -83,3 +83,9 @@ Route::get('/todoIns', [ProfileController::class, 'todoIns'])->name('todoIns');
 Route::post('/todosave', [ProfileController::class, 'todoSave'])->name('todoSave');
 Route::post('/todoUpdate', [ProfileController::class, 'todoUpdate'])->name('todoUpdate');
 Route::post('/todoUpdated', [ProfileController::class, 'todoUpdated'])->name('todoUpdated');
+
+Route::get('/forex',[ProfileController::class, 'forex'])->name('forex');
+Route::get('/forexIns',function(){
+    return view('super_admin.forexIns');
+})->name('forexIns');
+Route::post('/forexSave', [ProfileController::class, 'forexSave'])->name('forexSave');

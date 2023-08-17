@@ -1113,12 +1113,37 @@ section .colour:nth-child(3) {
     margin-top: 20px;
 }
 
-.form .input__box input {
+.form .text__box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form .input__box input{
   position: relative;
   display: block;
   margin: 0 auto;
     width: 80%;
     color: #fff;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.form .text__box textarea{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+    width: 80%;
+    color: #0f0101;
     border: none;
     outline: none;
     font-size: 16px;
@@ -1164,4 +1189,28 @@ section .colour:nth-child(3) {
 .sr-card{
   display: block;
   margin: 0px auto;
+}
+
+.sr-card1{
+  width: calc(80% - 20px) !important;
+}
+.sr-form{
+  margin-top: -10%;
+}
+.sr-level{
+  display: inline !important;
+  /* margin: 0 auto; */
+    width: 15% !important; 
+  
+}
+.sr-level1{
+  display: inline !important;
+  /* margin: 0 auto; */
+    width: 15% !important; 
+  margin-right: -10px;
+}
+.sr-level2{
+  display: inline !important;
+  /* margin: 0 auto; */
+    width: 5% !important; 
 }
