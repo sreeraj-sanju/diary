@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ForexOrder;
 use App\Models\ForexTrade;
+use App\Models\StockOrder;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -142,6 +143,29 @@ dd($e->getMessage());
         ]);
         session()->flash('message', 'Added successfully!');
         return redirect()->route('forex');
+    }
+
+    public function stocks()
+    {
+        $data = StockOrder::get();
+        return view('super_admin.stock', ['data' => $data]);
+    }
+    public function stockNext()
+    {
+        StockOrder::create([
+            'data' => 'Demo'
+        ]);
+        return redirect()->route('stocks');
+    }
+    public function stockUpdate(Request $request){
+        $id = $request->input('id');
+        $updatedData = [
+            'data' => $request->input('data'),
+        ];
+    
+        $updatedRows = StockOrder::where('id', $id)->update($updatedData);
+        session()->flash('message', 'Updated successfully!');
+        return redirect()->route('stocks');
     }
 }
 

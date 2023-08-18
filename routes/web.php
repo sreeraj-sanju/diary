@@ -92,3 +92,7 @@ Route::post('/forexSave', [ProfileController::class, 'forexSave'])->name('forexS
 Route::post('/forexUpdate', [ProfileController::class, 'forexUpdate'])->name('forexUpdate');
 Route::post('/tradeUpdate', [ProfileController::class, 'tradeUpdate'])->name('tradeUpdate');
 Route::post('/tradeNext', [ProfileController::class, 'tradeNext'])->name('tradeNext');
+
+Route::get('/stocks',[ProfileController::class, 'stocks'])->name('stocks');
+Route::get('/stockNext',[ProfileController::class, 'stockNext'])->name('stockNext');
+Route::post('/stockUpdate', [ProfileController::class, 'stockUpdate'])->name('stockUpdate');
