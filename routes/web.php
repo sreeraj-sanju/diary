@@ -89,3 +89,6 @@ Route::get('/forexIns',function(){
     return view('super_admin.forexIns');
 })->name('forexIns');
 Route::post('/forexSave', [ProfileController::class, 'forexSave'])->name('forexSave');
+Route::post('/forexUpdate', [ProfileController::class, 'forexUpdate'])->name('forexUpdate');
+Route::post('/tradeUpdate', [ProfileController::class, 'tradeUpdate'])->name('tradeUpdate');
+Route::post('/tradeNext', [ProfileController::class, 'tradeNext'])->name('tradeNext');

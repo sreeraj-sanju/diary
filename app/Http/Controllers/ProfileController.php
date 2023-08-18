@@ -103,4 +103,45 @@ dd($e->getMessage());
             return redirect()->route('forex');
         }
     }
+
+    public function forexUpdate(Request $request){
+        $id = $request->input('id');
+        $updatedData = [
+            'desc' => $request->input('desc'),
+        ];
+    
+        $updatedRows = ForexOrder::where('id', $id)->update($updatedData);
+        session()->flash('message', 'Updated successfully!');
+        return redirect()->route('forex');
+    }
+    public function tradeUpdate(Request $request){
+        $id = $request->input('tradeId');
+        $updatedData = [
+            'entry' => $request->input('entry'),
+            'lot' => $request->input('lot'),
+            'type'=> $request->input('type'),
+            'exit' => $request->input('exit'),
+            'amount' => $request->input('profit')
+        ];
+    
+        $updatedRows = ForexTrade::where('id', $id)->update($updatedData);
+        session()->flash('message', 'Updated successfully!');
+        return redirect()->route('forex');
+    }
+
+    public function tradeNext(Request $request){
+        $id = $request->input('id');
+        $trade = ForexTrade::where('order_id', $id)->latest()->first();
+        $lot = 1.5*1.1*$trade->lot;
+        $type = $trade->type == 0? 1: 0;
+    
+        $updatedRows = ForexTrade::create([
+            'order_id' => $id,
+            'lot' => $lot,
+            'type' => $type
+        ]);
+        session()->flash('message', 'Added successfully!');
+        return redirect()->route('forex');
+    }
 }
+
