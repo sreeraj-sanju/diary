@@ -1,6 +1,6 @@
 @extends('super_admin.profile')
 @section('content')
-    <div class="content-section" style="overflow-x: scroll;">
+    <div class="content-section">
         <div class="content-section-title">
             <a class="content-button status-button" href="{{ route('forexIns') }}">Insert</a>
         </div>

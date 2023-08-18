@@ -196,7 +196,7 @@
                     </div>
                 </div>
             </div> -->
-            <div class="main-container">
+            <div class="main-container" style="overflow-x: scroll;">
                 <div class="main-header">
                     <a class="menu-link-main" href="{{route('lo')}}">All Apps</a>
                     <div class="header-menu">
