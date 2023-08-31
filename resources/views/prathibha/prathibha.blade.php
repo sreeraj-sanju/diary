@@ -63,7 +63,7 @@
             <li><a href="{{route('prathibha')}}">Home</a></li>
             <li class="has-submenu"><a href="#section2">Events</a>
               <ul class="sub-menu">
-                <li><a href=''>Quiz Competetion</a></li>
+                <li><a href='{{route("quiz")}}'>Quiz Competetion</a></li>
                 <li><a href=''>Anniversary</a></li>
               </ul>
             </li>
@@ -79,7 +79,7 @@
     <!-- <script src={asset("assets/prathibha/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <script src='{{asset("assets/prathibha/vendor/bootstrap/js/bootstrap5.min.js")}}'></script>
 
-    <script src='{{asset("assets/prathibha/js/isotope.min.js")}}'></script>
+    <!-- <script src='{{asset("assets/prathibha/js/isotope.min.js")}}'></script> -->
     <script src='{{asset("assets/prathibha/js/owl-carousel.js")}}'></script>
     <script src='{{asset("assets/prathibha/js/lightbox.js")}}'></script>
     <script src='{{asset("assets/prathibha/js/tabs.js")}}'></script>
@@ -100,7 +100,7 @@
   </script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-    <script>
+    <!-- <script>
         //according to loftblog tut
         $('.nav li:first').addClass('active');
 
@@ -122,8 +122,7 @@
 
         var checkSection = function checkSection() {
           $('.section').each(function () {
-            var
-            $this = $(this),
+            var $this = $(this),
             topEdge = $this.offset().top - 80,
             bottomEdge = topEdge + $this.height(),
             wScroll = $(window).scrollTop();
@@ -149,6 +148,6 @@
         $(window).scroll(function () {
           checkSection();
         });
-    </script>
+    </script> -->
   </body>
 </html>

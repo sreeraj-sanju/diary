@@ -200,8 +200,9 @@
                 <div class="main-header">
                     <a class="menu-link-main" href="{{route('lo')}}">All Apps</a>
                     <div class="header-menu">
+                    <a class="main-header-link" href="{{route('lo')}}">Home</a>
                         <a class="main-header-link is-active" href="{{route('profile_view')}}">Profile</a>
-                        <a class="main-header-link" href="{{route('todoList')}}">To Do </a>
+                        <a class="main-header-link" href="{{route('todoList')}}">ToDo </a>
                         <a class="main-header-link" href="{{route('forex')}}">Forex</a>
 
                         <a class="main-header-link" href="{{route('stocks')}}">Stocks</a>
