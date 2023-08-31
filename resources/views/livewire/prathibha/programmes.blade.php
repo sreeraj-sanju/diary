@@ -94,14 +94,14 @@
                         </div>
                     </div>
                     <button type="submit" wire:click.prevent="program_store()"
-                    class="btn btn-primary close-modal">Save</button>
+                    class="btn btn-primary">Save</button>
                 </form>
             </div>
             <div class="modal-footer sr-footer">
                 <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary close-btn"
                     data-dismiss="modal">Close</button>
-                <button type="submit" wire:click.prevent="program_store()"
-                    class="btn btn-primary close-modal">Save</button>
+                <!-- <button type="submit" wire:click.prevent="program_store()"
+                    class="btn btn-primary close-modal">Save</button> -->
             </div>
         </div>
     </div>

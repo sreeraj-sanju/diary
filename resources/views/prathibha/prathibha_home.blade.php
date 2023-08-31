@@ -18,7 +18,7 @@
             <a href="{{route('quiz')}}" class="boton1">
                 Quiz Competition
             </a>
-            <a href="#" class="boton2">
+            <a href="{{route('prathibha_2022')}}" class="boton2">
                 Annual Programmes
             </a>
         </div>

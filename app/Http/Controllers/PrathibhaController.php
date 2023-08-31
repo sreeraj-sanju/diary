@@ -18,29 +18,31 @@ class PrathibhaController extends Controller
 
     public function prathibha_2022()
     {
-        $lp = Anniversary::where('class', 'lp')->get();
-        $v = Anniversary::where('class', 'v')->get();
-        $vi = Anniversary::where('class', 'vi')->get();
-        $vii = Anniversary::where('class', 'vii')->get();
-        $viii = Anniversary::where('class', 'viii')->get();
-        $ix = Anniversary::where('class', 'ix')->get();
-        $x = Anniversary::where('class', 'x')->get();
-        $plusOne = Anniversary::where('class', '+1')->get();
-        $plusTwo = Anniversary::where('class', '+2')->get();
-        $special = Anniversary::where('class', 'special')->get();
+        $year = date('Y');
 
-        $total = Anniversary::count('id');
-        $tot_chain = count(Anniversary::where('program_name', 'chain')->get());
-        $tot_solo = count(Anniversary::where('program_name', 'solo')->get());
-        $tot_group = count(Anniversary::where('program_name', 'group')->get());
-        $tot_folk = count(Anniversary::where('program_name', 'folk')->get());
-        $tot_duet = count(Anniversary::where('program_name', 'duet')->get());
-        $tot_skit = count(Anniversary::where('program_name', 'skit')->get());
-        $tot_drama = count(Anniversary::where('program_name', 'drama')->get());
-        $tot_classical = count(Anniversary::where('program_name', 'classical')->get());
-        $tot_karoke = count(Anniversary::where('program_name', 'karoke')->get());
-        $tot_mime = count(Anniversary::where('program_name', 'mime')->get());
-        $tot_special = count(Anniversary::where('class', 'special')->get());
+        $lp = Anniversary::where('class', 'lp')->where('year', $year)->get();
+        $v = Anniversary::where('class', 'v')->where('year', $year)->get();
+        $vi = Anniversary::where('class', 'vi')->where('year', $year)->get();
+        $vii = Anniversary::where('class', 'vii')->where('year', $year)->get();
+        $viii = Anniversary::where('class', 'viii')->where('year', $year)->get();
+        $ix = Anniversary::where('class', 'ix')->where('year', $year)->get();
+        $x = Anniversary::where('class', 'x')->where('year', $year)->get();
+        $plusOne = Anniversary::where('class', '+1')->where('year', $year)->get();
+        $plusTwo = Anniversary::where('class', '+2')->where('year', $year)->get();
+        $special = Anniversary::where('class', 'special')->where('year', $year)->get();
+
+        $total = Anniversary::where('year', $year)->count('id');
+        $tot_chain = Anniversary::where('program_name', 'chain')->where('year', $year)->count();
+        $tot_solo = Anniversary::where('program_name', 'solo')->where('year', $year)->count();
+        $tot_group = Anniversary::where('program_name', 'group')->where('year', $year)->count();
+        $tot_folk = Anniversary::where('program_name', 'folk')->where('year', $year)->count();
+        $tot_duet = Anniversary::where('program_name', 'duet')->where('year', $year)->count();
+        $tot_skit = Anniversary::where('program_name', 'skit')->where('year', $year)->count();
+        $tot_drama = Anniversary::where('program_name', 'drama')->where('year', $year)->count();
+        $tot_classical = Anniversary::where('program_name', 'classical')->where('year', $year)->count();
+        $tot_karoke = Anniversary::where('program_name', 'karoke')->where('year', $year)->count();
+        $tot_mime = Anniversary::where('program_name', 'mime')->where('year', $year)->count();
+        $tot_special = Anniversary::where('class', 'special')->where('year', $year)->count();
 
         return view('prathibha.prathibha_2022', compact(
             'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
@@ -59,10 +61,10 @@ class PrathibhaController extends Controller
             'song_name' => 'required ',
             'file_name' => 'required',
         ])->validate();
-        $year = 2022;
+        $year = date('Y');
         $class = $request['class'];
         $audio = $request->file("file_name");
-        $destination = "prathibha_annual_22/" . $class;
+        $destination = "prathibha_annual_".$year."/" . $class;
         $audio_name = $audio->getClientOriginalName();
         $audio->move($destination, $audio_name);
 
@@ -74,7 +76,7 @@ class PrathibhaController extends Controller
                 'contastant' => $request['contastant_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
-                'file_name' => $audio_name,
+                'file_name' => $destination."/".$audio_name,
             ]);
             DB::commit();
             return redirect()->route("prathibha_2022")->with(
@@ -129,8 +131,9 @@ class PrathibhaController extends Controller
 
         $class = $request['class'];
         $audio = $request->file("file_name");
+        $year = date('Y');
         if ($audio) {
-            $destination = "prathibha_annual_22/" . $class;
+            $destination = "prathibha_annual_".$year."/" . $class;
             $audio_name = $audio->getClientOriginalName();
             $audio->move($destination, $audio_name);
         }
@@ -146,7 +149,7 @@ class PrathibhaController extends Controller
 
             if ($audio) {
                 Anniversary::where('id', $id)->update([
-                    'file_name' => $audio_name,
+                    'file_name' => $destination."/".$audio_name,
                 ]);
             }
             DB::commit();

@@ -64,7 +64,7 @@
             <li class="has-submenu"><a href="#section2">Events</a>
               <ul class="sub-menu">
                 <li><a href='{{route("quiz")}}'>Quiz Competetion</a></li>
-                <li><a href=''>Anniversary</a></li>
+                <li><a href='{{route("prathibha_2022")}}'>Anniversary</a></li>
               </ul>
             </li>
             <li><a href="{{route('lo')}}">Login</a></li>
