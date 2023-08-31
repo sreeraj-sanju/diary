@@ -38,8 +38,10 @@
                     @php
                         
                         $trades = App\Models\ForexTrade::where('order_id', $value->id)->get();
+                        $profit = 0;
                     @endphp
                     @foreach ($trades as $trade)
+                    @php $profit += $trade->amount @endphp
                         <form action="{{route('tradeUpdate')}}" method="post">
                             @csrf
                             <li>
@@ -66,7 +68,7 @@
                             @csrf
                 <div class="app-card-buttons">
                 <input type="hidden" name="id" value="{{ $value->id }}" />
-                    <button class="content-button status-button">NEXT</button>
+                    <button class="content-button status-button">NEXT</button> PROFIT = {{$profit}}
                 </div>
 </form>
         </div>
