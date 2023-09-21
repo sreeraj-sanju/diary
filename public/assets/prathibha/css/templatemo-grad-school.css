@@ -327,6 +327,31 @@ a.menu-link { display: none; }
   transform: translate(-50%,-50%);
 }
 
+.main-banner .report {
+  text-align: center;
+  position: absolute;
+  width: 95%;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%,-50%);
+  max-height: 80vh;
+  overflow-y: scroll;
+  background-color: #000;
+}
+
+.report-table{
+  background-color: #000;
+  opacity: .7;
+}
+.report-table th{
+  background-color: #18233a;
+  color: aliceblue;
+}
+
+.report-table input{
+  background-color: rgb(204, 209, 211);
+  width: 50px;
+}
 .main-banner .caption h6 {
   margin-top: 0px;
   font-size: 18px;

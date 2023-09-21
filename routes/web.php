@@ -74,6 +74,8 @@ Route::get('/quizList', [prathibhaController::class, 'quiz'])->name('quiz');
 Route::post('/quiz_ins', [prathibhaController::class, 'quiz_ins'])->name('quiz_ins');
 Route::post('/quiz_image', [prathibhaController::class, 'quiz_image'])->name('quiz_image');
 
+Route::get('/report',[PrathibhaController::class, 'report'])->name('report');
+Route::post('/priority',[PrathibhaController::class, 'priority'])->name('priority');
 
 Route::get('/superadmin', function () {
     return view('super_admin.profile_view');
@@ -93,6 +95,6 @@ Route::post('/forexUpdate', [ProfileController::class, 'forexUpdate'])->name('fo
 Route::post('/tradeUpdate', [ProfileController::class, 'tradeUpdate'])->name('tradeUpdate');
 Route::post('/tradeNext', [ProfileController::class, 'tradeNext'])->name('tradeNext');
 
-Route::get('/stocks',[ProfileController::class, 'stocks'])->name('stocks');
+Route::get('/stocksList',[ProfileController::class, 'stocks'])->name('stocksList');
 Route::get('/stockNext',[ProfileController::class, 'stockNext'])->name('stockNext');
 Route::post('/stockUpdate', [ProfileController::class, 'stockUpdate'])->name('stockUpdate');

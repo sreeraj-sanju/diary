@@ -305,4 +305,26 @@ class PrathibhaController extends Controller
             return response()->json($video);
         }
     }
+
+    public function report()
+    {
+        $year = date('Y');
+        $year = 2022;
+        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+
+        return view('prathibha.report', compact(
+            'data'
+        ));
+    }
+
+    public function priority(Request $request)
+    {
+        $id = $request->input('id');
+        $priority = $request->input('priority');
+        Anniversary::where('id', $id)->update([
+            'priority' => $priority,
+        ]);
+        session()->flash('message', 'Updated!');
+        return redirect()->route('report');
+    }
 }

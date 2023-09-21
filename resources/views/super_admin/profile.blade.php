@@ -205,7 +205,7 @@
                         <a class="main-header-link" href="{{route('todoList')}}">ToDo </a>
                         <a class="main-header-link" href="{{route('forex')}}">Forex</a>
 
-                        <a class="main-header-link" href="{{route('stocks')}}">Stocks</a>
+                        <a class="main-header-link" href="{{route('stocksList')}}">Stocks</a>
 
                     </div>
                 </div>
