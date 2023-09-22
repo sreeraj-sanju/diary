@@ -35,6 +35,7 @@
             <a class="btn btn-primary sr-button" href="{{route('prathibha')}}">Home</a>
             <a class="btn btn-primary sr-button" href="{{route('lo')}}">Login</a>
             <a class="btn btn-primary sr-button" href="{{route('report')}}">Report</a>
+            <a class="btn btn-primary sr-button" target="_blank" href="{{route('export')}}">Export</a>
             @if (Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif

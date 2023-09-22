@@ -76,6 +76,8 @@ Route::post('/quiz_image', [prathibhaController::class, 'quiz_image'])->name('qu
 
 Route::get('/report',[PrathibhaController::class, 'report'])->name('report');
 Route::post('/priority',[PrathibhaController::class, 'priority'])->name('priority');
+Route::get('/export',[PrathibhaController::class, 'export'])->name('export');
+
 
 Route::get('/superadmin', function () {
     return view('super_admin.profile_view');
