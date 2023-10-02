@@ -44,7 +44,7 @@ class PrathibhaController extends Controller
         $tot_karoke = Anniversary::where('program_name', 'karoke')->where('year', $year)->count();
         $tot_mime = Anniversary::where('program_name', 'mime')->where('year', $year)->count();
         $tot_special = Anniversary::where('class', 'special')->where('year', $year)->count();
-
+        
         return view('prathibha.prathibha_2022', compact(
             'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
             'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet', 'tot_skit',
@@ -310,7 +310,6 @@ class PrathibhaController extends Controller
     public function report()
     {
         $year = date('Y');
-        $year = 2022;
         $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
 
         return view('prathibha.report', compact(
@@ -332,7 +331,7 @@ class PrathibhaController extends Controller
     public function export()
     {
         $year = date('Y');
-        $year = 2022;
+        
         $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
         view()->share('data', $data);
         $pdf = PDF::loadView('prathibha.export')
