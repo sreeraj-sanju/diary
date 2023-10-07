@@ -147,7 +147,7 @@
                                     <td>{{ $v1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $v1->class . $v1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/v/' . $v1->file_name) }}"
+                                            <source src="{{ asset(v1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$v1->class.$v1->id}}"
@@ -207,7 +207,7 @@
                                     <td>{{ $vi1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $vi1->class . $vi1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/vi/' . $vi1->file_name) }}"
+                                            <source src="{{ asset($vi1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$vi1->class.$vi1->id}}"
@@ -267,7 +267,7 @@
                                     <td>{{ $vii1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $vii1->class . $vii1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/vii/' . $vii1->file_name) }}"
+                                            <source src="{{ asset( $vii1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$vii1->class.$vii1->id}}"
@@ -327,7 +327,7 @@
                                     <td>{{ $viii1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $viii1->class . $viii1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/viii/' . $viii1->file_name) }}"
+                                            <source src="{{ asset($viii1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$viii1->class.$viii1->id}}"
@@ -387,7 +387,7 @@
                                     <td>{{ $ix1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $ix1->class . $ix1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/ix/' . $ix1->file_name) }}"
+                                            <source src="{{ asset( $ix1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$ix1->class.$ix1->id}}"
@@ -446,7 +446,7 @@
                                     <td>{{ $x1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $x1->class . $x1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/x/' . $x1->file_name) }}"
+                                            <source src="{{ asset($x1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$x1->class.$x1->id}}"
@@ -506,14 +506,12 @@
                                     <td>{{ $plusOne1->song_name }}</td>
                                     <td>
                                         <audio id="{{ 'plusOne' . $plusOne1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/+1/' . $plusOne1->file_name) }}"
+                                            <source src="{{ asset($plusOne1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
-                                        {{-- <button class="audio-button" id="playPauseBtn{{'plusOne'.$plusOne1->id}}"
-                                        onclick="playPause('{{'plusOne'.$plusOne1->id}}')">Play
-                                        &#9658;</button> --}}
+                                        
                                         <button class="audio-button"
-                                            onclick="stop('{{ 'plusOne' . $plusOne1->id }}');">Stop &#9611;</button>
+                                            onclick="stop('{{ plusOne . $plusOne1->id }}');">Stop &#9611;</button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary edit_btn"
@@ -566,14 +564,12 @@
                                     <td>{{ $plusTwo1->song_name }}</td>
                                     <td>
                                         <audio id="{{ 'plusTwo' . $plusTwo1->id }}" controls class="audio-style">
-                                            <source src="{{ asset('prathibha_annual_22/+2/' . $plusTwo1->file_name) }}"
+                                            <source src="{{ asset($plusTwo1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
-                                        {{-- <button class="audio-button" id="playPauseBtn{{'plusTwo'.$plusTwo1->id}}"
-                                        onclick="playPause('{{'plusTwo'.$plusTwo1->id}}')">Play
-                                        &#9658;</button> --}}
+                                        
                                         <button class="audio-button"
-                                            onclick="stop('{{ 'plusTwo' . $plusTwo1->id }}');">Stop &#9611;</button>
+                                            onclick="stop('{{ plusTwo . $plusTwo1->id }}');">Stop &#9611;</button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary edit_btn"
