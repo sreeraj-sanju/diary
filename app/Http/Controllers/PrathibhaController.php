@@ -60,7 +60,7 @@ class PrathibhaController extends Controller
             'contastant_name' => 'required',
             'program_name' => 'required',
             'song_name' => 'required ',
-            'file_name' => 'required',
+            // 'file_name' => 'required',
         ])->validate();
         $year = date('Y');
         $class = $request['class'];
