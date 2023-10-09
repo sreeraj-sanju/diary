@@ -73,7 +73,7 @@
                     <thead id="lp" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -132,7 +132,7 @@
                     <thead id="v" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -147,7 +147,7 @@
                                     <td>{{ $v1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $v1->class . $v1->id }}" controls class="audio-style">
-                                            <source src="{{ asset(v1->file_name) }}"
+                                            <source src="{{ asset($v1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$v1->class.$v1->id}}"
@@ -192,7 +192,7 @@
                     <thead id="vi" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -252,7 +252,7 @@
                     <thead id="vii" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -312,7 +312,7 @@
                     <thead id="viii" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -372,7 +372,7 @@
                     <thead id="ix" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -431,7 +431,7 @@
                     <thead id="x" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -491,7 +491,7 @@
                     <thead id="plusOne" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -549,7 +549,7 @@
                     <thead id="plusTwo" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>
@@ -607,7 +607,7 @@
                     <thead id="special" class="collapse thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Contestent Name</th>
+                            <th scope="col">Contestant Name</th>
                             <th scope="col">Program</th>
                             <th scope="col">Song/Music</th>
                             <th scope="col">Operation</th>

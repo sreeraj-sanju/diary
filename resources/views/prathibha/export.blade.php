@@ -21,6 +21,15 @@ td{
     font-weight: 600;
     font-family: 'Times New Roman', Times, serif;
 }
+@font-face {
+            font-family: 'revathy';
+            src: url("{{ asset('fonts/revathy.ttf') }}");
+        }
+
+        /* Apply the Malayalam font to your content */
+        body {
+            font: revathy;
+        }
 </style>
 </head>
 <body>

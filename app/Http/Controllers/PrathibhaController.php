@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use PDF;
+use mpdf;
 
 class PrathibhaController extends Controller
 {
@@ -66,8 +67,12 @@ class PrathibhaController extends Controller
         $class = $request['class'];
         $audio = $request->file("file_name");
         $destination = "prathibha_annual_" . $year . "/" . $class;
-        $audio_name = $audio->getClientOriginalName();
-        $audio->move($destination, $audio_name);
+        if($audio){
+            $audio_name = $audio->getClientOriginalName();
+            $audio->move($destination, $audio_name);
+        }else{
+            $audio_name = 'not_get';
+        }
 
         DB::beginTransaction();
         try {
@@ -331,11 +336,14 @@ class PrathibhaController extends Controller
     public function export()
     {
         $year = date('Y');
-        
-        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+        $font = asset('fonts/revathy.ttf');
+        // dd($font);
+        $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
         view()->share('data', $data);
         $pdf = PDF::loadView('prathibha.export')
             ->setPaper('a4', 'portrait');
+
+        $pdf->getDomPDF()->getOptions()->setDefaultFont($font);
 
         return $pdf->stream('ProgramList');
     }
