@@ -10978,6 +10978,7 @@ h5,
 }
 
 .pr_container{
+    max-width: 96% !important;
     background-color: rgba(25, 75, 50, 0.9) !important;
     padding: 5px;
     border-radius: 5px;
@@ -11012,7 +11013,7 @@ h5,
 .audio-button{
     background-color: #062c33;
     color: rgb(255, 240, 230);
-    margin-top: 0px !important;
+    margin-top: -10px !important;
 }
 .audio-style{
     max-width: 250px; 

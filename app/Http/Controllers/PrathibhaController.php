@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class PrathibhaController extends Controller
 {
@@ -43,7 +44,7 @@ class PrathibhaController extends Controller
         $tot_karoke = Anniversary::where('program_name', 'karoke')->where('year', $year)->count();
         $tot_mime = Anniversary::where('program_name', 'mime')->where('year', $year)->count();
         $tot_special = Anniversary::where('class', 'special')->where('year', $year)->count();
-
+        
         return view('prathibha.prathibha_2022', compact(
             'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
             'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet', 'tot_skit',
@@ -59,12 +60,12 @@ class PrathibhaController extends Controller
             'contastant_name' => 'required',
             'program_name' => 'required',
             'song_name' => 'required ',
-            'file_name' => 'required',
+            // 'file_name' => 'required',
         ])->validate();
         $year = date('Y');
         $class = $request['class'];
         $audio = $request->file("file_name");
-        $destination = "prathibha_annual_".$year."/" . $class;
+        $destination = "prathibha_annual_" . $year . "/" . $class;
         $audio_name = $audio->getClientOriginalName();
         $audio->move($destination, $audio_name);
 
@@ -76,7 +77,7 @@ class PrathibhaController extends Controller
                 'contastant' => $request['contastant_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
-                'file_name' => $destination."/".$audio_name,
+                'file_name' => $destination . "/" . $audio_name,
             ]);
             DB::commit();
             return redirect()->route("prathibha_2022")->with(
@@ -133,7 +134,7 @@ class PrathibhaController extends Controller
         $audio = $request->file("file_name");
         $year = date('Y');
         if ($audio) {
-            $destination = "prathibha_annual_".$year."/" . $class;
+            $destination = "prathibha_annual_" . $year . "/" . $class;
             $audio_name = $audio->getClientOriginalName();
             $audio->move($destination, $audio_name);
         }
@@ -149,7 +150,7 @@ class PrathibhaController extends Controller
 
             if ($audio) {
                 Anniversary::where('id', $id)->update([
-                    'file_name' => $destination."/".$audio_name,
+                    'file_name' => $destination . "/" . $audio_name,
                 ]);
             }
             DB::commit();
@@ -309,7 +310,6 @@ class PrathibhaController extends Controller
     public function report()
     {
         $year = date('Y');
-        $year = 2022;
         $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
 
         return view('prathibha.report', compact(
@@ -326,5 +326,17 @@ class PrathibhaController extends Controller
         ]);
         session()->flash('message', 'Updated!');
         return redirect()->route('report');
+    }
+
+    public function export()
+    {
+        $year = date('Y');
+        
+        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+        view()->share('data', $data);
+        $pdf = PDF::loadView('prathibha.export')
+            ->setPaper('a4', 'portrait');
+
+        return $pdf->stream('ProgramList');
     }
 }
