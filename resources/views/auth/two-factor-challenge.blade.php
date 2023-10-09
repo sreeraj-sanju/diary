@@ -1,7 +1,12 @@
+<?php
+use App\Models\Settings;
+$logo = Settings::select('logo')->first();
+?>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <img src="data:image/png;base64,{{ chunk_split(base64_encode($logo->logo)) }}" class="block h-20 w-auto"
+            alt="main_logo">
         </x-slot>
 
         <div x-data="{ recovery: false }">

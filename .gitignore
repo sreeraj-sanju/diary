@@ -4,6 +4,7 @@
 /public/prathibha
 /public/prathibha_quiz_22
 /public/prathibha_annual_22
+/public/2023
 /storage/*.key
 /vendor
 .env
@@ -17,3 +18,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/public/prathibha_annual_2023
+/public/prathibha_annual_2024
+/public/prathibha_annual_2025
+/public/prathibha_annual_2026
+/public/prathibha_annual_2027

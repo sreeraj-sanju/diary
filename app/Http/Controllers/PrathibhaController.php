@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anniversary;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -12,34 +13,36 @@ class PrathibhaController extends Controller
 {
     public function prathibha()
     {
-        return view('prathibha.prathibha');
+        return view('prathibha.prathibha_home');
     }
 
     public function prathibha_2022()
     {
-        $lp = Anniversary::where('class', 'lp')->get();
-        $v = Anniversary::where('class', 'v')->get();
-        $vi = Anniversary::where('class', 'vi')->get();
-        $vii = Anniversary::where('class', 'vii')->get();
-        $viii = Anniversary::where('class', 'viii')->get();
-        $ix = Anniversary::where('class', 'ix')->get();
-        $x = Anniversary::where('class', 'x')->get();
-        $plusOne = Anniversary::where('class', '+1')->get();
-        $plusTwo = Anniversary::where('class', '+2')->get();
-        $special = Anniversary::where('class', 'special')->get();
+        $year = date('Y');
 
-        $total = Anniversary::count('id');
-        $tot_chain = count(Anniversary::where('program_name', 'chain')->get());
-        $tot_solo = count(Anniversary::where('program_name', 'solo')->get());
-        $tot_group = count(Anniversary::where('program_name', 'group')->get());
-        $tot_folk = count(Anniversary::where('program_name', 'folk')->get());
-        $tot_duet = count(Anniversary::where('program_name', 'duet')->get());
-        $tot_skit = count(Anniversary::where('program_name', 'skit')->get());
-        $tot_drama = count(Anniversary::where('program_name', 'drama')->get());
-        $tot_classical = count(Anniversary::where('program_name', 'classical')->get());
-        $tot_karoke = count(Anniversary::where('program_name', 'karoke')->get());
-        $tot_mime = count(Anniversary::where('program_name', 'mime')->get());
-        $tot_special = count(Anniversary::where('class', 'special')->get());
+        $lp = Anniversary::where('class', 'lp')->where('year', $year)->get();
+        $v = Anniversary::where('class', 'v')->where('year', $year)->get();
+        $vi = Anniversary::where('class', 'vi')->where('year', $year)->get();
+        $vii = Anniversary::where('class', 'vii')->where('year', $year)->get();
+        $viii = Anniversary::where('class', 'viii')->where('year', $year)->get();
+        $ix = Anniversary::where('class', 'ix')->where('year', $year)->get();
+        $x = Anniversary::where('class', 'x')->where('year', $year)->get();
+        $plusOne = Anniversary::where('class', '+1')->where('year', $year)->get();
+        $plusTwo = Anniversary::where('class', '+2')->where('year', $year)->get();
+        $special = Anniversary::where('class', 'special')->where('year', $year)->get();
+
+        $total = Anniversary::where('year', $year)->count('id');
+        $tot_chain = Anniversary::where('program_name', 'chain')->where('year', $year)->count();
+        $tot_solo = Anniversary::where('program_name', 'solo')->where('year', $year)->count();
+        $tot_group = Anniversary::where('program_name', 'group')->where('year', $year)->count();
+        $tot_folk = Anniversary::where('program_name', 'folk')->where('year', $year)->count();
+        $tot_duet = Anniversary::where('program_name', 'duet')->where('year', $year)->count();
+        $tot_skit = Anniversary::where('program_name', 'skit')->where('year', $year)->count();
+        $tot_drama = Anniversary::where('program_name', 'drama')->where('year', $year)->count();
+        $tot_classical = Anniversary::where('program_name', 'classical')->where('year', $year)->count();
+        $tot_karoke = Anniversary::where('program_name', 'karoke')->where('year', $year)->count();
+        $tot_mime = Anniversary::where('program_name', 'mime')->where('year', $year)->count();
+        $tot_special = Anniversary::where('class', 'special')->where('year', $year)->count();
 
         return view('prathibha.prathibha_2022', compact(
             'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
@@ -58,10 +61,10 @@ class PrathibhaController extends Controller
             'song_name' => 'required ',
             'file_name' => 'required',
         ])->validate();
-        $year = 2022;
+        $year = date('Y');
         $class = $request['class'];
         $audio = $request->file("file_name");
-        $destination = "prathibha_annual_22/" . $class;
+        $destination = "prathibha_annual_".$year."/" . $class;
         $audio_name = $audio->getClientOriginalName();
         $audio->move($destination, $audio_name);
 
@@ -73,14 +76,14 @@ class PrathibhaController extends Controller
                 'contastant' => $request['contastant_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
-                'file_name' => $audio_name,
+                'file_name' => $destination."/".$audio_name,
             ]);
             DB::commit();
             return redirect()->route("prathibha_2022")->with(
                 Session::flash("message", " Program Added Successfully"),
                 Session::flash("alert-class", "alert-success"),
             );
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return back()->with(
                 Session::flash("message", $e->getMessage()),
@@ -128,8 +131,9 @@ class PrathibhaController extends Controller
 
         $class = $request['class'];
         $audio = $request->file("file_name");
+        $year = date('Y');
         if ($audio) {
-            $destination = "prathibha_annual_22/" . $class;
+            $destination = "prathibha_annual_".$year."/" . $class;
             $audio_name = $audio->getClientOriginalName();
             $audio->move($destination, $audio_name);
         }
@@ -145,7 +149,7 @@ class PrathibhaController extends Controller
 
             if ($audio) {
                 Anniversary::where('id', $id)->update([
-                    'file_name' => $audio_name,
+                    'file_name' => $destination."/".$audio_name,
                 ]);
             }
             DB::commit();
@@ -153,7 +157,7 @@ class PrathibhaController extends Controller
                 Session::flash("message", " Program Updated Successfully"),
                 Session::flash("alert-class", "alert-success"),
             );
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return back()->with(
                 Session::flash("message", $e->getMessage()),
@@ -171,11 +175,156 @@ class PrathibhaController extends Controller
             return response()->json([
                 'status' => 200,
             ]);
-        } catch (\Exception$e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return response()->json([
                 'status' => 400,
             ]);
         }
+    }
+
+    public function quiz_ins(Request $request)
+    {
+        $request->validate([
+            'std' => 'required|string|max:255',
+            'item' => 'required',
+            'file' => 'required', // Adjust the image validation rules as needed
+        ]);
+
+        $year = date('Y');
+        $file = $request->file('file');
+        $destination = $year . "/quiz/" . $request->input('std');
+        // dd($file->getClientOriginalExtension());
+        $file_name = time() . '.' . $file->getClientOriginalExtension();
+        $file->move($destination, $file_name);
+
+        // Create a new user or store the data in your database (assuming you have a `User` model)
+        $item = $request->input('item');
+        $std = $request->input('std');
+
+        $data = [
+            'std' => $std,
+            'year' => $year,
+        ];
+
+        if ($item == 'image') {
+            $data['imageName'] = $destination . '/' . $file_name;
+        } elseif ($item == 'audio') {
+            $data['audioName'] = $destination . '/' . $file_name;
+        } elseif ($item == 'video') {
+            $data['videoName'] = $destination . '/' . $file_name;
+        }
+
+        // Check if the record with the same 'std' and 'year' values exists,
+        // and either update it or insert a new record
+        $quiz = Quiz::updateOrInsert(
+            ['std' => $std, 'year' => $year],
+            $data
+        );
+
+        if ($quiz) {
+            session()->flash('message', 'Item was successfully created!');
+            return redirect()->route('quiz');
+        }
+    }
+
+    public function quiz()
+    {
+        $year = date('Y');
+        $quizes = Quiz::where('year', $year)->get();
+        return view('prathibha.quiz', ['quizes' => $quizes]);
+
+        $data = [];
+        $std = 'null';
+        $item = 'null';
+        $index = -1;
+
+        foreach ($quizes as $key => $value) {
+            // Check if $std is different from the current $value->std
+            if ($std != $value->std) {
+                $data[$key]['std'] = $value->std;
+                $data[$key]['year'] = $value->year;
+                $data[$key]['item'] = $value->item;
+                $data[$key]['imageUrl'] = ''; // Initialize imageUrl as an empty string
+                $data[$key]['audioUrl'] = ''; // Initialize audioUrl as an empty string
+                $data[$key]['videoUrl'] = ''; // Initialize videoUrl as an empty string
+                $index++;
+            }
+
+            // Check if $item is different from the current $value->item
+            if ($item != $value->item) {
+                // Update the corresponding URL based on the current $value->item
+                if ($value->item == 'image') {
+                    $data[$index]['imageUrl'] = $value->fileName;
+                } elseif ($value->item == 'audio') {
+                    $data[$index]['audioUrl'] = $value->fileName;
+                } elseif ($value->item == 'video') {
+                    $data[$index]['videoUrl'] = $value->fileName;
+                }
+            }
+
+            $std = $value->std; // Update $std to the current $value->std
+            $item = $value->item; // Update $item to the current $value->item
+        }
+
+        $merged = [];
+        $index = 0;
+        foreach ($data as $item) {
+            $std = $item['std'] ?? '';
+            if (!empty($std)) {
+                if (!isset($merged[$std])) {
+                    $merged[$index] = $item;
+                } else {
+                    $merged[$index] = array_merge($merged[$std], $item);
+                }
+            }
+            $index++;
+        }
+
+        // dd($merged);
+        $quizes = $merged;
+        return response()->json($quizes);
+    }
+
+    public function quiz_image(Request $request)
+    {
+        $id = $request->input('id');
+        $item = $request->input('item');
+        $year = date('Y');
+        $quiz = Quiz::where('year', $year)
+            ->where('id', $id)
+            ->first();
+        if ($item == 'image') {
+            $image = asset($quiz['imageName']);
+            return response()->json($image);
+        } else if ($item == 'audio') {
+            $audio = asset($quiz['audioName']);
+            return response()->json($audio);
+        } elseif ($item == 'video') {
+            $video = asset($quiz['videoName']);
+            return response()->json($video);
+        }
+    }
+
+    public function report()
+    {
+        $year = date('Y');
+        $year = 2022;
+        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+
+        return view('prathibha.report', compact(
+            'data'
+        ));
+    }
+
+    public function priority(Request $request)
+    {
+        $id = $request->input('id');
+        $priority = $request->input('priority');
+        Anniversary::where('id', $id)->update([
+            'priority' => $priority,
+        ]);
+        session()->flash('message', 'Updated!');
+        return redirect()->route('report');
     }
 }

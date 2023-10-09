@@ -1,0 +1,442 @@
+.btn-srprimary {
+  color: #fff;
+  background-color: #157dd1;
+  border-color: #1d9bd6;
+}
+.btn-srprimary:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.btn-srprimary.focus,
+.btn-srprimary:focus {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+.btn-srprimary.disabled,
+.btn-srprimary:disabled {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-srprimary:not(:disabled):not(.disabled).active,
+.btn-srprimary:not(:disabled):not(.disabled):active,
+.show > .btn-srprimary.dropdown-toggle {
+  color: #fff;
+  background-color: #1e7e34;
+  border-color: #1c7430;
+}
+.btn-srprimary:not(:disabled):not(.disabled).active:focus,
+.btn-srprimary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-srprimary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+
+.child-section {
+  margin-top: 6.5rem;
+  margin-left: 5.5rem;
+  margin-right: 5.5rem;
+  background-color: rgba(205, 205, 218, 0.7);
+  border-radius: 10px;
+  height: 80vh;
+}
+
+.first-h6 {
+    background-color: #2a73b3;
+    clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 0% 100%);
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    width:6.2rem;
+    height: 2.5em;
+    padding-left: 5px;
+    padding-top: .6em;
+}
+.second-h6 {
+    background-color: #6eb7f7;
+    display: inline-block;
+    width: 9.5rem;
+    height:2.5em;
+    text-align: end;
+    padding-right: 5px;
+    margin-left: -2.5rem;
+    padding-top: .6em;
+}
+
+.first-btn {
+  background-color: #2a73b3;
+  clip-path: polygon(0% 0%, 65% 0%, 100% 100%, 0% 100%);
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  width:9rem;
+  height: 2.5em;
+  padding-left: 5px;
+  padding-top: .6em;
+  text-align: start;
+}
+.second-btn {
+  background-color: #6eb7f7;
+  display: inline-block;
+  width: 8.5rem;
+  height:2.5em;
+  text-align: end;
+  padding-right: 5px;
+  margin-left: -3.5rem;
+  padding-top: .6em;
+}
+.sr-btn{
+    color: aliceblue;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: .5rem;
+}
+.sr-btn:hover{
+  color: aliceblue;
+  box-shadow: 5px 5px 5px 5px rgba(156, 156, 115, .3);
+}
+.heading6{
+    color: aliceblue;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    position: relative;
+    padding-top: .5rem;
+}
+
+.table-head{
+    text-align: center;
+    font-weight: 900;
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+}
+.table-body{
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+}
+.table-head > tr > th{
+    color: #072a72 !important;
+    background-color: #b7b7b9;
+}
+
+.table-body > tr > td{
+    color: #07276b !important;
+    background-color: #c4c4ce;
+}
+
+.sr-logo, .sr-logo-icon{
+    width: 26em;
+    height: 5em !important;
+    border: 2px solid rgba(156, 156, 115, .5);
+    border-radius: 10px;
+    margin-top: .5em;
+    /* box-shadow: 5px 5px 5px 5px rgba(153, 152, 153, 0.1); */
+}
+.sr-logo-icon{
+  width: 6em !important;
+  margin-left: 10em;
+}
+.sr-header, .sr-footer{
+  color: aliceblue;
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+  text-transform: capitalize;
+  background-color: rgba(16, 14, 30, .8);
+  font-size: 18px ;
+}
+
+.sr-modal-body{
+  background-color: rgb(90, 89, 89);
+  color: #fefeff;
+}
+
+:root {
+  --animate-duration: 2s;
+  --animate-delay: 0.9s;
+}
+
+/* Custom CSS to make the modal full-screen */
+.modal-fullscreen .modal-dialog {
+  max-width: 100%;
+  margin: 0;
+}
+
+.modal-fullscreen .modal-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.modal-fullscreen .modal-header {
+  border-bottom: none; /* Optionally, you can remove the header border */
+}
+
+.modal-fullscreen .modal-body {
+  padding: 0; /* Optionally, you can remove padding from the modal body */
+}
+
+.modal-fullscreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Preserve image aspect ratio within the modal */
+}
+
+.boton1 {
+  width: 36%;
+  height: 50px;
+  margin: 100px auto;
+  display: block;
+  position: relative;
+}
+
+.boton1text {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.twist {
+  display: block;
+  height: 100%;
+  width: 25%;
+  position: relative;
+  float: left;
+  margin-left: -4px;
+}
+
+.twist:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #fed5a9;
+  bottom: 100%;
+  position: absolute;
+  transform-origin: center bottom 0px; 
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, -0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+  
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+  transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.twist:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  height: 100%;
+  background: #9f7f5e;
+  transform-origin: center top 0px;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, -0.003, 
+                      0, -50, 0, 1);
+  
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+  transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton1:hover .twist:before {
+  background: #fff;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, 0.003, 
+                      0, 50, 0, 1);
+}
+
+.boton1:hover .twist:after {
+  background: #dedae1;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, 0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+}
+
+.boton1 .twist:nth-of-type(1) {
+  margin-left: 0;
+}
+
+.boton1 .twist:nth-of-type(1):before,
+.boton1 .twist:nth-of-type(1):after {
+  transition-delay: 0s;
+}
+
+.boton1 .twist:nth-of-type(2):before,
+.boton1 .twist:nth-of-type(2):after {
+  transition-delay: 0.1s;
+}
+
+.boton1 .twist:nth-of-type(3):before,
+.boton1 .twist:nth-of-type(3):after {
+  transition-delay: 0.2s;
+}
+
+.boton1 .twist:nth-of-type(4):before,
+.boton1 .twist:nth-of-type(4):after {
+  transition-delay: 0.3s;
+}
+
+.boton1 .boton1text:nth-of-type(1) {
+  color: #3d3b40;
+  bottom: 100%;
+  transform-origin: center bottom 0px; 
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, -0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+  
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+  transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton1:hover .boton1text:nth-of-type(1) {
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, 0.003, 
+                      0, 50, 0, 1);
+}
+
+.boton1 .boton1text:nth-of-type(2) {
+  color: #fff;
+  top: 100%;
+  transform-origin: center top 0px;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, -0.003, 
+                      0, -50, 0, 1);
+  
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+  transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton1:hover .boton1text:nth-of-type(2) {
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, 0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+}
+
+
+.boton2 {
+  width: 36%;
+  height: 50px;
+  margin: 100px auto;
+  display: block;
+  position: relative;
+}
+
+.boton2text {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  text-align: right;
+  line-height: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.boton2:hover .twist:before {
+  background: #fff;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, 0.003, 
+                      0, 50, 0, 1);
+}
+
+.boton2:hover .twist:after {
+  background: #dedae1;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, 0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+}
+
+.boton2 .twist:nth-of-type(1) {
+  margin-left: 0;
+}
+
+.boton2 .twist:nth-of-type(1):before,
+.boton2 .twist:nth-of-type(1):after {
+  transition-delay: 0s;
+}
+
+.boton2 .twist:nth-of-type(2):before,
+.boton2 .twist:nth-of-type(2):after {
+  transition-delay: 0.1s;
+}
+
+.boton2 .twist:nth-of-type(3):before,
+.boton2 .twist:nth-of-type(3):after {
+  transition-delay: 0.2s;
+}
+
+.boton2 .twist:nth-of-type(4):before,
+.boton2 .twist:nth-of-type(4):after {
+  transition-delay: 0.3s;
+}
+
+.boton2 .boton2text:nth-of-type(1) {
+  color: #3d3b40;
+  bottom: 100%;
+  transform-origin: center bottom 0px; 
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, -0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+  
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+  transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton2:hover .boton2text:nth-of-type(1) {
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, 0.003, 
+                      0, 50, 0, 1);
+}
+
+.boton2 .boton2text:nth-of-type(2) {
+  color: #fff;
+  top: 100%;
+  transform-origin: center top 0px;
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 1, 0, 0, 
+                      0, 0, 1, -0.003, 
+                      0, -50, 0, 1);
+  
+-webkit-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-moz-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+-o-transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); 
+  transition: all 500ms cubic-bezier(0.970, 0.000, 0.395, 0.995); /* custom */
+}
+
+.boton2:hover .boton2text:nth-of-type(2) {
+  transform: matrix3d(1, 0, 0, 0, 
+                      0, 0, -1, 0.003, 
+                      0, 1, 0, 0, 
+                      0, 0, 0, 1);
+}

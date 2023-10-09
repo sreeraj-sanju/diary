@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="{{ asset('/new_assets/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/dev.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/sweetalert2.min.css') }}">
-    <link  href="{{ asset('/new_assets/font-awesome.css') }}" rel="stylesheet" >
+    <link href="{{ asset('/new_assets/font-awesome.css') }}" rel="stylesheet">
     {{-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> --}}
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <style>
         .form-color {
             background-color: rgba(50, 50, 50, .5);
@@ -32,6 +32,9 @@
     <section class="ftco-section_pr">
         <div>
             @include('livewire.prathibha.programmes')
+            <a class="btn btn-primary sr-button" href="{{route('prathibha')}}">Home</a>
+            <a class="btn btn-primary sr-button" href="{{route('lo')}}">Login</a>
+            <a class="btn btn-primary sr-button" href="{{route('report')}}">Report</a>
             @if (Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
@@ -58,7 +61,7 @@
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#lp"
                                 aria-expanded="false" onclick="toggleBtn('#lpIcon');" aria-controls="collapseExample">
-                                <i id = "lpIcon" class=" icon-plus-sign"></i> LP
+                                <i id="lpIcon" class=" icon-plus-sign"></i> LP
                             </button>
                         </td>
                         <td colspan="5">
@@ -75,31 +78,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($lp as $lp1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $lp1->contastant }}</td>
-                                <td>{{ $lp1->program_name }}</td>
-                                <td>{{ $lp1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$lp1->class.$lp1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/lp/' . $lp1->file_name) }}"
-                                            type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$lp1->class.$lp1->id}}"
+                        @if (count($lp) > 0)
+                            @foreach ($lp as $lp1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $lp1->contastant }}</td>
+                                    <td>{{ $lp1->program_name }}</td>
+                                    <td>{{ $lp1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $lp1->class . $lp1->id }}" controls class="audio-style">
+                                            <source src="{{ asset($lp1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$lp1->class.$lp1->id}}"
                                         onclick="playPause('{{$lp1->class.$lp1->id}}')" >Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$lp1->class.$lp1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $lp1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $lp1->id) }}">Delete</button>
+                                        <button class="audio-button" onclick="stop('{{ $lp1->class . $lp1->id }}');">Stop
+                                            &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $lp1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $lp1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF LP --}}
@@ -109,7 +120,7 @@
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#v"
                                 aria-expanded="false" onclick="toggleBtn('#vIcon');" aria-controls="collapseExample">
-                                <i id = "vIcon" class=" icon-plus-sign"></i> V
+                                <i id="vIcon" class=" icon-plus-sign"></i> V
                             </button>
                         </td>
                         <td colspan="5">
@@ -126,30 +137,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($v as $v1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $v1->contastant }}</td>
-                                <td>{{ $v1->program_name }}</td>
-                                <td>{{ $v1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$v1->class.$v1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/v/'.$v1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$v1->class.$v1->id}}"
+                        @if (count($v) > 0)
+                            @foreach ($v as $v1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $v1->contastant }}</td>
+                                    <td>{{ $v1->program_name }}</td>
+                                    <td>{{ $v1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $v1->class . $v1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/v/' . $v1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$v1->class.$v1->id}}"
                                         onclick="playPause('{{$v1->class.$v1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$v1->class.$v1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $v1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $v1->id) }}">Delete</button>
+                                        <button class="audio-button" onclick="stop('{{ $v1->class . $v1->id }}');">Stop
+                                            &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $v1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $v1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF v --}}
@@ -158,8 +178,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#vi"
-                                aria-expanded="false" aonclick="toggleBtn('#viIcon');" aria-controls="collapseExample">
-                                <i id = "viIcon" class=" icon-plus-sign"></i> VI
+                                aria-expanded="false" aonclick="toggleBtn('#viIcon');"
+                                aria-controls="collapseExample">
+                                <i id="viIcon" class=" icon-plus-sign"></i> VI
                             </button>
                         </td>
                         <td colspan="5">
@@ -176,30 +197,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($vi as $vi1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $vi1->contastant }}</td>
-                                <td>{{ $vi1->program_name }}</td>
-                                <td>{{ $vi1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$vi1->class.$vi1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/vi/'.$vi1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$vi1->class.$vi1->id}}"
+                        @if (count($vi) > 0)
+                            @foreach ($vi as $vi1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $vi1->contastant }}</td>
+                                    <td>{{ $vi1->program_name }}</td>
+                                    <td>{{ $vi1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $vi1->class . $vi1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/vi/' . $vi1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$vi1->class.$vi1->id}}"
                                         onclick="playPause('{{$vi1->class.$vi1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$vi1->class.$vi1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $vi1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $vi1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $vi1->class . $vi1->id }}');">Stop &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $vi1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $vi1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF VI --}}
@@ -208,8 +238,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#vii"
-                                aria-expanded="false" onclick="toggleBtn('#viiIcon');" aria-controls="collapseExample">
-                                <i id = "viiIcon" class=" icon-plus-sign"></i> vii
+                                aria-expanded="false" onclick="toggleBtn('#viiIcon');"
+                                aria-controls="collapseExample">
+                                <i id="viiIcon" class=" icon-plus-sign"></i> vii
                             </button>
                         </td>
                         <td colspan="5">
@@ -226,30 +257,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($vii as $vii1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $vii1->contastant }}</td>
-                                <td>{{ $vii1->program_name }}</td>
-                                <td>{{ $vii1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$vii1->class.$vii1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/vii/'.$vii1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$vii1->class.$vii1->id}}"
+                        @if (count($vii) > 0)
+                            @foreach ($vii as $vii1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $vii1->contastant }}</td>
+                                    <td>{{ $vii1->program_name }}</td>
+                                    <td>{{ $vii1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $vii1->class . $vii1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/vii/' . $vii1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$vii1->class.$vii1->id}}"
                                         onclick="playPause('{{$vii1->class.$vii1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$vii1->class.$vii1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $vii1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $vii1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $vii1->class . $vii1->id }}');">Stop &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $vii1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $vii1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF vii --}}
@@ -258,8 +298,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#viii" aria-expanded="false" onclick="toggleBtn('#viiiIcon');" aria-controls="collapseExample">
-                                <i id = "viiiIcon" class=" icon-plus-sign"></i> viii
+                                data-target="#viii" aria-expanded="false" onclick="toggleBtn('#viiiIcon');"
+                                aria-controls="collapseExample">
+                                <i id="viiiIcon" class=" icon-plus-sign"></i> viii
                             </button>
                         </td>
                         <td colspan="5">
@@ -276,30 +317,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($viii as $viii1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $viii1->contastant }}</td>
-                                <td>{{ $viii1->program_name }}</td>
-                                <td>{{ $viii1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$viii1->class.$viii1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/viii/'.$viii1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$viii1->class.$viii1->id}}"
+                        @if (count($viii) > 0)
+                            @foreach ($viii as $viii1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $viii1->contastant }}</td>
+                                    <td>{{ $viii1->program_name }}</td>
+                                    <td>{{ $viii1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $viii1->class . $viii1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/viii/' . $viii1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$viii1->class.$viii1->id}}"
                                         onclick="playPause('{{$viii1->class.$viii1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$viii1->class.$viii1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $viii1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $viii1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $viii1->class . $viii1->id }}');">Stop &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $viii1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $viii1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF viii --}}
@@ -308,8 +358,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#ix"
-                                aria-expanded="false" onclick="toggleBtn('#ixIcon');" aria-controls="collapseExample">
-                                <i id = "ixIcon" class=" icon-plus-sign"></i> ix
+                                aria-expanded="false" onclick="toggleBtn('#ixIcon');"
+                                aria-controls="collapseExample">
+                                <i id="ixIcon" class=" icon-plus-sign"></i> ix
                             </button>
                         </td>
                         <td colspan="5">
@@ -326,30 +377,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($ix as $ix1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $ix1->contastant }}</td>
-                                <td>{{ $ix1->program_name }}</td>
-                                <td>{{ $ix1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$ix1->class.$ix1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/ix/'.$ix1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$ix1->class.$ix1->id}}"
+                        @if (count($ix) > 0)
+                            @foreach ($ix as $ix1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $ix1->contastant }}</td>
+                                    <td>{{ $ix1->program_name }}</td>
+                                    <td>{{ $ix1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $ix1->class . $ix1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/ix/' . $ix1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$ix1->class.$ix1->id}}"
                                         onclick="playPause('{{$ix1->class.$ix1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$ix1->class.$ix1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $ix1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $ix1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $ix1->class . $ix1->id }}');">Stop &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $ix1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $ix1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF ix --}}
@@ -359,7 +419,7 @@
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#x"
                                 aria-expanded="false" onclick="toggleBtn('#xIcon');" aria-controls="collapseExample">
-                                <i id = "xIcon" class=" icon-plus-sign"></i> x
+                                <i id="xIcon" class=" icon-plus-sign"></i> x
                             </button>
                         </td>
                         <td colspan="5">
@@ -376,30 +436,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($x as $x1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $x1->contastant }}</td>
-                                <td>{{ $x1->program_name }}</td>
-                                <td>{{ $x1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$x1->class.$x1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/x/'.$x1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$x1->class.$x1->id}}"
+                        @if (count($x) > 0)
+                            @foreach ($x as $x1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $x1->contastant }}</td>
+                                    <td>{{ $x1->program_name }}</td>
+                                    <td>{{ $x1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $x1->class . $x1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/x/' . $x1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$x1->class.$x1->id}}"
                                         onclick="playPause('{{$x1->class.$x1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$x1->class.$x1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $x1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $x1->id) }}">Delete</button>
+                                        <button class="audio-button" onclick="stop('{{ $x1->class . $x1->id }}');">Stop
+                                            &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $x1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $x1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF x --}}
@@ -408,8 +477,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#plusOne" aria-expanded="false" onclick="toggleBtn('#oneIcon');" aria-controls="collapseExample">
-                                <i id = "oneIcon" class=" icon-plus-sign"></i> plusOne
+                                data-target="#plusOne" aria-expanded="false" onclick="toggleBtn('#oneIcon');"
+                                aria-controls="collapseExample">
+                                <i id="oneIcon" class=" icon-plus-sign"></i> plusOne
                             </button>
                         </td>
                         <td colspan="5">
@@ -426,30 +496,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($plusOne as $plusOne1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $plusOne1->contastant }}</td>
-                                <td>{{ $plusOne1->program_name }}</td>
-                                <td>{{ $plusOne1->song_name }}</td>
-                                <td>
-                                    <audio id="{{'plusOne'.$plusOne1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/+1/'.$plusOne1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{'plusOne'.$plusOne1->id}}"
+                        @if (count($plusOne) > 0)
+                            @foreach ($plusOne as $plusOne1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $plusOne1->contastant }}</td>
+                                    <td>{{ $plusOne1->program_name }}</td>
+                                    <td>{{ $plusOne1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ 'plusOne' . $plusOne1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/+1/' . $plusOne1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{'plusOne'.$plusOne1->id}}"
                                         onclick="playPause('{{'plusOne'.$plusOne1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{'plusOne'.$plusOne1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $plusOne1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $plusOne1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ 'plusOne' . $plusOne1->id }}');">Stop &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $plusOne1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $plusOne1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF plusOne --}}
@@ -458,8 +537,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#plusTwo" aria-expanded="false" onclick="toggleBtn('#twoIcon');" aria-controls="collapseExample">
-                                <i id = "twoIcon" class=" icon-plus-sign"></i> plusTwo
+                                data-target="#plusTwo" aria-expanded="false" onclick="toggleBtn('#twoIcon');"
+                                aria-controls="collapseExample">
+                                <i id="twoIcon" class=" icon-plus-sign"></i> plusTwo
                             </button>
                         </td>
                         <td colspan="5">
@@ -476,30 +556,39 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($plusTwo as $plusTwo1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $plusTwo1->contastant }}</td>
-                                <td>{{ $plusTwo1->program_name }}</td>
-                                <td>{{ $plusTwo1->song_name }}</td>
-                                <td>
-                                    <audio id="{{'plusTwo'.$plusTwo1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/+2/'.$plusTwo1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{'plusTwo'.$plusTwo1->id}}"
+                        @if (count($plusTwo) > 0)
+                            @foreach ($plusTwo as $plusTwo1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $plusTwo1->contastant }}</td>
+                                    <td>{{ $plusTwo1->program_name }}</td>
+                                    <td>{{ $plusTwo1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ 'plusTwo' . $plusTwo1->id }}" controls class="audio-style">
+                                            <source src="{{ asset('prathibha_annual_22/+2/' . $plusTwo1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{'plusTwo'.$plusTwo1->id}}"
                                         onclick="playPause('{{'plusTwo'.$plusTwo1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{'plusTwo'.$plusTwo1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $plusTwo1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $plusTwo1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ 'plusTwo' . $plusTwo1->id }}');">Stop &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $plusTwo1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $plusTwo1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF plusTwo --}}
@@ -508,8 +597,9 @@
                     <tr>
                         <td scope="row">
                             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                data-target="#special" aria-expanded="false" onclick="toggleBtn('#specialIcon');" aria-controls="collapseExample">
-                                <i id = "specialIcon" class=" icon-plus-sign"></i> special
+                                data-target="#special" aria-expanded="false" onclick="toggleBtn('#specialIcon');"
+                                aria-controls="collapseExample">
+                                <i id="specialIcon" class=" icon-plus-sign"></i> special
                             </button>
                         </td>
                         <td colspan="5">
@@ -526,30 +616,42 @@
                             <th scope="col">Operation</th>
                             <th>Action</th>
                         </tr>
-
-                        @foreach ($special as $special1)
-                            <tr class="content-row">
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $special1->contastant }}</td>
-                                <td>{{ $special1->program_name }}</td>
-                                <td>{{ $special1->song_name }}</td>
-                                <td>
-                                    <audio id="{{$special1->class.$special1->id}}" controls class="audio-style">
-                                        <source src="{{ asset('prathibha_annual_22/special/'.$special1->file_name) }}" type="audio/mpeg">
-                                    </audio>
-                                    {{-- <button class="audio-button" id="playPauseBtn{{$special1->class.$special1->id}}"
+                        @if (count($special) > 0)
+                            @foreach ($special as $special1)
+                                <tr class="content-row">
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $special1->contastant }}</td>
+                                    <td>{{ $special1->program_name }}</td>
+                                    <td>{{ $special1->song_name }}</td>
+                                    <td>
+                                        <audio id="{{ $special1->class . $special1->id }}" controls
+                                            class="audio-style">
+                                            <source
+                                                src="{{ asset('prathibha_annual_22/special/' . $special1->file_name) }}"
+                                                type="audio/mpeg">
+                                        </audio>
+                                        {{-- <button class="audio-button" id="playPauseBtn{{$special1->class.$special1->id}}"
                                         onclick="playPause('{{$special1->class.$special1->id}}')">Play
                                         &#9658;</button> --}}
-                                    <button class="audio-button" onclick="stop('{{$special1->class.$special1->id}}');">Stop &#9611;</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary edit_btn"
-                                        data-path="{{ route('program_edit', $special1->id) }}">Edit</button>
-                                    <button type="button" class="btn btn-danger delete_btn"
-                                        data-path="{{ route('program_delete', $special1->id) }}">Delete</button>
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $special1->class . $special1->id }}');">Stop
+                                            &#9611;</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit_btn"
+                                            data-path="{{ route('program_edit', $special1->id) }}">Edit</button>
+                                        <button type="button" class="btn btn-danger delete_btn"
+                                            data-path="{{ route('program_delete', $special1->id) }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="text-center text-white">
+                                <td colspan="6">
+                                    No Data Available
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </thead>
                     {{-- End content of programmes --}}
                     {{-- END THE SECTION OF special --}}
@@ -752,8 +854,8 @@
         });
     });
 
-    
-    function toggleBtn(id){
+
+    function toggleBtn(id) {
         $(id).toggleClass('icon-minus-sign');
     }
 </script>

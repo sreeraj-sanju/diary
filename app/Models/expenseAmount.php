@@ -13,6 +13,6 @@ class expenseAmount extends Model
 
     public function expenseName()
     {
-        return $this->belongsTo(ExpenseName::class);
+        return $this->belongsTo(ExpenseName::class, 'expense_name', 'id');
     }
 }
