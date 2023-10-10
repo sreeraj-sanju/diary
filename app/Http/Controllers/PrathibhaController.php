@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use PDF;
+use Mpdf\Mpdf;
 
 class PrathibhaController extends Controller
 {
@@ -331,12 +332,53 @@ class PrathibhaController extends Controller
     public function export()
     {
         $year = date('Y');
-        
+        // Register the Malayalam font
+    $font = public_path('fonts/rachana.ttf'); // Adjust the path to your font file
+//    PDF::setFontLocation($font);
+
         $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
         view()->share('data', $data);
         $pdf = PDF::loadView('prathibha.export')
             ->setPaper('a4', 'portrait');
-
+// dd($pdf);
         return $pdf->stream('ProgramList');
+    }
+
+    public function exportMpdf(){
+        // Create mPDF instance
+    $mpdf = new Mpdf();
+
+    // Define Malayalam font settings
+    $malayalamFontFamily = 'rachana'; // Replace with your font family name
+    $malayalamFontFile = public_path('fonts/rachana.ttf'); // Replace with the actual font path
+
+    // Set the Malayalam font
+    $mpdf->autoLangToFont = true;
+    $mpdf->autoScriptToLang = true;
+    $mpdf->autoVietnamese = true;
+    $mpdf->autoArabic = true;
+    $mpdf->autoLangToFont = true;
+    $mpdf->autoScriptToLang = true;
+    // $mpdf->autoThai = true;
+    // $mpdf->autoKorean = true;
+
+    $mpdf->SetDefaultFont('sans-serif'); // Default font for non-Malayalam text
+    $mpdf->SetFont($malayalamFontFamily, '', 12); // Set Malayalam font
+
+    // HTML content with Malayalam text
+    $content = '<html><head><meta charset="UTF-8"></head><body>';
+    $content .= "<p style=\"font-family: $malayalamFontFamily;\">മലയാളം ഫോണ്ട്</p> <p style=\"font-family:;\">മലയാളം ഫോണ്ട്</p>";
+    $content .= '</body></html>';
+
+ $year = date('Y');
+    $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+    
+        $html = view('prathibha.export', compact('data'))->render();
+    // Write content to PDF
+    // dd($html);
+    $mpdf->WriteHTML($html);
+
+    // Output the PDF
+    $mpdf->Output('document.pdf', 'I');
     }
 }

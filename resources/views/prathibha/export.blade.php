@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Document</title>
-    <link href='{{asset("assets/prathibha/vendor/bootstrap/css/bootstrap5.min.css")}}' rel="stylesheet">
+    <!-- <link href='{{asset("assets/prathibha/vendor/bootstrap/css/bootstrap5.min.css")}}' rel="stylesheet"> -->
     <style>
 table, thead, tbody, th, td{
     border: 1px solid black;
