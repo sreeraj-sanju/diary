@@ -336,7 +336,7 @@ class PrathibhaController extends Controller
     public function export()
     {
         $year = date('Y');
-        $font = asset('fonts/revathy.ttf');
+        $font = public_path('fonts/revathy.ttf');
         // dd($font);
         $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
         view()->share('data', $data);
@@ -344,6 +344,7 @@ class PrathibhaController extends Controller
             ->setPaper('a4', 'portrait');
 
         $pdf->getDomPDF()->getOptions()->setDefaultFont($font);
+// dd($pdf);
 
         return $pdf->stream('ProgramList');
     }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mal">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Document</title>
-    <link href='{{asset("assets/prathibha/vendor/bootstrap/css/bootstrap5.min.css")}}' rel="stylesheet">
+    <!-- <link href='{{asset("assets/prathibha/vendor/bootstrap/css/bootstrap5.min.css")}}' rel="stylesheet"> -->
     <style>
 table, thead, tbody, th, td{
     border: 1px solid black;
@@ -21,15 +21,15 @@ td{
     font-weight: 600;
     font-family: 'Times New Roman', Times, serif;
 }
-@font-face {
+/* @font-face {
             font-family: 'revathy';
             src: url("{{ asset('fonts/revathy.ttf') }}");
         }
 
         /* Apply the Malayalam font to your content */
         body {
-            font: revathy;
-        }
+            font-family: 'revathy';
+        } 
 </style>
 </head>
 <body>
