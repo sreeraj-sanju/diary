@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use PDF;
 use Mpdf\Mpdf;
+use PDF;
 
 class PrathibhaController extends Controller
 {
@@ -45,7 +45,7 @@ class PrathibhaController extends Controller
         $tot_karoke = Anniversary::where('program_name', 'karoke')->where('year', $year)->count();
         $tot_mime = Anniversary::where('program_name', 'mime')->where('year', $year)->count();
         $tot_special = Anniversary::where('class', 'special')->where('year', $year)->count();
-        
+
         return view('prathibha.prathibha_2022', compact(
             'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
             'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet', 'tot_skit',
@@ -67,10 +67,10 @@ class PrathibhaController extends Controller
         $class = $request['class'];
         $audio = $request->file("file_name");
         $destination = "prathibha_annual_" . $year . "/" . $class;
-        if($audio){
+        if ($audio) {
             $audio_name = $audio->getClientOriginalName();
             $audio->move($destination, $audio_name);
-        }else{
+        } else {
             $audio_name = 'not_get';
         }
 
@@ -80,6 +80,7 @@ class PrathibhaController extends Controller
                 'year' => $year,
                 'class' => $class,
                 'contastant' => $request['contastant_name'],
+                'participant' => $request['participants_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
                 'file_name' => $destination . "/" . $audio_name,
@@ -104,6 +105,7 @@ class PrathibhaController extends Controller
         if ($data) {
             foreach ($data as $value) {
                 $contastant = $value->contastant;
+                $participant = $value->participant;
                 $song = $value->song_name;
                 $file = $value->file_name;
                 $program = $value->program_name;
@@ -112,6 +114,7 @@ class PrathibhaController extends Controller
             return response()->json([
                 'status' => 200,
                 'contastant' => $contastant,
+                'participant' => $participant,
                 'id' => $id,
                 'song' => $song,
                 'file' => $file,
@@ -149,6 +152,7 @@ class PrathibhaController extends Controller
             Anniversary::where('id', $id)->update([
                 'class' => $request['class'],
                 'contastant' => $request['contastant_name'],
+                'participant' => $request['participants_name'],
                 'program_name' => $request['program_name'],
                 'song_name' => $request['song_name'],
             ]);
@@ -315,7 +319,7 @@ class PrathibhaController extends Controller
     public function report()
     {
         $year = date('Y');
-        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+        $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
 
         return view('prathibha.report', compact(
             'data'
@@ -333,11 +337,11 @@ class PrathibhaController extends Controller
         return redirect()->route('report');
     }
 
-    public function export()
+    public function exportdompdf()
     {
         $year = date('Y');
         // Register the Malayalam font
-    $font = public_path('fonts/rachana.ttf'); // Adjust the path to your font file
+        $font = public_path('fonts/rachana.ttf'); // Adjust the path to your font file
 //    PDF::setFontLocation($font);
 
         $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
@@ -348,41 +352,25 @@ class PrathibhaController extends Controller
         return $pdf->stream('ProgramList');
     }
 
-    public function exportMpdf(){
+    public function export()
+    {
         // Create mPDF instance
-    $mpdf = new Mpdf();
+        $mpdf = new Mpdf();
 
-    // Define Malayalam font settings
-    $malayalamFontFamily = 'rachana'; // Replace with your font family name
-    $malayalamFontFile = public_path('fonts/rachana.ttf'); // Replace with the actual font path
+        // Define Malayalam font settings
+        $malayalamFontFamily = 'rachana'; // Replace with your font family name
+        $malayalamFontFile = public_path('fonts/rachana.ttf'); // Replace with the actual font path
 
-    // Set the Malayalam font
-    $mpdf->autoLangToFont = true;
-    $mpdf->autoScriptToLang = true;
-    $mpdf->autoVietnamese = true;
-    $mpdf->autoArabic = true;
-    $mpdf->autoLangToFont = true;
-    $mpdf->autoScriptToLang = true;
-    // $mpdf->autoThai = true;
-    // $mpdf->autoKorean = true;
+        // Set the Malayalam font
+        $mpdf->autoLangToFont = true;
+        $mpdf->autoScriptToLang = true;
 
-    $mpdf->SetDefaultFont('sans-serif'); // Default font for non-Malayalam text
-    $mpdf->SetFont($malayalamFontFamily, '', 12); // Set Malayalam font
+        $year = date('Y');
+        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
 
-    // HTML content with Malayalam text
-    $content = '<html><head><meta charset="UTF-8"></head><body>';
-    $content .= "<p style=\"font-family: $malayalamFontFamily;\">മലയാളം ഫോണ്ട്</p> <p style=\"font-family:;\">മലയാളം ഫോണ്ട്</p>";
-    $content .= '</body></html>';
-
- $year = date('Y');
-    $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
-    
         $html = view('prathibha.export', compact('data'))->render();
-    // Write content to PDF
-    // dd($html);
-    $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML($html);
 
-    // Output the PDF
-    $mpdf->Output('document.pdf', 'I');
+        $mpdf->Output('document.pdf', 'I');
     }
 }

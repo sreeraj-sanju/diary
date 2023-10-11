@@ -52,6 +52,17 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="participants_name" class="col-md-3 col-form-label">Participant Name</label>
+                        <div class="col-md-8">
+                            <textarea type="text" class="form-control" name="participants_name"
+                                wire:model='participants_name'></textarea>
+                            @error('participants_name')
+                                <span class="text-danger error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="class" class="col-md-3 col-form-label">Program</label>
                         <div class="col-md-8">
                             <select name="program_name" class="form-control pr_form" id="" wire:model="class">

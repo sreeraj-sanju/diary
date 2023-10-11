@@ -32,10 +32,10 @@
     <section class="ftco-section_pr">
         <div>
             @include('livewire.prathibha.programmes')
-            <a class="btn btn-primary sr-button" href="{{route('prathibha')}}">Home</a>
-            <a class="btn btn-primary sr-button" href="{{route('lo')}}">Login</a>
-            <a class="btn btn-primary sr-button" href="{{route('report')}}">Report</a>
-            <a class="btn btn-primary sr-button" target="_blank" href="{{route('export')}}">Export</a>
+            <a class="btn btn-primary sr-button" href="{{ route('prathibha') }}">Home</a>
+            <a class="btn btn-primary sr-button" href="{{ route('lo') }}">Login</a>
+            <a class="btn btn-primary sr-button" href="{{ route('report') }}">Report</a>
+            <a class="btn btn-primary sr-button" target="_blank" href="{{ route('export') }}">Export</a>
             @if (Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
@@ -88,13 +88,13 @@
                                     <td>{{ $lp1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $lp1->class . $lp1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($lp1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($lp1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$lp1->class.$lp1->id}}"
                                         onclick="playPause('{{$lp1->class.$lp1->id}}')" >Play
                                         &#9658;</button> --}}
-                                        <button class="audio-button" onclick="stop('{{ $lp1->class . $lp1->id }}');">Stop
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $lp1->class . $lp1->id }}');">Stop
                                             &#9611;</button>
                                     </td>
                                     <td>
@@ -147,8 +147,7 @@
                                     <td>{{ $v1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $v1->class . $v1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($v1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($v1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$v1->class.$v1->id}}"
                                         onclick="playPause('{{$v1->class.$v1->id}}')">Play
@@ -207,8 +206,7 @@
                                     <td>{{ $vi1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $vi1->class . $vi1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($vi1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($vi1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$vi1->class.$vi1->id}}"
                                         onclick="playPause('{{$vi1->class.$vi1->id}}')">Play
@@ -267,8 +265,7 @@
                                     <td>{{ $vii1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $vii1->class . $vii1->id }}" controls class="audio-style">
-                                            <source src="{{ asset( $vii1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($vii1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$vii1->class.$vii1->id}}"
                                         onclick="playPause('{{$vii1->class.$vii1->id}}')">Play
@@ -327,8 +324,7 @@
                                     <td>{{ $viii1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $viii1->class . $viii1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($viii1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($viii1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$viii1->class.$viii1->id}}"
                                         onclick="playPause('{{$viii1->class.$viii1->id}}')">Play
@@ -387,8 +383,7 @@
                                     <td>{{ $ix1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $ix1->class . $ix1->id }}" controls class="audio-style">
-                                            <source src="{{ asset( $ix1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($ix1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$ix1->class.$ix1->id}}"
                                         onclick="playPause('{{$ix1->class.$ix1->id}}')">Play
@@ -446,13 +441,13 @@
                                     <td>{{ $x1->song_name }}</td>
                                     <td>
                                         <audio id="{{ $x1->class . $x1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($x1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($x1->file_name) }}" type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$x1->class.$x1->id}}"
                                         onclick="playPause('{{$x1->class.$x1->id}}')">Play
                                         &#9658;</button> --}}
-                                        <button class="audio-button" onclick="stop('{{ $x1->class . $x1->id }}');">Stop
+                                        <button class="audio-button"
+                                            onclick="stop('{{ $x1->class . $x1->id }}');">Stop
                                             &#9611;</button>
                                     </td>
                                     <td>
@@ -506,10 +501,9 @@
                                     <td>{{ $plusOne1->song_name }}</td>
                                     <td>
                                         <audio id="{{ 'plusOne' . $plusOne1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($plusOne1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($plusOne1->file_name) }}" type="audio/mpeg">
                                         </audio>
-                                        
+
                                         <button class="audio-button"
                                             onclick="stop('{{ plusOne . $plusOne1->id }}');">Stop &#9611;</button>
                                     </td>
@@ -564,10 +558,9 @@
                                     <td>{{ $plusTwo1->song_name }}</td>
                                     <td>
                                         <audio id="{{ 'plusTwo' . $plusTwo1->id }}" controls class="audio-style">
-                                            <source src="{{ asset($plusTwo1->file_name) }}"
-                                                type="audio/mpeg">
+                                            <source src="{{ asset($plusTwo1->file_name) }}" type="audio/mpeg">
                                         </audio>
-                                        
+
                                         <button class="audio-button"
                                             onclick="stop('{{ plusTwo . $plusTwo1->id }}');">Stop &#9611;</button>
                                     </td>
@@ -712,6 +705,15 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="participants_name" class="col-md-3 col-form-label">Participant Name</label>
+                            <div class="col-md-8">
+                                <textarea type="text" class="form-control" name="participants_name" id='participant_name' wire:model='participants_name'></textarea>
+                                @error('participants_name')
+                                    <span class="text-danger error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="class" class="col-md-3 col-form-label">Program</label>
                             <div class="col-md-8">
                                 <select name="program_name" class="form-control pr_form" id="program">
@@ -820,6 +822,7 @@
                     //$('#file_name').val(response.file);
                     $('#song_name').val(response.song);
                     $('#contastant_name').val(response.contastant);
+                    $('#participant_name').val(response.participant);
                     $('#program').val(response.program);
                     $('#class').val(response.class);
                 }

@@ -13,8 +13,9 @@
                     <tr>
                         <th scope="col">slNo</th>
                         <th scope="col">Class</th>
-                        <th>Name</th>
                         <th>Program</th>
+                        <th>Name</th>
+                        <th style="width:100px !important;">Participants</th>
                         <th>Music</th>
                         <th>Priority</th>
                         <th>Action</th>
@@ -25,8 +26,9 @@
                 <tr class="content-row">
                     <td>{{ $loop->index + 1 }}</td>
                     <td>{{ $lp1->class }}</td>
-                    <td>{{ $lp1->contastant }}</td>
                     <td>{{ $lp1->program_name }}</td>
+                    <td>{{ $lp1->contastant }}</td>
+                    <td>{{ $lp1->participant }}</td>
                     <td>{{ $lp1->song_name }}</td>
                     <form action="{{route('priority')}}" method="POST">
                         @csrf
