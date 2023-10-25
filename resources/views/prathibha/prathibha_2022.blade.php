@@ -500,12 +500,12 @@
                                     <td>{{ $plusOne1->program_name }}</td>
                                     <td>{{ $plusOne1->song_name }}</td>
                                     <td>
-                                        <audio id="{{ 'plusOne' . $plusOne1->id }}" controls class="audio-style">
+                                        <audio id="{{$plusOne1->id }}" controls class="audio-style">
                                             <source src="{{ asset($plusOne1->file_name) }}" type="audio/mpeg">
                                         </audio>
 
                                         <button class="audio-button"
-                                            onclick="stop('{{ plusOne . $plusOne1->id }}');">Stop &#9611;</button>
+                                            onclick="stop('{{$plusOne1->id }}');">Stop &#9611;</button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary edit_btn"
@@ -557,12 +557,12 @@
                                     <td>{{ $plusTwo1->program_name }}</td>
                                     <td>{{ $plusTwo1->song_name }}</td>
                                     <td>
-                                        <audio id="{{ 'plusTwo' . $plusTwo1->id }}" controls class="audio-style">
+                                        <audio id="{{$plusTwo1->id }}" controls class="audio-style">
                                             <source src="{{ asset($plusTwo1->file_name) }}" type="audio/mpeg">
                                         </audio>
 
                                         <button class="audio-button"
-                                            onclick="stop('{{ plusTwo . $plusTwo1->id }}');">Stop &#9611;</button>
+                                            onclick="stop('{{$plusTwo1->id }}');">Stop &#9611;</button>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-primary edit_btn"
@@ -617,7 +617,7 @@
                                         <audio id="{{ $special1->class . $special1->id }}" controls
                                             class="audio-style">
                                             <source
-                                                src="{{ asset('prathibha_annual_22/special/' . $special1->file_name) }}"
+                                                src="{{ asset($special1->file_name) }}"
                                                 type="audio/mpeg">
                                         </audio>
                                         {{-- <button class="audio-button" id="playPauseBtn{{$special1->class.$special1->id}}"

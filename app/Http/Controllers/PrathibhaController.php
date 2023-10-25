@@ -366,7 +366,8 @@ class PrathibhaController extends Controller
         $mpdf->autoScriptToLang = true;
 
         $year = date('Y');
-        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+        // $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+        $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
 
         $html = view('prathibha.export', compact('data'))->render();
         $mpdf->WriteHTML($html);
