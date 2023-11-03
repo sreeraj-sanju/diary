@@ -10982,7 +10982,7 @@ h5,
     background-color: rgba(25, 75, 50, 0.9) !important;
     padding: 5px;
     border-radius: 5px;
-    max-height: 600px !important;
+    max-height: 100% !important;
     overflow: scroll;
 }
 
