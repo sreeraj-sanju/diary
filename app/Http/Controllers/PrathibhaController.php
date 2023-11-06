@@ -47,9 +47,28 @@ class PrathibhaController extends Controller
         $tot_special = Anniversary::where('class', 'special')->where('year', $year)->count();
 
         return view('prathibha.prathibha_2022', compact(
-            'lp', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'plusOne', 'plusTwo', 'total',
-            'tot_chain', 'tot_solo', 'tot_group', 'tot_folk', 'tot_duet', 'tot_skit',
-            'tot_drama', 'tot_classical', 'tot_karoke', 'tot_mime', 'special', 'tot_special'
+            'lp',
+            'v',
+            'vi',
+            'vii',
+            'viii',
+            'ix',
+            'x',
+            'plusOne',
+            'plusTwo',
+            'total',
+            'tot_chain',
+            'tot_solo',
+            'tot_group',
+            'tot_folk',
+            'tot_duet',
+            'tot_skit',
+            'tot_drama',
+            'tot_classical',
+            'tot_karoke',
+            'tot_mime',
+            'special',
+            'tot_special'
 
         ));
     }
@@ -320,9 +339,13 @@ class PrathibhaController extends Controller
     {
         $year = date('Y');
         $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
-
+        $total = Anniversary::where('year', $year)->count('id');
+        $completed = Anniversary::where('year', $year)
+            ->Where('isCompleted', 1)->count('id');
+        $remained = Anniversary::where('year', $year)
+            ->Where('isCompleted', 0)->count('id');
         return view('prathibha.report', compact(
-            'data'
+            'data', 'total', 'completed', 'remained'
         ));
     }
 
@@ -330,8 +353,10 @@ class PrathibhaController extends Controller
     {
         $id = $request->input('id');
         $priority = $request->input('priority');
+        $isCompleted = $request->has('isCompleted') ? 1 : 0;
         Anniversary::where('id', $id)->update([
             'priority' => $priority,
+            'isCompleted' => $isCompleted
         ]);
         session()->flash('message', 'Updated!');
         return redirect()->route('report');
@@ -342,13 +367,13 @@ class PrathibhaController extends Controller
         $year = date('Y');
         // Register the Malayalam font
         $font = public_path('fonts/rachana.ttf'); // Adjust the path to your font file
-//    PDF::setFontLocation($font);
+        //    PDF::setFontLocation($font);
 
         $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
         view()->share('data', $data);
         $pdf = PDF::loadView('prathibha.export')
             ->setPaper('a4', 'portrait');
-// dd($pdf);
+        // dd($pdf);
         return $pdf->stream('ProgramList');
     }
 
@@ -368,6 +393,29 @@ class PrathibhaController extends Controller
         $year = date('Y');
         // $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
         $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
+
+        $html = view('prathibha.export', compact('data'))->render();
+        $mpdf->WriteHTML($html);
+
+        $mpdf->Output('document.pdf', 'I');
+    }
+
+    public function export_pdf()
+    {
+        // Create mPDF instance
+        $mpdf = new Mpdf();
+
+        // Define Malayalam font settings
+        $malayalamFontFamily = 'rachana'; // Replace with your font family name
+        $malayalamFontFile = public_path('fonts/rachana.ttf'); // Replace with the actual font path
+
+        // Set the Malayalam font
+        $mpdf->autoLangToFont = true;
+        $mpdf->autoScriptToLang = true;
+
+        $year = date('Y');
+        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
+        // $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
 
         $html = view('prathibha.export', compact('data'))->render();
         $mpdf->WriteHTML($html);

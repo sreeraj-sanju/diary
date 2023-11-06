@@ -77,6 +77,7 @@ Route::post('/quiz_image', [prathibhaController::class, 'quiz_image'])->name('qu
 Route::get('/report',[PrathibhaController::class, 'report'])->name('report');
 Route::post('/priority',[PrathibhaController::class, 'priority'])->name('priority');
 Route::get('/export',[PrathibhaController::class, 'export'])->name('export');
+Route::get('/export_pdf',[PrathibhaController::class, 'export_pdf'])->name('export_pdf');
 
 
 Route::get('/superadmin', function () {

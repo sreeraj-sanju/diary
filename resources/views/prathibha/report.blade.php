@@ -10,6 +10,11 @@
     <div class="report">
     <table class="table table-hover table-bordered text-center report-table">
                 <thead class="thead-dark">
+                <tr>
+                <th colspan ='3'>Total Programs : {{$total}}</th>
+                <th colspan ='2'>Programs Completed : {{$completed}}</th>
+                <th colspan ='3'>Programs Remaining : {{$remained}}</th>
+                </tr>
                     <tr>
                         <th scope="col">slNo</th>
                         <th scope="col">Class</th>
@@ -34,7 +39,8 @@
                         @csrf
                         <input type="hidden" name="id" value="{{$lp1->id}}">
                     <td><input type="number" name="priority" value="{{$lp1->priority}}"></td>
-                    <td><button class="btn btn-secondary btn-xs">Update</button> </td>
+                    <td><input type="checkbox" name="isCompleted" {{$lp1->isCompleted ? 'checked':''}}>
+                    <button class="btn btn-secondary btn-xs">Update</button> </td>
                     </form>
                 </tr>
                                     @endforeach

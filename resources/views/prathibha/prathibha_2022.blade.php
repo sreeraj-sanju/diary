@@ -37,6 +37,7 @@
             <a class="btn btn-primary sr-button" href="{{ route('lo') }}">Login</a>
             <a class="btn btn-primary sr-button" href="{{ route('report') }}">Report</a>
             <a class="btn btn-primary sr-button" target="_blank" href="{{ route('export') }}">Export</a>
+            <a class="btn btn-primary sr-button" target="_blank" href="{{ route('export_pdf') }}">Program As Pdf</a>
             @if (Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
@@ -718,18 +719,19 @@
                             <label for="class" class="col-md-3 col-form-label">Program</label>
                             <div class="col-md-8">
                                 <select name="program_name" class="form-control pr_form" id="program">
-                                    <option value="">select a Program</option>
-                                    <option value="solo">Single Dance</option>
-                                    <option value="duet">Duet Dance</option>
-                                    <option value="group">Group Dance</option>
-                                    <option value="folk">Folk Dance</option>
-                                    <option value="chain">Chain Dance</option>
-                                    <option value="classical">Classical Dance</option>
-                                    <option value="skit">Skit</option>
-                                    <option value="drama">Drama</option>
-                                    <option value="mime">Mime</option>
-                                    <option value="karoke">Karoke</option>
-
+                                <option value="">select a Program</option>
+                                <option value="Single Dance">Single Dance</option>
+                                <option value="Group Dance">Group Dance</option>
+                                <option value="Folk Dance">Folk Dance</option>
+                                <option value="Chain Dance">Chain Dance</option>
+                                <option value="Classical">Classical Dance</option>
+                                <option value="Semi-Classical">Semi Classical</option>
+                                <option value="Comedy Skit">Skit</option>
+                                <option value="Musical Drama">Musical Drama</option>
+                                <option value="Mime">Mime</option>
+                                <option value="karoke">Karoke</option>
+                                <option value="Bharathanatyam">Bharathanatyam</option>
+                                <option value="Kitchen Music">Kitchen Music</option>
                                 </select>
                                 @error('class')
                                     <span class="text-danger error">{{ $message }}</span>
