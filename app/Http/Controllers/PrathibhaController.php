@@ -338,7 +338,7 @@ class PrathibhaController extends Controller
     public function report()
     {
         $year = date('Y');
-        $data = Anniversary::where('year', $year)->orderBy('class', 'asc')->get();
+        $data = Anniversary::where('year', $year)->orderBy('priority', 'asc')->get();
         $total = Anniversary::where('year', $year)->count('id');
         $completed = Anniversary::where('year', $year)
             ->Where('isCompleted', 1)->count('id');
